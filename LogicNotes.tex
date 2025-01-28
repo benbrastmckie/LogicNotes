@@ -25,11 +25,34 @@
 \usepackage[pdfusetitle]{hyperref}
 \linespread{1.01} % Change line spacing here, Palatino benefits from a slight increase by default
 
+
 \newcommand{\corner}[1]{\ulcorner#1\urcorner} %%Corner quotes
 \newcommand{\tuple}[1]{\langle#1\rangle} %%Angle brackets
 \newcommand{\set}[1]{\lbrace#1\rbrace} %%Set brackets
-\newcommand{\M}[0]{\mathcal{M}}
+% \newcommand{\qedp}[0]{$\hfill\Diamond$} %%Box at end of proofs
+\newcommand{\ceil}[1]{\lceil#1\rceil} %%Corner quotes
+% \newcommand{\floor}[1]{\lfloor#1\rfloor} %%Corner quotes
+\renewcommand{\Vert}[1]{\ldbrack#1\rdbrack}
 \newcommand{\interpret}[1]{\llbracket#1\rrbracket} %%Double brackets
+\renewcommand{\vert}[1]{\lvert#1\rvert}
+\newcommand{\comp}[1]{\texttt{comp}(#1)}
+\newcommand{\wfs}[1]{\texttt{wfs}(#1)}
+\renewcommand{\max}[1]{\texttt{max}(#1)}
+% \newcommand{\down}[0]{{\downarrow}}
+% \newcommand{\up}[0]{{\uparrow}}
+\newcommand{\M}[0]{\mathcal{M}}
+\newcommand{\V}[0]{\mathcal{V}}
+\renewcommand{\L}[0]{\mathcal{L}}
+% \newcommand{\Z}[0]{\mathbb{Z}}
+% \newcommand{\R}[0]{\mathbb{R}}
+% \newcommand{\W}[0]{\mathbb{W}}
+% \newcommand{\T}[0]{\mathcal{T}}
+% \newcommand{\K}[0]{\mathcal{K}}
+% \renewcommand{\P}[0]{\mathcal{P}}
+% \newcommand{\C}[0]{\mathcal{C}}
+% \newcommand{\always}{\ensuremath \raisebox{1.3pt}{\rotatebox[origin=c]{180}{$\triangle$}}}
+% \newcommand{\sometimes}{\ensuremath \raisebox{-1.3pt}{$\triangle$}}
+
 \DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n} 
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
@@ -56,7 +79,7 @@
 
 \title{\textbf{Logic Notes}} % Subtitle
 
-\author{\em Benjamin Brast-McKie\\ \href{http://www.benbrastmckie.com}{www.benbrastmckie.com}} % Institution
+\author{\em Benjamin Brast-McKie} % Institution
 
 \date{Updated: \today} % Date
 
@@ -68,37 +91,43 @@
 %----------------------------------------------------------------------------------------
 
 
-%\vspace{20pt}
 
 \section*{\sc Propositional Logic: Syntax and Semantics}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Canonical Name:] A quoted symbol is the \textit{canonical name} for the symbol quoted.
-\item[\bf Language $\boldsymbol{\mathcal{L}}$:] The propositional language $\mathcal{L}$ includes: sentence letters `$P_1$',`$P_2$', \dots, the sentential operators `$\vee$',`$\neg$', and parentheses `$($' and `$)$'.
-\item[\bf Strings:] The concatenation of a finite number of symbols in $\mathcal{L}$ is a \textit{string} of $\mathcal{L}$.
-\item[\bf Well Formed Sentences:] Let `$A$' and `$B$' be \textit{schematic variables} for strings of $\mathcal{L}$, and $\corner{\cdot}$ be a function from strings of $\mathcal{L}$ to the canonical names for those strings. We may then let $\mathcal{G}$ be the set of \textit{well formed sentences} (wfs) of $\mathcal{L}$, which is defined recursively as follows:
-\begin{itemize}
-\item The sentence letters `$P_1$',`$P_2$',\dots are all wfs of $\mathcal{L}$.
-\item If ${A}$ is a wfs of $\mathcal{L}$, then $\corner{\neg A}$ is a wfs of $\mathcal{L}$.
-\item If ${A}$ and ${B}$ are wfss of $\mathcal{L}$, then $\corner{(A\vee B)}$ is a wfs of $\mathcal{L}$.
-\end{itemize}
-\item[\bf Abbreviations:] (i) $\corner{(A\wedge B)}$ abbreviates $\corner{\neg(\neg A\vee\neg B)}$;\\ (ii) $\corner{(A\rightarrow B)}$ abbreviates $\corner{(\neg A\vee B)}$;\\ (iii) $\corner{(A\leftrightarrow B)}$ abbreviates $\corner{[(A\rightarrow B)\wedge(B\rightarrow A)]}$.
-\item[\bf Interpretation:] Let $\mathcal{V}$ be an \textit{interpretation} of $\mathcal{L}$ \textit{iff} for every $P_i$ of $\mathcal{L}$, either $\mathcal{V}(P_i)=T$ or $\mathcal{V}(P_i)=F$, but not both.
-\item[\bf Semantics:] Observe that $\mathcal{V}$ is only defined for the sentence letters $P_1,P_2,\dots$ of $\mathcal{L}$ and not all other wfss. We may extend a given $\mathcal{V}$ to cover all wfss of $\mathcal{L}$ by recursively defining $\mathcal{V}\vDash A$, where `$\mathcal{V}\vDash A$' reads `$\mathcal{V}$ models $A$':
-\begin{small}
-\begin{itemize}[leftmargin=.36in]
-\item[$(P_i)$] $\mathcal{V}\vDash P_i$ \textit{iff} $\mathcal{V}(P_i)=T$.
-\item[$(\neg)$] $\mathcal{V}\vDash \neg A$ \textit{iff} it is not the case that $\mathcal{V}\vDash A$ (i.e., $\mathcal{V}\nvDash A$).\footnote{Strictly speaking, the schemata with schematic variables should be inclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
-\item[$(\vee)$] $\mathcal{V}\vDash A\vee B$ \textit{iff} $\mathcal{V}\vDash A$ or $\mathcal{V}\vDash B$.
-%\item[$(\wedge)$] $\mathcal{V}\vDash A\wedge B$ \textit{iff} $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$. 
-%\item[$(\shortrightarrow)$] $\mathcal{V}\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\mathcal{V}} A$ or $\mathcal{V}\vDash B$.
-%\item[$(\leftrightarrow)$] $\mathcal{V}\vDash A\leftrightarrow B$ \textit{iff} $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$, or $\nvDash_{\mathcal{V}} A$ and $\nvDash_{\mathcal{V}} B$.
-\end{itemize}
-\end{small}
-Here, we use our grasp of the English terms `it is not the case that' and `or' to assign truth-values to all wfss of $\mathcal{L}$ on a given interpretation $\mathcal{V}$. 
-\item[\bf Logical Consequence:] $\Gamma\vDash A$ \textit{iff} for all interpretations $\mathcal{V}$, if $\mathcal{V}\vDash G$ for all $G\in\Gamma$, then $\mathcal{V}\vDash A$.
-\item[\bf Logical Equivalence:] $A\equiv B$ \textit{iff} $A\vDash B$ and $B\vDash A$.  
-\item[\bf Logical Truth:] A wfs $A$ of $\mathcal{L}$ is \textit{valid} (or a logical truth) iff $\varnothing\vDash A$ (written $\vDash A$).
+  \item[\bf Canonical Name:] A quoted symbol is the \textit{canonical name} for the symbol quoted.
+  \item[\bf Language $\boldsymbol{\L}$:] The propositional language $\L$ includes \textit{symbols} for: \textit{sentence letters} `$p_1$',`$p_2$', \dots, \textit{sentential operators} `$\vee$',`$\neg$', and \textit{punctuation} `$($' and `$)$'.
+  \item[\bf Strings:] The concatenation of a finite number of symbols in $\L$ is a \textit{string} of $\L$.
+  \item[\bf Schematic Variables:] Let `$A$', `$B$',\ldots be \textit{schematic variables} for strings of $\L$
+  \item[\bf Corner Quotes:] Let $\corner{\cdot}$ map strings of $\L$ to the canonical names for those strings.
+  \item[\bf Well-Formed Sentences:] The set of \textit{well-formed sentences} $\wfs{\L}$ is the smallest set to satisfy:
+    \begin{itemize}\small
+      \item $A$ is a wfs of $\L$ if $A$ is a sentence letter of $\L$. 
+      \item $\corner{\neg A}$ is a wfs of $\L$ if $A$ is a wfs of $\L$ .
+      \item $\corner{(A\vee B)}$ is a wfs of $\L$ if $A$ and $B$ are wfss of $\L$.
+    \end{itemize}
+  \item[\bf Abbreviations:] Letting $\corner{A \coloneq B}$ signify that $A$ abbreviates $B$, assume the following:
+    \begin{itemize}\small
+      \item $(A\wedge B) \coloneq \neg(\neg A\vee\neg B)$.
+      \item $(A\rightarrow B) \coloneq (\neg A\vee B)$.
+      \item $(A\leftrightarrow B) \coloneq [(A\rightarrow B)\wedge(B\rightarrow A)]$.
+    \end{itemize}
+    Corner quotes may be omitted when clarity is not improved.
+  \item[\bf Interpretation:] Let $\V$ be an \textit{interpretation} of $\L$ \textit{iff} for every sentence letter $A$ of $\L$, either $\V(A)=0$ or $\V(A)=1$, but not both.
+  \item[\bf Semantics:] We may extend an interpretation $\V$ to cover all wfss of $\L$ by taking $\vDash$ to be the smallest relation to satisfy the following:
+    % Observe that $\V$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\L$ and not all other wfss.
+  \begin{itemize}[leftmargin=.36in]\small
+  \item[$(p_i)$] $\V\vDash p_i$ \textit{iff} $\V(p_i)=1$.
+  \item[$(\neg)$] $\V\vDash \corner{\neg A}$ \textit{iff} it is not the case that $\V\vDash A$ (i.e., $\V\nvDash A$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
+  \item[$(\vee)$] $\V\vDash \corner{(A\vee B)}$ \textit{iff} $\V\vDash A$ or $\V\vDash B$.
+  %\item[$(\wedge)$] $\V\vDash A\wedge B$ \textit{iff} $\V\vDash A$ and $\V\vDash B$. 
+  %\item[$(\shortrightarrow)$] $\V\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\V} A$ or $\V\vDash B$.
+  %\item[$(\leftrightarrow)$] $\V\vDash A\leftrightarrow B$ \textit{iff} $\V\vDash A$ and $\V\vDash B$, or $\nvDash_{\V} A$ and $\nvDash_{\V} B$.
+  \end{itemize}
+  We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\L$ given the interpretation $\V$. 
+  \item[\bf Logical Consequence:] $\Gamma\vDash A$ \textit{iff} for all interpretations $\V$, if $\V\vDash B$ for all $B\in\Gamma$, then $\V\vDash A$.
+  \item[\bf Logical Equivalence:] $A\equiv B$ \textit{iff} $A\vDash B$ and $B\vDash A$.  
+  \item[\bf Logical Truth:] A wfs $A$ of $\L$ is \textit{valid} (or a logical truth) iff $\varnothing\vDash A$ (written $\vDash A$).
 \end{enumerate}
 
 
@@ -106,18 +135,18 @@ Here, we use our grasp of the English terms `it is not the case that' and `or' t
 
 \section*{\it Problem Set: Metalinguistic Abbreviation}
 
-Let $\mathcal{L}^+$ include the symbols in $\mathcal{L}$ together with the sentential operators `$\wedge$', `$\rightarrow$', and `$\leftrightarrow$' which are to be read `and', `(materially) implies that', and `just in case', respectively.
+Let $\L^+$ include the symbols in $\L$ together with the sentential operators `$\wedge$', `$\rightarrow$', and `$\leftrightarrow$' which are to be read `and', `(materially) implies that', and `if and only if', respectively.
 \begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
-\item Provide a definition of the set $\mathcal{G}^+$ of wfss of $\mathcal{L}^+$.
-\item Provide a semantics for the wfss of $\mathcal{L}^+$.
-\item Prove $(A\wedge B)$, $(A\rightarrow B)$, and $(A\leftrightarrow B)$ are each logically equivalent to a wfs of $\mathcal{L}$.
-\item Provide two examples of logical truths including a sentential operator in $\mathcal{L}^+$. 
+\item Provide a natural definition of the set $\wfs{\L^+}$ of wfss of $\L^+$.
+\item Provide a natural semantics for the wfss of $\L^+$.
+\item Prove $(A\wedge B)$, $(A\rightarrow B)$, and $(A\leftrightarrow B)$ are each logically equivalent to a wfs of $\L$.
+\item For each operator in $\L^+$, provide two examples of a logical truth including that operator. 
 \end{enumerate}
 
 %Confirm that the semantic clauses for the abbreviations are correct such that the abbreviations have the same truth-values as what they abbreviate on every interpretation.%\pagebreak
-%\item[\it Example:] %We show first that if $\mathcal{V}\vDash A\rightarrow B$, then $\mathcal{V}\vDash\neg A\vee B$. We then show that if $\mathcal{V}\vDash\neg A\vee B$, then $\mathcal{V}\vDash A\rightarrow B$. Since $A,B,M$ are all arbitrary, it follows that for any wfss $A,B,$ and interpretation $M$, the sentence $A\rightarrow B$ will have the same truth-value as $\neg A\vee B$. This confirms $(\shortrightarrow)$.\par
-%Assume $\mathcal{V}\vDash A\rightarrow B$. By $(\shortrightarrow)$, $\nvDash_{\mathcal{V}} A$ or $\mathcal{V}\vDash B$, and so by $(\neg)$, $\mathcal{V}\vDash\neg A$ or $\mathcal{V}\vDash B$. By $(\vee)$, we get that $\mathcal{V}\vDash\neg A\vee B$.\par
-%Assume $\mathcal{V}\vDash\neg A\vee B$. By $(\vee)$,  $\mathcal{V}\vDash\neg A$ or $\mathcal{V}\vDash B$, and so by $(\neg)$, $\nvDash_{\mathcal{V}} A$ or $\mathcal{V}\vDash B$. Thus by $(\shortrightarrow)$, wet get that $\mathcal{V}\vDash A\rightarrow B$.
+%\item[\it Example:] %We show first that if $\V\vDash A\rightarrow B$, then $\V\vDash\neg A\vee B$. We then show that if $\V\vDash\neg A\vee B$, then $\V\vDash A\rightarrow B$. Since $A,B,M$ are all arbitrary, it follows that for any wfss $A,B,$ and interpretation $M$, the sentence $A\rightarrow B$ will have the same truth-value as $\neg A\vee B$. This confirms $(\shortrightarrow)$.\par
+%Assume $\V\vDash A\rightarrow B$. By $(\shortrightarrow)$, $\nvDash_{\V} A$ or $\V\vDash B$, and so by $(\neg)$, $\V\vDash\neg A$ or $\V\vDash B$. By $(\vee)$, we get that $\V\vDash\neg A\vee B$.\par
+%Assume $\V\vDash\neg A\vee B$. By $(\vee)$,  $\V\vDash\neg A$ or $\V\vDash B$, and so by $(\neg)$, $\nvDash_{\V} A$ or $\V\vDash B$. Thus by $(\shortrightarrow)$, wet get that $\V\vDash A\rightarrow B$.
 
 
 
@@ -129,23 +158,23 @@ Let $\mathcal{L}^+$ include the symbols in $\mathcal{L}$ together with the sente
 % \end{theorem}
 
 % \begin{proof}\small
-%   The proof comes in two parts: we first show that any interpretation $\mathcal{V}$ which makes the ``left hand side'' (LHS) true (i.e., $\mathcal{V}\vDash A\wedge B$) also makes the ``right hand side'' (RHS) true (i.e., $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$), then we prove the converse.
-%   Put otherwise, we first aim to show that if $\mathcal{V}\vDash A\wedge B$, then $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$, where $\mathcal{V}$ has been taken to be an arbitrary interpretation.
-%   Given that $\mathcal{V}$ is arbitrary, it could have been any interpretation whatsoever, and so we may conclude that for any interpretation $\mathcal{V}$, if $\mathcal{V}\vDash A\wedge B$, then $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$.
+%   The proof comes in two parts: we first show that any interpretation $\V$ which makes the ``left hand side'' (LHS) true (i.e., $\V\vDash A\wedge B$) also makes the ``right hand side'' (RHS) true (i.e., $\V\vDash\neg(\neg A\vee\neg B)$), then we prove the converse.
+%   Put otherwise, we first aim to show that if $\V\vDash A\wedge B$, then $\V\vDash\neg(\neg A\vee\neg B)$, where $\V$ has been taken to be an arbitrary interpretation.
+%   Given that $\V$ is arbitrary, it could have been any interpretation whatsoever, and so we may conclude that for any interpretation $\V$, if $\V\vDash A\wedge B$, then $\V\vDash\neg(\neg A\vee\neg B)$.
 %   Of course, this is just to say that $A\wedge B\vDash\neg(\neg A\vee\neg B)$.
 %   The proof of the converse is similar.
 %   Now for the details of the proof which you can use as a template (the above may be assumed):
 
-%   Let $\mathcal{V}$ be an arbitrary interpretation of $\L$.
-%   Assume for discharge that $\mathcal{V}\vDash A\wedge B$.
-%   By the semantics you are meant to give for conjunction in problem (2), both $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$.
-%   By the semantics for negation, neither $\mathcal{V}\vDash\neg A$ nor $\mathcal{V}\vDash\neg B$, and so both $\mathcal{V}\nvDash\neg A$ and $\mathcal{V}\nvDash\neg B$.
-%   By the semantics for disjunction, $\mathcal{V}\nvDash \neg A\vee\neg B$, and so $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$ again by the semantics for negation.
-%   Discharging our assumption, we may conclude that if $\mathcal{V}\vDash A\wedge B$, then $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$.
-%   Since $\mathcal{V}$ was an arbitrary interpretation, it follows that for any interpretation $\mathcal{V}$, if $\mathcal{V}\vDash A\wedge B$, then $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$.
+%   Let $\V$ be an arbitrary interpretation of $\L$.
+%   Assume for discharge that $\V\vDash A\wedge B$.
+%   By the semantics you are meant to give for conjunction in problem (2), both $\V\vDash A$ and $\V\vDash B$.
+%   By the semantics for negation, neither $\V\vDash\neg A$ nor $\V\vDash\neg B$, and so both $\V\nvDash\neg A$ and $\V\nvDash\neg B$.
+%   By the semantics for disjunction, $\V\nvDash \neg A\vee\neg B$, and so $\V\vDash\neg(\neg A\vee\neg B)$ again by the semantics for negation.
+%   Discharging our assumption, we may conclude that if $\V\vDash A\wedge B$, then $\V\vDash\neg(\neg A\vee\neg B)$.
+%   Since $\V$ was an arbitrary interpretation, it follows that for any interpretation $\V$, if $\V\vDash A\wedge B$, then $\V\vDash\neg(\neg A\vee\neg B)$.
 %   Thus $A\wedge B\vDash\neg(\neg A\vee\neg B)$ as desired.
 
-%   Assume instead (also for discharge) that $\mathcal{V}\vDash\neg(\neg A\vee\neg B)$.
+%   Assume instead (also for discharge) that $\V\vDash\neg(\neg A\vee\neg B)$.
 %   By the semantics for\ldots
 % \end{proof}
 
@@ -154,7 +183,7 @@ Let $\mathcal{L}^+$ include the symbols in $\mathcal{L}$ together with the sente
 \section*{\sc Propositional Logic: Proof Theory}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Formal System:] A \textit{formal system} includes: (i) a language $\mathcal{L}$; (ii) a set $\mathcal{G}$ of the wfs of $\mathcal{L}$; (iii) a (possibly empty) set of axioms $\mathcal{A}$; and (iv) rules of inference $\mathcal{R}$ that permit the deduction of wfs from some other wfss.
+\item[\bf Formal System:] A \textit{formal system} includes: (i) a language $\L$; (ii) a set $\mathcal{G}$ of the wfs of $\L$; (iii) a (possibly empty) set of axioms $\mathcal{A}$; and (iv) rules of inference $\mathcal{R}$ that permit the deduction of wfs from some other wfss.
 \item[\bf Natural Deduction:] A formal system is a \textit{system of natural deduction} to the degree that its rules of inference closely resemble natural patterns of reasoning.% Natural deduction systems do not include any axioms.
 \item[\bf Rules of Inference:] $\mathcal{R}^+$ includes the following rules, where the horizontal line indicates inference and brackets mark which assumptions are discharged.
 \end{enumerate}
@@ -294,7 +323,7 @@ Disjunction Elimination:\vspace{-.05in}
 \section*{\it Problem Set: Translation and Deduction\footnote{I have adapted the following problems from \citet{Goldfarb2003} and \citet{Laboreo2005}.}}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Translation:] Resolve the following ambiguities (if any) by translating each into $\mathcal{L}^+$.
+\item[\bf Translation:] Resolve the following ambiguities (if any) by translating each into $\L^+$.
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item Figaro exulted, and Basilio fretted, or the Court had a plan.
 	\item Fred danced and sang or Ginger went home.
@@ -305,7 +334,7 @@ Disjunction Elimination:\vspace{-.05in}
 	\item If Figaro does not expose the Count and force him to reform, then the Countess will discharge Susanna and resign to loneliness.
 	\item The trade deficit will diminish and agriculture or industry will lead a recovery provided that both the dollar drops and neither Japan nor the EU raise their tariffs.
 	\end{enumerate}
-\item[\bf Arguments:] Render the following arguments in the propositional language $\mathcal{L}^+$.
+\item[\bf Arguments:] Render the following arguments in the propositional language $\L^+$.
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item Basilio fretted. Thus, if Figaro exulted, then Basilio fretted.
 	\item Fred danced if Ginger went home. Fred didn't dance. And so Ginger didn't go home.
@@ -345,13 +374,13 @@ Disjunction Elimination:\vspace{-.05in}
 \section*{\sc Propositional Logic: Metalogic}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Proof:] Given a formal system $\mathcal{F}=\tuple{\mathcal{L},\mathcal{G},\mathcal{A},\mathcal{R}}$, a $\mathcal{F}$-\textit{proof} of a conclusion $A$ from a set of premises $\Gamma$ is a finite sequence of $\mathcal{G}$-wfs of $\mathcal{L}$ such that every undischarged sentence in the proof is either: (i) a member of $\Gamma$; (ii) an axiom in $\mathcal{A}$; or else (iii) follows from the preceding sentences in the sequence by a rule of inference in $\mathcal{R}$.
+\item[\bf Proof:] Given a formal system $\mathcal{F}=\tuple{\L,\mathcal{G},\mathcal{A},\mathcal{R}}$, a $\mathcal{F}$-\textit{proof} of a conclusion $A$ from a set of premises $\Gamma$ is a finite sequence of $\mathcal{G}$-wfs of $\L$ such that every undischarged sentence in the proof is either: (i) a member of $\Gamma$; (ii) an axiom in $\mathcal{A}$; or else (iii) follows from the preceding sentences in the sequence by a rule of inference in $\mathcal{R}$.
 \item[\bf Deduction:] $\Gamma\vdash_{\mathcal{F}} A$ just in case there is a $\mathcal{F}$-proof of $A$ from $\Gamma$.
-\item[\bf Theorem:] A \textit{theorem} of a formal system $\mathcal{F}$ is a wfs of that system provable from no premises, i.e., any wfs $A$ of $\mathcal{L}$ for which $\varnothing\vdash_{\mathcal{F}}A$ (written $\vdash_{\mathcal{F}}A$).
+\item[\bf Theorem:] A \textit{theorem} of a formal system $\mathcal{F}$ is a wfs of that system provable from no premises, i.e., any wfs $A$ of $\L$ for which $\varnothing\vdash_{\mathcal{F}}A$ (written $\vdash_{\mathcal{F}}A$).
 \item[\bf Logic:] The \textit{logic} of a formal system $\mathcal{F}$ is the set of all of its theorems.
 \item[\bf Soundness:] A formal system is \textit{sound} just in case all of its theorems are valid.
 \item[\bf Completeness:] A formal system is \textit{complete} just in case every valid wfs is a theorem.
-\item[\bf Propositional Logic:] The formal system of natural deduction $\mathcal{F}^+=\tuple{\mathcal{L}^+,\mathcal{G}^+,\mathcal{A}^+,\mathcal{R}^+}$ given above is sound and complete, where $\mathcal{A}^+=\varnothing$. 
+\item[\bf Propositional Logic:] The formal system of natural deduction $\mathcal{F}^+=\tuple{\L^+,\mathcal{G}^+,\mathcal{A}^+,\mathcal{R}^+}$ given above is sound and complete, where $\mathcal{A}^+=\varnothing$. 
 \item[\bf Equivalence:] Two formal systems with the same logic may be said to be \textit{equivalent}. There are many equivalent formal systems for propositional logic, i.e., systems with exactly the same set of theorems.
 \end{enumerate}
 %Introduce axiomatic systems, and their equivalence to natural deduction.
@@ -362,15 +391,15 @@ Disjunction Elimination:\vspace{-.05in}
 \section*{\sc First-Order Logic: Syntax}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Language $\boldsymbol{\mathcal{L}_1}$:] The first-order language $\mathcal{L}_1$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$P_1^n$', `$P_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\vee$',`$\neg$', `$\exists x_i$', and parentheses `$($' and `$)$'.
+\item[\bf Language $\boldsymbol{\L_1}$:] The first-order language $\L_1$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$p_1^n$', `$p_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\vee$',`$\neg$', `$\exists x_i$', and parentheses `$($' and `$)$'.
 \item[\bf Terms:] A symbol is a \textit{term} just in case that symbol is a constant or variable.
-\item[\bf Well Formed Formulas:] Let `$t_1$',\dots, `$t_n$' be terms of $\mathcal{L}_1$, `$x$' be a variable of $\mathcal{L}_1$, `$H^n$' be an $n$-place predicate of $\mathcal{L}_1$, and `$A$' and `$B$' name arbitrary sentences of $\mathcal{L}_1$. We may then let $\mathcal{G}_1$ be the set of wff of $\mathcal{L}_1$, defined recursively as follows:
+\item[\bf Well Formed Formulas:] Let `$t_1$',\dots, `$t_n$' be terms of $\L_1$, `$x$' be a variable of $\L_1$, `$H^n$' be an $n$-place predicate of $\L_1$, and `$A$' and `$B$' name arbitrary sentences of $\L_1$. We may then let $\mathcal{G}_1$ be the set of wff of $\L_1$, defined recursively as follows:
 \begin{itemize}
-\item The 0-place predicates `$P_1^0$',`$P_2^0$',\dots are all wff of $\mathcal{L}_1$.
-\item If ${H^n}$ is an $n$-place predicate of $\mathcal{L}_1$, and ${t_1},\dots,{t_n}$ are terms of $\mathcal{L}_1$, then the atomic sentence $\corner{H^n(t_1,\dots,t_n)}$ is a wff of $\mathcal{L}_1$.
-\item If ${A}$ is a wff of $\mathcal{L}_1$, then $\corner{\neg A}$ is a wff of $\mathcal{L}_1$.
-\item If ${A}$ and ${B}$ are wffs of $\mathcal{L}_1$, then $\corner{(A\vee B)}$ is a wff of $\mathcal{L}_1$.
-\item If ${A}$ is a wff of $\mathcal{L}_1$, then $\corner{\forall xA}$ is a wff of $\mathcal{L}_1$.
+\item The 0-place predicates `$p_1^0$',`$p_2^0$',\dots are all wff of $\L_1$.
+\item If ${H^n}$ is an $n$-place predicate of $\L_1$, and ${t_1},\dots,{t_n}$ are terms of $\L_1$, then the atomic sentence $\corner{H^n(t_1,\dots,t_n)}$ is a wff of $\L_1$.
+\item If ${A}$ is a wff of $\L_1$, then $\corner{\neg A}$ is a wff of $\L_1$.
+\item If ${A}$ and ${B}$ are wffs of $\L_1$, then $\corner{(A\vee B)}$ is a wff of $\L_1$.
+\item If ${A}$ is a wff of $\L_1$, then $\corner{\forall xA}$ is a wff of $\L_1$.
 \end{itemize}
 \item[\bf Abbreviations:] (i) $\corner{(A\wedge B)}$ abbreviates $\corner{\neg(\neg A\vee\neg B)}$;\\ (ii) $\corner{(A\rightarrow B)}$ abbreviates $\corner{(\neg A\vee B)}$;\\ (iii) $\corner{(A\leftrightarrow B)}$ abbreviates $\corner{[(A\rightarrow B)\wedge(B\rightarrow A)]}$;\\ (iv) $\corner{\exists xA}$ abbreviates $\corner{\neg\forall x\neg A}$.
 \end{enumerate}
@@ -379,7 +408,7 @@ Disjunction Elimination:\vspace{-.05in}
 
 \section*{\it Problem Set: Metalinguistic Abbreviation}
 
-Let $\mathcal{L}_1^+$ include the symbols in $\mathcal{L}_1$ together with the sentential operators `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\exists x_i$' which are to be read `and', `(materially) implies that', `just in case', and `every $x_i$ is such that', respectively. Provide a definition $\mathcal{G}_1^+$ of the wfss of $\mathcal{L}_1^+$.
+Let $\L_1^+$ include the symbols in $\L_1$ together with the sentential operators `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\exists x_i$' which are to be read `and', `(materially) implies that', `just in case', and `every $x_i$ is such that', respectively. Provide a definition $\mathcal{G}_1^+$ of the wfss of $\L_1^+$.
 
 
 
@@ -389,8 +418,8 @@ Let $\mathcal{L}_1^+$ include the symbols in $\mathcal{L}_1$ together with the s
 %define atomic, and use this to define the free variables as those that occur in atomic wfs.
 %"All occurrences of free variables y in φ are also free in ∀xφ i y is distinct from x. All other occurrences of variables are not free." Volker p.60 from Syntax and Circularity: A Study in Self-Reference and Paradox (with Graham Leigh)
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Free Variable:] Every variable which occurs in an atomic sentence of $\mathcal{L}_1$ is \textit{free}. If $x$ is free in the wff $A$, then $x$ is \textit{bound} in the wff $\exists xA$. The wfss of $\mathcal{L}_1$ are those wff of $\mathcal{L}_1$ with no free variables.
-%\item[\bf Free Variable:] A variable $x_i$ that occurs in a wfs of $\mathcal{L}_1$ is \textit{free} just in case there is no outside quantifier binding that variable, as in: `$P^1_1(x)$', `$P_1^2(x,c)$', etc.
+\item[\bf Free Variable:] Every variable which occurs in an atomic sentence of $\L_1$ is \textit{free}. If $x$ is free in the wff $A$, then $x$ is \textit{bound} in the wff $\exists xA$. The wfss of $\L_1$ are those wff of $\L_1$ with no free variables.
+%\item[\bf Free Variable:] A variable $x_i$ that occurs in a wfs of $\L_1$ is \textit{free} just in case there is no outside quantifier binding that variable, as in: `$P^1_1(x)$', `$p_1^2(x,c)$', etc.
 \item[\bf Substitution:] For any wfs ${A}$ and terms $t$ and $k$, let $\corner{A(t/k)}$ be the wfs which result from replacing every occurrence of $k$ in the wfs ${A}$ with $t$.
 \item[\bf Available:] A term $t$ is \textit{available} (written $t^\star$) for substitution in ${A}$ iff $t$ does not occur in ${A}$ or in any premise or undischarged assumption used to prove $A$.
 %\item[\bf Open:] A term `$t^\#$' is \textit{open} at a point line of a proof just in case `$t^\#$' does not occur anywhere previously in that proof.
@@ -450,29 +479,29 @@ Existential Elimination:\vspace{-.05in}
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Domain:] Let the \textit{domain} $\mathcal{D}$ be a set of objects.% and $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}}$.
 \item[\bf Cartesian Domain:] Let $\mathcal{D}^n$ be the set of all ordered tuples $\tuple{d_1,\dots,d_n}$ where each $d_i$ is an object in the domain $\mathcal{D}$, i.e., $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}~\text{for}~1\leq i\leq n}$.
-\item[\bf Interpretation:] Let $\mathcal{V}_1$ be an \textit{interpretation} of $\mathcal{L}_1$ over $\mathcal{D}$ just in case: (i) $\mathcal{V}_1(P_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\mathcal{V}_1(c_i)\in\mathcal{D}$ for every $i\geq1$.
-%\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$P_i^n$' of $\mathcal{L}_1$ on an interpretation $\mathcal{V}_1$ over a domain $\mathcal{D}$ is the set of ordered tuples $\mathcal{V}_1(P_i^n)\subseteq\mathcal{D}^n$.
-\item[\bf Assignment:] An \textit{assignment} $\underline{a}$ is a function from the variables in $\mathcal{L}_1$ to the members of $\mathcal{D}$ such that $\underline{a}(x_i)$ is a member of the domain $\mathcal{D}$ for every $i\geq1$.
+\item[\bf Interpretation:] Let $\V_1$ be an \textit{interpretation} of $\L_1$ over $\mathcal{D}$ just in case: (i) $\V_1(p_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\V_1(c_i)\in\mathcal{D}$ for every $i\geq1$.
+%\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$p_i^n$' of $\L_1$ on an interpretation $\V_1$ over a domain $\mathcal{D}$ is the set of ordered tuples $\V_1(p_i^n)\subseteq\mathcal{D}^n$.
+\item[\bf Assignment:] An \textit{assignment} $\underline{a}$ is a function from the variables in $\L_1$ to the members of $\mathcal{D}$ such that $\underline{a}(x_i)$ is a member of the domain $\mathcal{D}$ for every $i\geq1$.
 \item[\bf Denotation:] Let $I(t)=
 	\begin{cases} 
-		\mathcal{V}_1(t) & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1\\
+		\V_1(t) & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1\\
 		\underline{a}(t) & \text{if}~~ t=x_i ~~\text{for any}~~ i\geq1
 	\end{cases}$
 \item[\bf Variant:] The function $\underline{a}[d/x]$ is an \textit{$x$-variant} of the assignment $\underline{a}$ just in case $\underline{a}[d/x]$ differs from $\underline{a}$ at most by setting $\underline{a}[d/x](x)=d$.
-\item[\bf Model:] A \textit{model} of $\mathcal{L}_1$ is any ordered pair $\mathcal{M}=\tuple{\mathcal{D},\mathcal{V}_1}$, where $\mathcal{D}$ is a domain of individuals, and $\mathcal{V}_1$ an interpretation over $\mathcal{D}$.
-\item[\bf Semantics:] Given a model $\mathcal{M}$ of $\mathcal{L}_1$, and assignment $\underline{a}$, we may recursively define $\mathcal{M},\underline{a}\vDash A$ for all wfss $A$ of $\mathcal{L}_1$ as follows:
+\item[\bf Model:] A \textit{model} of $\L_1$ is any ordered pair $\mathcal{M}=\tuple{\mathcal{D},\V_1}$, where $\mathcal{D}$ is a domain of individuals, and $\V_1$ an interpretation over $\mathcal{D}$.
+\item[\bf Semantics:] Given a model $\mathcal{M}$ of $\L_1$, and assignment $\underline{a}$, we may recursively define $\mathcal{M},\underline{a}\vDash A$ for all wfss $A$ of $\L_1$ as follows:
 \begin{small}
 \begin{itemize}[leftmargin=.36in]
-\item[$(P_i)$] $\mathcal{M},\underline{a}\vDash  P_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \mathcal{V}_1(P_i^n)$.
+\item[$(p_i)$] $\mathcal{M},\underline{a}\vDash  p_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \V_1(p_i^n)$.
 \item[$(\hspace{1.5pt}\exists\hspace{1.5pt})$] $\mathcal{M},\underline{a}\vDash  \exists x_iA$ \textit{iff} $\mathcal{M},\underline{a}[d/x_i]\vDash A$, for some $d\in\mathcal{D}$.
 \item[$(\neg)$] $\mathcal{M},\underline{a}\vDash  \neg A$ \textit{iff} $\mathcal{M},\underline{a}\nvDash A$.
 \item[$(\vee)$] $\mathcal{M},\underline{a}\vDash  A\vee B$ \textit{iff} $\mathcal{M},\underline{a}\vDash  A$ or $\mathcal{M},\underline{a}\vDash  B$.
-%\item[$(\wedge)$] $\mathcal{V}\vDash A\wedge B$ \textit{iff} $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$. 
-%\item[$(\shortrightarrow)$] $\mathcal{V}\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\mathcal{V}} A$ or $\mathcal{V}\vDash B$.
-%\item[$(\leftrightarrow)$] $\mathcal{V}\vDash A\leftrightarrow B$ \textit{iff} $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$, or $\nvDash_{\mathcal{V}} A$ and $\nvDash_{\mathcal{V}} B$.
+%\item[$(\wedge)$] $\V\vDash A\wedge B$ \textit{iff} $\V\vDash A$ and $\V\vDash B$. 
+%\item[$(\shortrightarrow)$] $\V\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\V} A$ or $\V\vDash B$.
+%\item[$(\leftrightarrow)$] $\V\vDash A\leftrightarrow B$ \textit{iff} $\V\vDash A$ and $\V\vDash B$, or $\nvDash_{\V} A$ and $\nvDash_{\V} B$.
 \end{itemize}
 \end{small}
-It is important that in the case where $n=0$, we adopt the convention that $\mathcal{V}_1(P_i^0)=\set{\varnothing}$ indicates truth, and $\mathcal{V}_1(P_i^0)=\varnothing$ indicates falsity.
+It is important that in the case where $n=0$, we adopt the convention that $\V_1(p_i^0)=\set{\varnothing}$ indicates truth, and $\V_1(p_i^0)=\varnothing$ indicates falsity.
 \end{enumerate}
 
 
@@ -483,8 +512,8 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 \item[\bf Truth on a Model:] $\M\vDash_1 A$ \textit{iff} $\mathcal{M},\underline{a}\vDash A$ for all variable assignments $\underline{a}$.
 \item[\bf Logical Consequence:] $\Gamma\vDash_1 A$ \textit{iff} for all models $\M$, if $\mathcal{M}\vDash G$ for all $G\in\Gamma$, then $\mathcal{M}\vDash A$.
 \item[\bf Logical Equivalence:] $A\equiv_1 B$ \textit{iff} $A\vDash_1 B$ and $B\vDash_1 A$.  
-\item[\bf Logical Truth:] A wfs $A$ of $\mathcal{L}_1$ is \textit{valid} (or a logical truth) just in case $\vDash_1 A$.
-\item[\bf First-Order Logic:] The first-order formal system of natural deduction $\mathcal{F}_1^+=\tuple{\mathcal{L}_1^+,\mathcal{G}_1^+,\mathcal{A}_1^+,\mathcal{R}_1^+}$ is sound and complete, where $\mathcal{A}_1^+=\varnothing$.
+\item[\bf Logical Truth:] A wfs $A$ of $\L_1$ is \textit{valid} (or a logical truth) just in case $\vDash_1 A$.
+\item[\bf First-Order Logic:] The first-order formal system of natural deduction $\mathcal{F}_1^+=\tuple{\L_1^+,\mathcal{G}_1^+,\mathcal{A}_1^+,\mathcal{R}_1^+}$ is sound and complete, where $\mathcal{A}_1^+=\varnothing$.
 \end{enumerate}
 
 
@@ -494,8 +523,8 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 \section*{\it Problem Set: First-Order Logic\footnote{I have adapted some of the following problems from \citet{Carr2013}. See also \citet{Halbach2010}.}}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Semantics:] Provide a semantics for the wfss of $\mathcal{L}^+_1$.
-\item[\bf Translation:] Translate the following arguments into $\mathcal{L}_1^+$.
+\item[\bf Semantics:] Provide a semantics for the wfss of $\L^+_1$.
+\item[\bf Translation:] Translate the following arguments into $\L_1^+$.
 	\begin{enumerate}[label=(\arabic*)]\small
 	%\item $\forall xPx\vdash \forall yPy$.
 	\item Everything that is beautiful is beautiful.
@@ -534,7 +563,7 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 	%\item $\neg\exists x\exists y(Rxy\wedge Ryx)\vdash\neg\exists xRxx$.
 	%\end{enumerate}
 \item[\bf Metalogic:] Prove that every theorem of $\mathcal{F}^+$ is also a theorem of $\mathcal{F}^+_1$.
-\item[\bf Bonus:] Translate the following into $\mathcal{L}_1^+$:
+\item[\bf Bonus:] Translate the following into $\L_1^+$:
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item Everybody loves somebody.
 	\item Everybody everybody loves loves somebody.
@@ -578,13 +607,13 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 \section*{\sc Propositional Modal Logic: Syntax}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Language $\boldsymbol{\mathcal{L}_\square}$:] The propositional language $\mathcal{L}_\square$ includes: sentence letters `$P_1$',`$P_2$', \dots, the sentential operators `$\vee$',`$\neg$', `$\Box$', and parentheses `$($' and `$)$'.
-\item[\bf Well Formed Sentences:] Let `$A$' and `$B$' name arbitrary sentences of $\mathcal{L}$. We may then let $\mathcal{G}_\square$ be the set of wfs of $\mathcal{L}_\square$, defined recursively as follows:
+\item[\bf Language $\boldsymbol{\L_\square}$:] The propositional language $\L_\square$ includes: sentence letters `$p_1$',`$p_2$', \dots, the sentential operators `$\vee$',`$\neg$', `$\Box$', and parentheses `$($' and `$)$'.
+\item[\bf Well Formed Sentences:] Let `$A$' and `$B$' name arbitrary sentences of $\L$. We may then let $\mathcal{G}_\square$ be the set of wfs of $\L_\square$, defined recursively as follows:
 \begin{itemize}
-\item The sentence letters `$P_1$',`$P_2$',\dots are all wfs of $\mathcal{L}_\square$. 
-\item If ${A}$ is a wfs of $\mathcal{L}_\square$, then $\corner{\Box A}$ is a wfs of $\mathcal{L}_\square$.
-\item If ${A}$ is a wfs of $\mathcal{L}_\square$, then $\corner{\neg A}$ is a wfs of $\mathcal{L}_\square$.
-\item If ${A}$ and ${B}$ are wfss of $\mathcal{L}_\square$, then $\corner{(A\vee B)}$ is a wfs of $\mathcal{L}_\square$.
+\item The sentence letters `$p_1$',`$p_2$',\dots are all wfs of $\L_\square$. 
+\item If ${A}$ is a wfs of $\L_\square$, then $\corner{\Box A}$ is a wfs of $\L_\square$.
+\item If ${A}$ is a wfs of $\L_\square$, then $\corner{\neg A}$ is a wfs of $\L_\square$.
+\item If ${A}$ and ${B}$ are wfss of $\L_\square$, then $\corner{(A\vee B)}$ is a wfs of $\L_\square$.
 \end{itemize}
 \item[\bf Abbreviations:] (i) $\corner{(A\wedge B)}$ abbreviates $\corner{\neg(\neg A\vee\neg B)}$;\\ (ii) $\corner{(A\rightarrow B)}$ abbreviates $\corner{(\neg A\vee B)}$;\\ (iii) $\corner{(A\leftrightarrow B)}$ abbreviates $\corner{[(A\rightarrow B)\wedge(B\rightarrow A)]}$;\\ (iv) $\corner{\Diamond A}$ abbreviates $\corner{\neg\Box\neg A}$.
 \item[\bf Strict Conditional:] \citet{Lewis1932} took the \textit{strict conditional} `$\strictif$' to better approximate the "usual sense" of `implies', where `$A\strictif B$' abbreviates `$\Box(A\rightarrow B)$'. It is typical to maintain the latter as standard notation. 
@@ -595,8 +624,8 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
 \item[\bf Motivation:] Prove that the paradoxes of the material conditional (1) and (2) given above are theorems of $\mathcal{F}^+$.
-\item[\bf Abbreviation:] Let $\mathcal{L}_\square^+$ include the symbols in $\mathcal{L}_\square$ as well as `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\Diamond$' which are read `and', `(materially) implies that', `just in case', and `possibly', respectively. Provide a definition of $\mathcal{G}_\square^+$ which includes all and only the wfss of $\mathcal{L}_\square^+$ where $\mathcal{G}_\square\subseteq\mathcal{G}_\square^+$.
-\item[\bf Translation:] Translate the following into $\mathcal{L}_\square^+$ as well as $\mathcal{L}_\square$.
+\item[\bf Abbreviation:] Let $\L_\square^+$ include the symbols in $\L_\square$ as well as `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\Diamond$' which are read `and', `(materially) implies that', `just in case', and `possibly', respectively. Provide a definition of $\mathcal{G}_\square^+$ which includes all and only the wfss of $\L_\square^+$ where $\mathcal{G}_\square\subseteq\mathcal{G}_\square^+$.
+\item[\bf Translation:] Translate the following into $\L_\square^+$ as well as $\L_\square$.
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item It could rain or it could not rain.
 	\item If it is necessary that it rains, then it is necessary that it could rain.
@@ -610,22 +639,22 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Frame:] A \textit{Kripke frame} $\mathcal{K}$ is an ordered pair $\tuple{W,R}$, where $W$ is a set of points called \textit{possible worlds}, $R$ is an \textit{accessibility} relation between worlds.
-\item[\bf Interpretation:] $\mathcal{V}_\square$ is an \textit{interpretation} of $\mathcal{L}_\square$ over $W$ just in case for each $w\in W$ and $i\geq1$, either $\mathcal{V}_\square(P_i)(w)=1$ or $\mathcal{V}_\square(P_i)(w)=0$, but not both.
-%\item[\bf Intension:] For any interpretation $\mathcal{V}_\square$ of $\mathcal{L}_\square$ and sentence letter $P_i$ in $\mathcal{L}_\square$, we may refer to the function $\mathcal{V}_\square(P_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $P_i$.
-\item[\bf Model:] A \textit{model} of $\mathcal{L}_\square$ is any ordered triple $\mathcal{M}_\square=\tuple{W,R,\mathcal{V}_\square}$ where $\tuple{W,R}$ is a Kripke frame and $\mathcal{V}_\square$ is an interpretation of $\mathcal{L}_\square$.
-\item[\bf Semantics:] Given a model $\mathcal{M}_\square$ of $\mathcal{L}_\square$, and a world $w\in W$, we may recursively define $\mathcal{M}_\square,w\vDash A$ for all wfss $A$ of $\mathcal{L}_\square$ as follows:
+\item[\bf Interpretation:] $\V_\square$ is an \textit{interpretation} of $\L_\square$ over $W$ just in case for each $w\in W$ and $i\geq1$, either $\V_\square(p_i)(w)=1$ or $\V_\square(p_i)(w)=0$, but not both.
+%\item[\bf Intension:] For any interpretation $\V_\square$ of $\L_\square$ and sentence letter $p_i$ in $\L_\square$, we may refer to the function $\V_\square(p_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $p_i$.
+\item[\bf Model:] A \textit{model} of $\L_\square$ is any ordered triple $\mathcal{M}_\square=\tuple{W,R,\V_\square}$ where $\tuple{W,R}$ is a Kripke frame and $\V_\square$ is an interpretation of $\L_\square$.
+\item[\bf Semantics:] Given a model $\mathcal{M}_\square$ of $\L_\square$, and a world $w\in W$, we may recursively define $\mathcal{M}_\square,w\vDash A$ for all wfss $A$ of $\L_\square$ as follows:
 \begin{small}
 \begin{itemize}[leftmargin=.36in]
-\item[$(P_i)$] $\mathcal{M}_\square,w\vDash  P_i$ \textit{iff} $\mathcal{V}_\square(P_i)(w)=1$.
+\item[$(p_i)$] $\mathcal{M}_\square,w\vDash  p_i$ \textit{iff} $\V_\square(p_i)(w)=1$.
 \item[$(\hspace{.3pt}\Box\hspace{.3pt})$] $\mathcal{M}_\square,w\vDash  \Box A$ \textit{iff} $\mathcal{M}_\square,w'\vDash A$ for every $w'\in W$ such that $R(w,w')$.
 \item[$(\neg)$] $\mathcal{M}_\square,w\vDash  \neg A$ \textit{iff} $\mathcal{M},\underline{a}\nvDash A$.
 \item[$(\vee)$] $\mathcal{M}_\square,w\vDash  A\vee B$ \textit{iff} $\mathcal{M},\underline{a}\vDash  A$ or $\mathcal{M},\underline{a}\vDash  B$.
-%\item[$(\wedge)$] $\mathcal{V}\vDash A\wedge B$ \textit{iff} $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$. 
-%\item[$(\shortrightarrow)$] $\mathcal{V}\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\mathcal{V}} A$ or $\mathcal{V}\vDash B$.
-%\item[$(\leftrightarrow)$] $\mathcal{V}\vDash A\leftrightarrow B$ \textit{iff} $\mathcal{V}\vDash A$ and $\mathcal{V}\vDash B$, or $\nvDash_{\mathcal{V}} A$ and $\nvDash_{\mathcal{V}} B$.
+%\item[$(\wedge)$] $\V\vDash A\wedge B$ \textit{iff} $\V\vDash A$ and $\V\vDash B$. 
+%\item[$(\shortrightarrow)$] $\V\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\V} A$ or $\V\vDash B$.
+%\item[$(\leftrightarrow)$] $\V\vDash A\leftrightarrow B$ \textit{iff} $\V\vDash A$ and $\V\vDash B$, or $\nvDash_{\V} A$ and $\nvDash_{\V} B$.
 \end{itemize}
 \end{small}
-\item[\bf Proposition:] The proposition $\interpret{A}_{\Scale[0.5]{\mathcal{M}_\square}}$ that a wfs ${A}$ of $\mathcal{L}_\square$ expresses on a model $\mathcal{M}_\square$ is the set of worlds $\set{w\in W: ~\mathcal{M}_\square,w\vDash  A}$ at which ${A}$ is true. Every model $\mathcal{M}_\square$ of $\mathcal{L}_\square$ may then be though of as assigning each wfs of $\mathcal{L}_\square$ to a proposition, conceived of as a subset of $W$.
+\item[\bf Proposition:] The proposition $\interpret{A}_{\Scale[0.5]{\mathcal{M}_\square}}$ that a wfs ${A}$ of $\L_\square$ expresses on a model $\mathcal{M}_\square$ is the set of worlds $\set{w\in W: ~\mathcal{M}_\square,w\vDash  A}$ at which ${A}$ is true. Every model $\mathcal{M}_\square$ of $\L_\square$ may then be though of as assigning each wfs of $\L_\square$ to a proposition, conceived of as a subset of $W$.
 \end{enumerate}
 
 
@@ -653,7 +682,7 @@ It is important that in the case where $n=0$, we adopt the convention that $\mat
 	%\begin{enumerate}
 	%\item[(N)] If $ \vdash A$, then $ \vdash\Box A$.
 	%\item[(MP)] If $ \vdash A\rightarrow B$ and $ \vdash A$, then $ \vdash B$.
-	%\item[(US)] If $ \vdash A$, then $ \vdash A[B/C]$, where $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, where $B$ and $C$ are wfs of $\mathcal{L}_\square$.
+	%\item[(US)] If $ \vdash A$, then $ \vdash A[B/C]$, where $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, where $B$ and $C$ are wfs of $\L_\square$.
 	%\end{enumerate}
 \end{enumerate}
 	
@@ -694,7 +723,7 @@ Universal Substitution:\vspace{-.05in}
 \vspace*{-.07in}
 
 \begin{quote}\small
-$A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, where $B$ and $C$ are wfs of $\mathcal{L}_\square$.
+$A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, where $B$ and $C$ are wfs of $\L_\square$.
 \end{quote}
 
 \end{multicols}
@@ -704,10 +733,10 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Systems:]
 	\begin{enumerate}
-	\item[$(K)$] The formal system $K=\tuple{\mathcal{L}_\square^+,\mathcal{G}_\square^+,\mathcal{A}_K^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_K^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K.
-	\item[$(T)$] The formal system $T=\tuple{\mathcal{L}_\square^+,\mathcal{G}_\square^+,\mathcal{A}_T^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_T^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K and T.
-	\item[$(S4)$] The formal system $S4=\tuple{\mathcal{L}_\square^+,\mathcal{G}_\square^+,\mathcal{A}_4^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_{4}^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K, T, and 4.
-	\item[$(S5)$] The formal system $S5=\tuple{\mathcal{L}_\square^+,\mathcal{G}_\square^+,\mathcal{A}_5^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_{5}^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K, T, B, and 4.
+	\item[$(K)$] The formal system $K=\tuple{\L_\square^+,\mathcal{G}_\square^+,\mathcal{A}_K^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_K^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K.
+	\item[$(T)$] The formal system $T=\tuple{\L_\square^+,\mathcal{G}_\square^+,\mathcal{A}_T^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_T^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K and T.
+	\item[$(S4)$] The formal system $S4=\tuple{\L_\square^+,\mathcal{G}_\square^+,\mathcal{A}_4^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_{4}^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K, T, and 4.
+	\item[$(S5)$] The formal system $S5=\tuple{\L_\square^+,\mathcal{G}_\square^+,\mathcal{A}_5^+,\mathcal{R}_\square^+}$, where $\mathcal{A}_{5}^+$ includes the theorems of $\mathcal{F}^+$ together with all instances of K, T, B, and 4.
 	\end{enumerate}
 %\item[\bf Metalogic:] $T$ is sound and complete over the class of reflexive frames. $S4$ is sound and complete over the class of reflexive and transitive frames. $S5$ is sound and complete over the class of reflexive, symmetric, and transitive frames.
 \end{enumerate}
@@ -718,7 +747,7 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 \section*{\it Problem Set: Axiomatic Proofs\footnote{I have adapted some of the following exercises from \citet{Studd2016} and \citet{Sider2010}.}}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-%\item[\bf Austerity:] Translate the axioms belonging to $\mathcal{A}_5^+$ into the language $\mathcal{L}_\square$.
+%\item[\bf Austerity:] Translate the axioms belonging to $\mathcal{A}_5^+$ into the language $\L_\square$.
 \item[\bf Credence:] Evaluate the plausibility of each of the modal axioms when `$\Box$' and `$\Diamond$' are read as metaphysical necessity and possibility, respectively.
 \item[\bf Translation:] Translate the axioms belonging to $\mathcal{A}_5^+$ into natural language. 
 \item[\bf Proofs:] Provide a proof of each of the following: 
@@ -746,10 +775,10 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 \item[\bf Truth on a Model:] $\M\vDash A$ \textit{iff} $\M,w\vDash A$ for all $w\in W$.
 \item[\bf Logical Consequence:] $\Gamma\vDash_\mathcal{C} A$ \textit{iff} for all $\mathcal{M}\in\mathcal{C}$, if $\mathcal{M}\vDash G$ for all $G\in\Gamma$, then $\mathcal{M}\vDash  A$.
 \item[\bf Logical Equivalence:] $A\equiv_\mathcal{C} B$ \textit{iff} $A\vDash_\mathcal{C} B$ and $B\vDash_\mathcal{C} A$.  
-\item[\bf Logical Truth:] A wfs $A$ of $\mathcal{L}_\square$ is \textit{valid} on a class of models $\mathcal{C}$ just in case $\vDash_\mathcal{C} A$.%; and (ii) \textit{valid} on a Kripke frame $\mathcal{K}$ just in case $\vDash_{\mathcal{C}_\mathcal{K}} A$, where $\mathcal{C}_\mathcal{K}$ includes every model of $\mathcal{L}_\square$ on the frame $\mathcal{K}$. 
-\item[\bf Reflexive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{reflexive} just in case $R(w,w)$ for every $w\in W$. A model $\mathcal{M}_\square=\tuple{W,R,\mathcal{V}_\square}$ is \textit{reflexive} just in case $\tuple{W,R}$ is a reflexive frame. Let $\mathcal{C}_r$ be the class of all reflexive models of $\mathcal{L}_\square$.
-\item[\bf Symmetric:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{symmetric} just in case $R(w',w)$ whenever $R(w,w')$. A model $\mathcal{M}_\square=\tuple{W,R,\mathcal{V}_\square}$ is \textit{symmetric} just in case $\tuple{W,R}$ is symmetric. Let $\mathcal{C}_s$ be the class of all symmetric models of $\mathcal{L}_\square$.
-\item[\bf Transitive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{transitive} just in case $R(w,w'')$ whenever $R(w,w')$ and $R(w',w'')$. A model $\mathcal{M}_\square=\tuple{W,R,\mathcal{V}_\square}$ is \textit{transitive} just in case $\tuple{W,R}$ is transitive. Let $\mathcal{C}_t$ be the class of transitive models of $\mathcal{L}_\square$.
+\item[\bf Logical Truth:] A wfs $A$ of $\L_\square$ is \textit{valid} on a class of models $\mathcal{C}$ just in case $\vDash_\mathcal{C} A$.%; and (ii) \textit{valid} on a Kripke frame $\mathcal{K}$ just in case $\vDash_{\mathcal{C}_\mathcal{K}} A$, where $\mathcal{C}_\mathcal{K}$ includes every model of $\L_\square$ on the frame $\mathcal{K}$. 
+\item[\bf Reflexive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{reflexive} just in case $R(w,w)$ for every $w\in W$. A model $\mathcal{M}_\square=\tuple{W,R,\V_\square}$ is \textit{reflexive} just in case $\tuple{W,R}$ is a reflexive frame. Let $\mathcal{C}_r$ be the class of all reflexive models of $\L_\square$.
+\item[\bf Symmetric:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{symmetric} just in case $R(w',w)$ whenever $R(w,w')$. A model $\mathcal{M}_\square=\tuple{W,R,\V_\square}$ is \textit{symmetric} just in case $\tuple{W,R}$ is symmetric. Let $\mathcal{C}_s$ be the class of all symmetric models of $\L_\square$.
+\item[\bf Transitive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{transitive} just in case $R(w,w'')$ whenever $R(w,w')$ and $R(w',w'')$. A model $\mathcal{M}_\square=\tuple{W,R,\V_\square}$ is \textit{transitive} just in case $\tuple{W,R}$ is transitive. Let $\mathcal{C}_t$ be the class of transitive models of $\L_\square$.
 \item[\bf Modal Logics:]
 	\begin{enumerate}
 	\item[$(K)$] The modal system $K$ is sound and complete over the class of all models $\mathcal{C}_K$, i.e., $\vdash_K A$ if and only if $\vDash_{\mathcal{C}_K} A$.
@@ -757,8 +786,8 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 	\item[$(S4)$] The system $S4$ is sound and complete over the reflexive and transitive models $\mathcal{C}_{S4}=\mathcal{C}_r\bigcap\mathcal{C}_t$, i.e., $\vdash_{S4} A$ if and only if $\vDash_{\mathcal{C}_{S4}} A$.\footnote{The intersection $X\bigcap Y$ is the set of elements in both $X$ and $Y$, i.e., $X\bigcap Y=\set{z:z\in X ~\text{and}~ z\in Y}$.}
 	\item[$(S5)$] The modal system $S5$ is sound and complete over the class of all reflexive, symmetric, and transitive models $\mathcal{C}_{S5}=\mathcal{C}_r\bigcap\mathcal{C}_s\bigcap\mathcal{C}_t$, i.e., $\vdash_{S5} A$ if and only if $\vDash_{\mathcal{C}_{S5}} A$.\footnote{See \citet{Hughes1996} for proofs of soundness and completeness for $K,T,S4$, and $S5$.}
 	\end{enumerate}
-\item[\bf Counter Model:] A \textit{counter model} for a wfs $A$ of $\mathcal{L}_\square$ is a model of $\mathcal{L}_\square$ in which $A$ is false.
-\item[\bf Invalidity:] To demonstrate that a wfs $A$ of $\mathcal{L}_\square$ is \textit{invalid} on the class of models $\mathcal{C}$ (i.e., $\nvDash_\mathcal{C} A$), it is sufficient to specify a single counter model to $A$ in $\mathcal{C}$.
+\item[\bf Counter Model:] A \textit{counter model} for a wfs $A$ of $\L_\square$ is a model of $\L_\square$ in which $A$ is false.
+\item[\bf Invalidity:] To demonstrate that a wfs $A$ of $\L_\square$ is \textit{invalid} on the class of models $\mathcal{C}$ (i.e., $\nvDash_\mathcal{C} A$), it is sufficient to specify a single counter model to $A$ in $\mathcal{C}$.
 \end{enumerate}
 
 
@@ -823,7 +852,7 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 	\item $\neg\Box A\rightarrow\Box(A\rightarrow B)$.
 	\end{multicols}
 	\end{enumerate}
-\item[\bf Irrelevance:] Prove the following for an arbitrary $A,B$ and $\mathcal{M}_\square$ of $\mathcal{L}_\square$: 
+\item[\bf Irrelevance:] Prove the following for an arbitrary $A,B$ and $\mathcal{M}_\square$ of $\L_\square$: 
 	\begin{enumerate}[label=(\arabic*),resume]\small
 	\item If $\Box A$, then $\interpret{B}_{\Scale[0.5]{\mathcal{M}_\square}}=\interpret{B\wedge A}_{\Scale[0.5]{\mathcal{M}_\square}}$.
 	\item If $\neg\Box A$, then $\interpret{B}_{\Scale[0.5]{\mathcal{M}_\square}}=\interpret{B\vee A}_{\Scale[0.5]{\mathcal{M}_\square}}$.
