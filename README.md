@@ -21,3 +21,5 @@ I will be expanding these notes to include the following additional systems for 
 
 I also hope to extend consideration to some basic set theory and lattice theory in support of the final two logical systems.
 
+If you are looking for reinforcements, [here](https://github.com/benbrastmckie/OpenLogic/tree/master/courses/sets-logic-computation) is an open source textbook with some of the basics presented in an accessible way.
+
