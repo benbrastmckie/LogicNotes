@@ -2,16 +2,14 @@
 
 > Highly compressed notes for reference and teaching.
 
-The aim is to present a number of logical systems in a uniform notation rather a full exposition of each system.
-Details are provided for the proof theory and semantics for each system along with a statement of soundness and completeness.
-
-The notes currently include:
+These notes aim to present a number of logical systems in a uniform notation rather a full exposition of each system.
+Although the [current version](https://github.com/benbrastmckie/LogicNotes/blob/main/LogicNotesCurrent.pdf) is under construction, the notes include the following systems:
 
 - Classical Propositional Logic
 - First-Order Logic
 - Propositional Modal Logic
 
-I will be expanding these notes to include the following additional systems for [24.711](https://github.com/benbrastmckie/ModalHistory) at MIT, Spring 2025:
+I will be both rewriting these notes to conform to the conventions in the [ForAllX textbook](https://github.com/benbrastmckie/ForAllX) as well as expanding consideration to the following systems for [24.711](https://github.com/benbrastmckie/ModalHistory) at MIT, Spring 2025:
 
 - Quantified Modal Logic
 - Tense Logic
@@ -19,7 +17,5 @@ I will be expanding these notes to include the following additional systems for 
 - Counterfactual Logic
 - Constitutive Logic
 
-I also hope to extend consideration to some basic set theory and lattice theory in support of the final two logical systems.
-
-If you are looking for reinforcements, [here](https://github.com/benbrastmckie/OpenLogic/tree/master/courses/sets-logic-computation) is an open source textbook with some of the basics presented in an accessible way.
+If your math is rusty, [here](https://github.com/benbrastmckie/OpenLogic/tree/master/courses/sets-logic-computation) is an open source textbook with some of the basics presented in an accessible way.
 
