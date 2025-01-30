@@ -109,6 +109,15 @@
 \newcommand{\FOL}{\mathcal{L}^{\textsc{fol}}}   % First-Order Logic
 \newcommand{\FI}{\mathcal{L}^=}                 % First-Order Logic with Identity
 
+% Special derivation symbols
+\newcommand{\PLproves}{\vdash_{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLmodels}{\vDash_{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLlogic}{\Lambda_{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLsystem}{\mathcal{F}_{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLgrammar}{\mathcal{G}^{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLaxioms}{\mathcal{A}^{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLrules}{\mathcal{R}^{\textsc{pl}}}    % Propositional Logic
+
 % Variable and valuation notation
 \newcommand{\V}[1]{\mathcal{V}_{#1}}           % Valuation
 \newcommand{\VV}[2]{\mathcal{V}_{#1}^{#2}}     % Indexed valuation
@@ -219,63 +228,6 @@
 \renewcommand{\thePthm}{P\arabic{Pthm}}% Remove subsection from theorem counter representation
 
 
-
-
-%    ****************************************
-%    *        TITLE AND VERSION DATA        *
-%    ****************************************
-
-% the title of the book
-\newcommand*{\forallx}{{\tt forall\script{x}}}
-% The version number of the book is a 5 digit integer:
-% the last digit of the year, the month, the day of the month
-\newcounter{dummy}
-\setcounter{dummy}{\year}
-\addtocounter{dummy}{-2000}
-\newcommand*{\bookversion}{%
-	\ifthenelse{\arabic{dummy}<10}{0}{}%
-	\arabic{dummy}%
-	\ifthenelse{\month<10}{0}{}\number\month%
-	\ifthenelse{\day<10}{0}{}\number\day%
-}  
-
-%    ****************************************
-%    *       APPENDIX FORMATTING      *
-%    ****************************************
-
-% Uses the apptools and titlesec packages to remove the additional
-% white space normally included at the start of an appendix. This
-% allows the quick reference appendix to be more printer friendly.
-% Also reduces the size of section titles to make the answer key more 
-% readable. 
-
-\AtAppendix{%
-	\titleformat{\chapter}[display]{\vspace*{-50pt}\bfseries\huge}{Appendix~\thechapter}{0.5em}{}
-	\titlespacing*{\chapter}{0pt}{0pt}{1em}
-
-	\titleformat*{\section}{\large \bfseries}
-	\titleformat*{\subsection}{\bfseries}
-	}%
-
-
-%    ****************************************
-%    *       SYMBOLS AND SCRIPTY BITS       *
-%    ****************************************
-
-% equivalent to commenting something out, but usable on multiple lines
-\providecommand{\nix}[1]{}
-% script letters are rendered in Zapf Chancery,
-% which has both upper and lower case.
-\DeclareFontFamily{OT1}{pzc}{}
-\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.200] pzcmi7t}{}
-\DeclareMathAlphabet{\mathscr}{OT1}{pzc}{m}{it}
-\newcommand*{\script}[1]{\ensuremath{\mathscr{#1}}}
-% create a blank
-\newcommand*{\blank}{\underline{\hspace*{2.5em}}}
-\newcommand*{\gap}[1]{\blank$_{#1}$} % TB: used for keys, to avoid use/mention confusion
-
-\newcommand*{\define}[1]{\textsc{\lowercase{#1}}}
-
 %    ****************************************
 %    *          LIST  ENVIRONMENTS          *
 %    ****************************************
@@ -361,6 +313,67 @@
 \newenvironment{partialmodel}{\par\begin{tabular}{r@{~=~}l}}{\end{tabular}\par}
 % define the bullet for {itemize} lists
 % \renewcommand{\labelitemi}{$\triangleright$}
+
+
+%    ****************************************
+%    *        TITLE AND VERSION DATA        *
+%    ****************************************
+
+% the title of the book
+\newcommand*{\forallx}{{\tt forall\script{x}}}
+% The version number of the book is a 5 digit integer:
+% the last digit of the year, the month, the day of the month
+\newcounter{dummy}
+\setcounter{dummy}{\year}
+\addtocounter{dummy}{-2000}
+\newcommand*{\bookversion}{%
+	\ifthenelse{\arabic{dummy}<10}{0}{}%
+	\arabic{dummy}%
+	\ifthenelse{\month<10}{0}{}\number\month%
+	\ifthenelse{\day<10}{0}{}\number\day%
+}  
+
+%    ****************************************
+%    *       APPENDIX FORMATTING      *
+%    ****************************************
+
+% Uses the apptools and titlesec packages to remove the additional
+% white space normally included at the start of an appendix. This
+% allows the quick reference appendix to be more printer friendly.
+% Also reduces the size of section titles to make the answer key more 
+% readable. 
+
+\AtAppendix{%
+	\titleformat{\chapter}[display]{\vspace*{-50pt}\bfseries\huge}{Appendix~\thechapter}{0.5em}{}
+	\titlespacing*{\chapter}{0pt}{0pt}{1em}
+
+	\titleformat*{\section}{\large \bfseries}
+	\titleformat*{\subsection}{\bfseries}
+	}%
+
+
+%    ****************************************
+%    *       SYMBOLS AND SCRIPTY BITS       *
+%    ****************************************
+
+% equivalent to commenting something out, but usable on multiple lines
+\providecommand{\nix}[1]{}
+% script letters are rendered in Zapf Chancery,
+% which has both upper and lower case.
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.200] pzcmi7t}{}
+\DeclareMathAlphabet{\mathscr}{OT1}{pzc}{m}{it}
+\newcommand*{\script}[1]{\ensuremath{\mathscr{#1}}}
+% create a blank
+\newcommand*{\blank}{\underline{\hspace*{2.5em}}}
+\newcommand*{\gap}[1]{\blank$_{#1}$} % TB: used for keys, to avoid use/mention confusion
+
+\newcommand*{\define}[1]{\textsc{\lowercase{#1}}}
+
+
+%    ****************************************
+%    *       BOXES                          *
+%    ****************************************
 
 % \factoidbox{...} produces an inset paragraph of text with a line around it
 % Neither for lists nor an environment, but it really didn't
@@ -448,9 +461,9 @@
 
 
 
-%**************************
-%Headers
-%*************************
+%    ****************************************
+%    *          HEADERS                     *
+%    ****************************************
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}

@@ -120,9 +120,9 @@
     % (Corner quotes will often be omitted when clarity is not improved.)
   \item[\bf Well-Formed Sentences:] The set of \textit{well-formed sentences} $\wfs{\g{L}}$ is the smallest set to satisfy:
     \begin{itemize}\small
-      \item $\metaA$ is a wfs of $\g{L}$ if $\metaA$ is a sentence letter of $\g{L}$. 
-      \item $\corner{\neg \metaA}$ is a wfs of $\g{L}$ if $\metaA$ is a wfs of $\g{L}$ .
-      \item $\corner{(\metaA\vee \metaB)}$ is a wfs of $\g{L}$ if $\metaA$ and $\metaB$ are wfss of $\g{L}$.
+      \item $\metaA \in \wfs{\g{L}}$ \textit{if} $\metaA$ is a sentence letter of $\g{L}$. 
+      \item $\corner{\neg \metaA} \in \wfs{\g{L}}$ \textit{if} $\metaA$ is a wfs of $\g{L}$ .
+      \item $\corner{(\metaA\vee \metaB)} \in \wfs{\g{L}}$ \textit{if} $\metaA$ and $\metaB$ are wfss of $\g{L}$.
     \end{itemize}
   \item[\bf Abbreviations:] Letting $\corner{\metaA \coloneq \metaB}$ signify that $\metaA$ abbreviates $\metaB$, assume the following:
     \begin{itemize}\small
@@ -130,21 +130,21 @@
       \item $(\metaA\rightarrow \metaB) \coloneq (\neg \metaA\vee \metaB)$.
       \item $(\metaA\leftrightarrow \metaB) \coloneq [(\metaA\rightarrow \metaB)\wedge(\metaB\rightarrow \metaA)]$.
     \end{itemize}
-  \item[\bf Interpretation:] Let $\g{V}$ be an \textit{interpretation} of $\g{L}$ \textit{iff} for every sentence letter $\metaA$ of $\g{L}$, either $\g{V}(\metaA)=0$ or $\g{V}(\metaA)=1$, but not both.
-  \item[\bf Semantics:] We may extend an interpretation $\g{V}$ to cover all wfss of $\g{L}$ by taking $\vDash$ to be the smallest relation to satisfy the following:
-  % Observe that $\g{V}$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\g{L}$ and not all other wfss.
+  \item[\bf Models:] Let $\M$ be a \textit{model} of $\g{L}$ \textit{iff} for every sentence letter $\metaA$ of $\g{L}$, either $\M(\metaA)=0$ or $\M(\metaA)=1$, but not both.
+  \item[\bf Semantics:] We may extend a model $\M$ to interpret all wfss of $\g{L}$ by taking $\vDash$ to be the smallest relation to satisfy the following:
+  % Observe that $\M$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\g{L}$ and not all other wfss.
   \begin{itemize}[leftmargin=.36in]\small
-  \item[$(p_i)$] $\g{V}\vDash p_i$ \textit{iff} $\g{V}(p_i)=1$.
-  \item[$(\neg)$] $\g{V}\vDash \corner{\neg \metaA}$ \textit{iff} it is not the case that $\g{V}\vDash \metaA$ (i.e., $\g{V}\nvDash \metaA$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
-  \item[$(\vee)$] $\g{V}\vDash \corner{(\metaA\vee \metaB)}$ \textit{iff} $\g{V}\vDash \metaA$ or $\g{V}\vDash \metaB$.
-  %\item[$(\wedge)$] $\g{V}\vDash \metaA\wedge \metaB$ \textit{iff} $\g{V}\vDash \metaA$ and $\g{V}\vDash \metaB$. 
-  %\item[$(\shortrightarrow)$] $\g{V}\vDash \metaA\rightarrow \metaB$ \textit{iff} $\nvDash_{\g{V}} \metaA$ or $\g{V}\vDash \metaB$.
-  %\item[$(\leftrightarrow)$] $\g{V}\vDash \metaA\leftrightarrow \metaB$ \textit{iff} $\g{V}\vDash \metaA$ and $\g{V}\vDash \metaB$, or $\nvDash_{\g{V}} \metaA$ and $\nvDash_{\g{V}} \metaB$.
+  \item[$(p_i)$] $\M\vDash `p_i`$ \textit{iff} $\M(p_i)=1$.
+  \item[$(\neg)$] $\M\vDash \corner{\neg \metaA}$ \textit{iff} it is not the case that $\M\vDash \metaA$ (i.e., $\M\nvDash \metaA$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
+  \item[$(\vee)$] $\M\vDash \corner{(\metaA\vee \metaB)}$ \textit{iff} $\M\vDash \metaA$ or $\M\vDash \metaB$.
+  %\item[$(\wedge)$] $\M\vDash \metaA\wedge \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$. 
+  %\item[$(\shortrightarrow)$] $\M\vDash \metaA\rightarrow \metaB$ \textit{iff} $\nvDash_{\M} \metaA$ or $\M\vDash \metaB$.
+  %\item[$(\leftrightarrow)$] $\M\vDash \metaA\leftrightarrow \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$, or $\nvDash_{\M} \metaA$ and $\nvDash_{\PLmodel} \metaB$.
   \end{itemize}
-  We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\g{L}$ given the interpretation $\g{V}$. 
-  \item[\bf Logical Consequence:] $\MetaG\vDash \metaA$ \textit{iff} for all interpretations $\g{V}$, if $\g{V}\vDash \metaG$ for all $\metaG\in\MetaG$, then $\g{V}\vDash \metaA$.
-  \item[\bf Logical Equivalence:] $\metaA\equiv \metaB$ \textit{iff} $\metaA\vDash \metaB$ and $\metaB\vDash \metaA$.  
-  \item[\bf Logical Truth:] A wfs $\metaA$ of $\g{L}$ is \textit{valid} (or a logical truth) \textit{iff} $\varnothing\vDash \metaA$ (written: $\vDash \metaA$).
+  We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\g{L}$ given the model $\M$. 
+  \item[\bf Logical Consequence:] $\MetaG \vDash \metaA$ \textit{iff} for all models $\M$, if $\M\vDash \metaG$ for all $\metaG\in\MetaG$, then $\M\vDash \metaA$.
+  \item[\bf Logical Equivalence:] $\metaA \Dashv\vDash \metaB$ \textit{iff} $\metaA\vDash \metaB$ and $\metaB\vDash \metaA$.  
+  \item[\bf Logical Truth:] A wfs $\metaA$ of $\g{L}$ is \textit{logical truth} (or a \textit{valid}) \textit{iff} $\varnothing\vDash \metaA$ (written: $\vDash \metaA$).
 \end{enumerate}
 
 
@@ -155,15 +155,15 @@
 Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators `$\wedge$', `$\rightarrow$', and `$\leftrightarrow$' which are to be read `and', `(materially) implies that', and `if and only if', respectively.
 \begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
   \item Provide a natural definition of the set $\wfs{\PL}$ of wfss of $\PL$.
-  \item Provide a natural semantics for the wfss of $\PL$.
-  \item Prove $(\metaA\wedge \metaB)$, $(\metaA\rightarrow \metaB)$, and $(\metaA\leftrightarrow \metaB)$ are each logically equivalent to a wfs of $\g{L}$.
-  \item For each operator in $\PL$, provide two examples of a logical truth including that operator. 
+  \item Provide a semantics for $\PL$, defining the models of $\PL$ and logical consequence $\PLmodels$.
+  \item Prove $(\metaA\wedge \metaB)$, $(\metaA\rightarrow \metaB)$, and $(\metaA\leftrightarrow \metaB)$ from $\PL$ are each logically equivalent to a wfs of $\g{L}$.
+  \item For each operator in $\PL$, provide two examples of logical truths including that operator. 
 \end{enumerate}
 
 %Confirm that the semantic clauses for the abbreviations are correct such that the abbreviations have the same truth-values as what they abbreviate on every interpretation.%\pagebreak
-%\item[\it Example:] %We show first that if $\g{V}\vDash \metaA\rightarrow \metaB$, then $\g{V}\vDash\neg \metaA\vee \metaB$. We then show that if $\g{V}\vDash\neg \metaA\vee \metaB$, then $\g{V}\vDash \metaA\rightarrow \metaB$. Since $\metaA,\metaB,M$ are all arbitrary, it follows that for any wfss $\metaA,\metaB,$ and interpretation $M$, the sentence $\metaA\rightarrow \metaB$ will have the same truth-value as $\neg \metaA\vee \metaB$. This confirms $(\shortrightarrow)$.\par
-%Assume $\g{V}\vDash \metaA\rightarrow \metaB$. By $(\shortrightarrow)$, $\nvDash_{\g{V}} \metaA$ or $\g{V}\vDash \metaB$, and so by $(\neg)$, $\g{V}\vDash\neg \metaA$ or $\g{V}\vDash \metaB$. By $(\vee)$, we get that $\g{V}\vDash\neg \metaA\vee \metaB$.\par
-%Assume $\g{V}\vDash\neg \metaA\vee \metaB$. By $(\vee)$,  $\g{V}\vDash\neg \metaA$ or $\g{V}\vDash \metaB$, and so by $(\neg)$, $\nvDash_{\g{V}} \metaA$ or $\g{V}\vDash \metaB$. Thus by $(\shortrightarrow)$, wet get that $\g{V}\vDash \metaA\rightarrow \metaB$.
+%\item[\it Example:] %We show first that if $\PLmodel\vDash \metaA\rightarrow \metaB$, then $\PLmodel\vDash\neg \metaA\vee \metaB$. We then show that if $\PLmodel\vDash\neg \metaA\vee \metaB$, then $\PLmodel\vDash \metaA\rightarrow \metaB$. Since $\metaA,\metaB,M$ are all arbitrary, it follows that for any wfss $\metaA,\metaB,$ and interpretation $M$, the sentence $\metaA\rightarrow \metaB$ will have the same truth-value as $\neg \metaA\vee \metaB$. This confirms $(\shortrightarrow)$.\par
+%Assume $\PLmodel\vDash \metaA\rightarrow \metaB$. By $(\shortrightarrow)$, $\nvDash_{\PLmodel} \metaA$ or $\PLmodel\vDash \metaB$, and so by $(\neg)$, $\PLmodel\vDash\neg \metaA$ or $\PLmodel\vDash \metaB$. By $(\vee)$, we get that $\PLmodel\vDash\neg \metaA\vee \metaB$.\par
+%Assume $\PLmodel\vDash\neg \metaA\vee \metaB$. By $(\vee)$,  $\PLmodel\vDash\neg \metaA$ or $\PLmodel\vDash \metaB$, and so by $(\neg)$, $\nvDash_{\PLmodel} \metaA$ or $\PLmodel\vDash \metaB$. Thus by $(\shortrightarrow)$, wet get that $\PLmodel\vDash \metaA\rightarrow \metaB$.
 
 
 
@@ -175,23 +175,23 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 % \end{theorem}
 
 % \begin{proof}\small
-%   The proof comes in two parts: we first show that any interpretation $\g{V}$ which makes the ``left hand side'' (LHS) true (i.e., $\g{V}\vDash \metaA\wedge \metaB$) also makes the ``right hand side'' (RHS) true (i.e., $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$), then we prove the converse.
-%   Put otherwise, we first aim to show that if $\g{V}\vDash \metaA\wedge \metaB$, then $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$, where $\g{V}$ has been taken to be an arbitrary interpretation.
-%   Given that $\g{V}$ is arbitrary, it could have been any interpretation whatsoever, and so we may conclude that for any interpretation $\g{V}$, if $\g{V}\vDash \metaA\wedge \metaB$, then $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$.
+%   The proof comes in two parts: we first show that any interpretation $\PLmodel$ which makes the ``left hand side'' (LHS) true (i.e., $\PLmodel\vDash \metaA\wedge \metaB$) also makes the ``right hand side'' (RHS) true (i.e., $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$), then we prove the converse.
+%   Put otherwise, we first aim to show that if $\PLmodel\vDash \metaA\wedge \metaB$, then $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$, where $\PLmodel$ has been taken to be an arbitrary interpretation.
+%   Given that $\PLmodel$ is arbitrary, it could have been any interpretation whatsoever, and so we may conclude that for any interpretation $\PLmodel$, if $\PLmodel\vDash \metaA\wedge \metaB$, then $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$.
 %   Of course, this is just to say that $\metaA\wedge \metaB\vDash\neg(\neg \metaA\vee\neg \metaB)$.
 %   The proof of the converse is similar.
 %   Now for the details of the proof which you can use as a template (the above may be assumed):
 
-%   Let $\g{V}$ be an arbitrary interpretation of $\PL$.
-%   Assume for discharge that $\g{V}\vDash \metaA\wedge \metaB$.
-%   By the semantics you are meant to give for conjunction in problem (2), both $\g{V}\vDash \metaA$ and $\g{V}\vDash \metaB$.
-%   By the semantics for negation, neither $\g{V}\vDash\neg \metaA$ nor $\g{V}\vDash\neg \metaB$, and so both $\g{V}\nvDash\neg \metaA$ and $\g{V}\nvDash\neg \metaB$.
-%   By the semantics for disjunction, $\g{V}\nvDash \neg \metaA\vee\neg \metaB$, and so $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$ again by the semantics for negation.
-%   Discharging our assumption, we may conclude that if $\g{V}\vDash \metaA\wedge \metaB$, then $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$.
-%   Since $\g{V}$ was an arbitrary interpretation, it follows that for any interpretation $\g{V}$, if $\g{V}\vDash \metaA\wedge \metaB$, then $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$.
+%   Let $\PLmodel$ be an arbitrary interpretation of $\PL$.
+%   Assume for discharge that $\PLmodel\vDash \metaA\wedge \metaB$.
+%   By the semantics you are meant to give for conjunction in problem (2), both $\PLmodel\vDash \metaA$ and $\PLmodel\vDash \metaB$.
+%   By the semantics for negation, neither $\PLmodel\vDash\neg \metaA$ nor $\PLmodel\vDash\neg \metaB$, and so both $\PLmodel\nvDash\neg \metaA$ and $\PLmodel\nvDash\neg \metaB$.
+%   By the semantics for disjunction, $\PLmodel\nvDash \neg \metaA\vee\neg \metaB$, and so $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$ again by the semantics for negation.
+%   Discharging our assumption, we may conclude that if $\PLmodel\vDash \metaA\wedge \metaB$, then $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$.
+%   Since $\PLmodel$ was an arbitrary interpretation, it follows that for any interpretation $\PLmodel$, if $\PLmodel\vDash \metaA\wedge \metaB$, then $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$.
 %   Thus $\metaA\wedge \metaB\vDash\neg(\neg \metaA\vee\neg \metaB)$ as desired.
 
-%   Assume instead (also for discharge) that $\g{V}\vDash\neg(\neg \metaA\vee\neg \metaB)$.
+%   Assume instead (also for discharge) that $\PLmodel\vDash\neg(\neg \metaA\vee\neg \metaB)$.
 %   By the semantics for\ldots
 % \end{proof}
 
@@ -200,7 +200,7 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 \section*{\sc Propositional Logic: Proof Theory}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-  \item[\bf Rules of Inference:] Consider the following \textit{rules of inference} for $\PL$ where assumptions are introduced and discharged by indention:
+  \item[\bf Rules of Inference:] Consider the following Fitch \textit{rules of inference} $\PLrules$ for $\PL$:
 \end{enumerate}
 
 \begin{multicols}{2}\footnotesize
@@ -256,7 +256,7 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
       \hypo[i]{a1}{\metaA} \as{for \eiff I}
       \have[j]{b1}{\metaB}
     \close
-  \breakline
+  % \breakline
     \open
       \hypo[k]{b2}{\metaB} \as{for \eiff I}
       \have[l]{a2}{\metaA}
@@ -311,7 +311,7 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
       \hypo[i]{a}{\metaA} \as{for \eor E}
       \have[j]{c1}{\metaC{}}
     \close
-  \breakline
+  % \breakline
     \open
       \hypo[k]{b}{\metaB} \as{for \eor E}
       \have[l]{c2}{\metaC{}}
@@ -332,11 +332,9 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 
 \begin{enumerate}
   % \item[\bf Axioms:] An axiom is a rule with no assumptions (above the horizontal line).
-  \item[\bf Derivation:] A \textit{derivation} (or \textit{proof}) of $\metaA$ from $\MetaG$ in PL is any finite sequence of wfss of $\PL$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) a discharged assumption; or (3) follows from previous lines by a rule for PL besides AS. 
-  \item[\bf Derivable:] A wfs $\metaA$ of $\PL$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ in PL, i.e., $\MetaG \vdash \metaA$, just in case there is a derivation of $\metaA$ from $\MetaG$ in PL. 
-  % \item[\bf Logic:] A \textit{logic} for $\PL$ is the smallest subset of $\Lambda \subseteq \wfs{\PL}$ that includes a (possibly empty) set of \textit{axioms} $\A \subseteq \PLambda$ and is closed under applications from a set of \textit{inference rules} $\R$.
-  % \item[\bf Formal System:] A \textit{formal system} includes: (i) a language $\PL$; (ii) a set $\mathcal{G}$ of the wfs of $\PL$; (iii) a (possibly empty) set of axioms $\mathcal{A}$; and (iv) rules of inference $\mathcal{R}$ that permit the deduction of wfs from some other wfss.
-  % \item[\bf Natural Deduction:] A formal system is a \textit{system of natural deduction} to the degree that its rules of inference closely resemble natural patterns of reasoning.% Natural deduction systems do not include any axioms.
+  \item[\bf Formal System:] The \textit{formal system} $\PLsystem = \tuple{\PL, \wfs{\PL}, \PLaxioms, \PLrules}$ includes: (i) the language $\PL$; (ii) the set $\wfs{\PL}$ of wfs of $\PL$; (iii) the empty set of axioms $\PLaxioms = \varnothing$; and (iv) the rules of inference $\PLrules$ specified above.
+  \item[\bf Derivation:] An $\PLsystem$ \textit{derivation} (or \textit{proof}) of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\PLaxioms$; or (3) follows by a \textit{rule} in $\PLrules$ where all assumptions have been discharged. 
+  \item[\bf Derivable:] A wfs $\metaA$ of $\PL$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ in $\PLsystem$, i.e., $\MetaG \PLproves \metaA$, just in case there is a derivation $X$ of $\metaA$ from $\MetaG$ in $\PLsystem$.
 \end{enumerate}
 
 
@@ -390,30 +388,27 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 \end{enumerate}
 
 
-\pagebreak
-
-\noindent
-(WHAT FOLLOWS IS UNDER CONSTRUCTION... MORE SOON!)
-
-  
 
 
 \section*{\sc Propositional Logic: Metalogic}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Proof:] Given a formal system $\mathcal{F}=\tuple{\PL,\mathcal{G},\mathcal{A},\mathcal{R}}$, a $\mathcal{F}$-\textit{proof} of a conclusion $A$ from a set of premises $\MetaG$ is a finite sequence of $\mathcal{G}$-wfs of $\PL$ such that every undischarged sentence in the proof is either: (i) a member of $\MetaG$; (ii) an axiom in $\mathcal{A}$; or else (iii) follows from the preceding sentences in the sequence by a rule of inference in $\mathcal{R}$.
-\item[\bf Deduction:] $\MetaG\vdash_{\mathcal{F}} A$ just in case there is a $\mathcal{F}$-proof of $A$ from $\MetaG$.
-\item[\bf Theorem:] A \textit{theorem} of a formal system $\mathcal{F}$ is a wfs of that system provable from no premises, i.e., any wfs $A$ of $\PL$ for which $\varnothing\vdash_{\mathcal{F}}A$ (written $\vdash_{\mathcal{F}}A$).
-\item[\bf Logic:] The \textit{logic} of a formal system $\mathcal{F}$ is the set of all of its theorems.
-\item[\bf Soundness:] A formal system is \textit{sound} just in case all of its theorems are valid.
-\item[\bf Completeness:] A formal system is \textit{complete} just in case every valid wfs is a theorem.
-\item[\bf Propositional Logic:] The formal system of natural deduction $\mathcal{F}^+=\tuple{\PL,\mathcal{G}^+,\mathcal{A}^+,\mathcal{R}^+}$ given above is sound and complete, where $\mathcal{A}^+=\varnothing$. 
-\item[\bf Equivalence:] Two formal systems with the same logic may be said to be \textit{equivalent}. There are many equivalent formal systems for propositional logic, i.e., systems with exactly the same set of theorems.
+\item[\bf Theorem:] A \textit{theorem} of the formal system $\PLsystem$ is a wfs that is derivable from no premises, i.e., any wfs $\metaA$ of $\PL$ for which $\varnothing\PLproves \metaA$ (written $\PLproves \metaA$).
+  % \item[\bf Logic:] The \textit{logic} for $\PLsystem$ is the set $\PLlogic \coloneq \set{\metaA :\ \PLproves \metaA}$ of theorems of $\PLsystem$.
+  \item[\bf Sound:] $\PLsystem$ is \textit{sound} just in case $\MetaG \PLmodels \metaA$ whenever $\MetaG \PLproves \metaA$.
+  \item[\bf Complete:] $\PLsystem$ is \textit{complete} just in case $\MetaG \PLproves \metaA$ whenever $\MetaG \PLmodels \metaA$.
+  \item[\bf Propositional Logic:] The formal system $\PLsystem$ is both sound and complete. 
+  \item[\bf Equivalent:] Two formal systems $\F_1$ and $\F_2$ in the same language are \textit{equivalent} just in case $\MetaG \vdash_1 \metaA$ if and only if $\MetaG \vdash_2 \metaA$.  
 \end{enumerate}
-%Introduce axiomatic systems, and their equivalence to natural deduction.
+
+% TODO:
+  % Introduce an axiomatic system, and its equivalence to Fitch.
+  % Define what it is for a system to be a natural deduction system.
 
 
-
+\noindent
+TO BE CONTINUED...
+\pagebreak
 
 \section*{\sc First-Order Logic: Syntax}
 
@@ -506,29 +501,29 @@ Existential Elimination:\vspace{-.05in}
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Domain:] Let the \textit{domain} $\mathcal{D}$ be a set of objects.% and $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}}$.
 \item[\bf Cartesian Domain:] Let $\mathcal{D}^n$ be the set of all ordered tuples $\tuple{d_1,\dots,d_n}$ where each $d_i$ is an object in the domain $\mathcal{D}$, i.e., $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}~\text{for}~1\leq i\leq n}$.
-\item[\bf Interpretation:] Let $\g{V}_1$ be an \textit{interpretation} of $\FOL$ over $\mathcal{D}$ just in case: (i) $\g{V}_1(p_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\g{V}_1(c_i)\in\mathcal{D}$ for every $i\geq1$.
-%\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$p_i^n$' of $\FOL$ on an interpretation $\g{V}_1$ over a domain $\mathcal{D}$ is the set of ordered tuples $\g{V}_1(p_i^n)\subseteq\mathcal{D}^n$.
+\item[\bf Interpretation:] Let $\PLmodel_1$ be an \textit{interpretation} of $\FOL$ over $\mathcal{D}$ just in case: (i) $\PLmodel_1(p_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\PLmodel_1(c_i)\in\mathcal{D}$ for every $i\geq1$.
+%\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$p_i^n$' of $\FOL$ on an interpretation $\PLmodel_1$ over a domain $\mathcal{D}$ is the set of ordered tuples $\PLmodel_1(p_i^n)\subseteq\mathcal{D}^n$.
 \item[\bf Assignment:] An \textit{assignment} $\underline{a}$ is a function from the variables in $\FOL$ to the members of $\mathcal{D}$ such that $\underline{a}(x_i)$ is a member of the domain $\mathcal{D}$ for every $i\geq1$.
 \item[\bf Denotation:] Let $I(t)=
 	\begin{cases} 
-		\g{V}_1(t) & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1\\
+		\PLmodel_1(t) & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1\\
 		\underline{a}(t) & \text{if}~~ t=x_i ~~\text{for any}~~ i\geq1
 	\end{cases}$
 \item[\bf Variant:] The function $\underline{a}[d/x]$ is an \textit{$x$-variant} of the assignment $\underline{a}$ just in case $\underline{a}[d/x]$ differs from $\underline{a}$ at most by setting $\underline{a}[d/x](x)=d$.
-\item[\bf Model:] A \textit{model} of $\FOL$ is any ordered pair $\mathcal{M}=\tuple{\mathcal{D},\g{V}_1}$, where $\mathcal{D}$ is a domain of individuals, and $\g{V}_1$ an interpretation over $\mathcal{D}$.
+\item[\bf Model:] A \textit{model} of $\FOL$ is any ordered pair $\mathcal{M}=\tuple{\mathcal{D},\PLmodel_1}$, where $\mathcal{D}$ is a domain of individuals, and $\PLmodel_1$ an interpretation over $\mathcal{D}$.
 \item[\bf Semantics:] Given a model $\mathcal{M}$ of $\FOL$, and assignment $\underline{a}$, we may recursively define $\mathcal{M},\underline{a}\vDash A$ for all wfss $A$ of $\FOL$ as follows:
 \begin{small}
 \begin{itemize}[leftmargin=.36in]
-\item[$(p_i)$] $\mathcal{M},\underline{a}\vDash  p_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \g{V}_1(p_i^n)$.
+\item[$(p_i)$] $\mathcal{M},\underline{a}\vDash  p_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \PLmodel_1(p_i^n)$.
 \item[$(\hspace{1.5pt}\exists\hspace{1.5pt})$] $\mathcal{M},\underline{a}\vDash  \exists x_iA$ \textit{iff} $\mathcal{M},\underline{a}[d/x_i]\vDash A$, for some $d\in\mathcal{D}$.
 \item[$(\neg)$] $\mathcal{M},\underline{a}\vDash  \neg A$ \textit{iff} $\mathcal{M},\underline{a}\nvDash A$.
 \item[$(\vee)$] $\mathcal{M},\underline{a}\vDash  A\vee B$ \textit{iff} $\mathcal{M},\underline{a}\vDash  A$ or $\mathcal{M},\underline{a}\vDash  B$.
-%\item[$(\wedge)$] $\g{V}\vDash A\wedge B$ \textit{iff} $\g{V}\vDash A$ and $\g{V}\vDash B$. 
-%\item[$(\shortrightarrow)$] $\g{V}\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\g{V}} A$ or $\g{V}\vDash B$.
-%\item[$(\leftrightarrow)$] $\g{V}\vDash A\leftrightarrow B$ \textit{iff} $\g{V}\vDash A$ and $\g{V}\vDash B$, or $\nvDash_{\g{V}} A$ and $\nvDash_{\g{V}} B$.
+%\item[$(\wedge)$] $\PLmodel\vDash A\wedge B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$. 
+%\item[$(\shortrightarrow)$] $\PLmodel\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\PLmodel} A$ or $\PLmodel\vDash B$.
+%\item[$(\leftrightarrow)$] $\PLmodel\vDash A\leftrightarrow B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$, or $\nvDash_{\PLmodel} A$ and $\nvDash_{\PLmodel} B$.
 \end{itemize}
 \end{small}
-It is important that in the case where $n=0$, we adopt the convention that $\g{V}_1(p_i^0)=\set{\varnothing}$ indicates truth, and $\g{V}_1(p_i^0)=\varnothing$ indicates falsity.
+It is important that in the case where $n=0$, we adopt the convention that $\PLmodel_1(p_i^0)=\set{\varnothing}$ indicates truth, and $\PLmodel_1(p_i^0)=\varnothing$ indicates falsity.
 \end{enumerate}
 
 
@@ -665,19 +660,19 @@ It is important that in the case where $n=0$, we adopt the convention that $\g{V
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Frame:] A \textit{Kripke frame} $\mathcal{K}$ is an ordered pair $\tuple{W,R}$, where $W$ is a set of points called \textit{possible worlds}, $R$ is an \textit{accessibility} relation between worlds.
-\item[\bf Interpretation:] $\g{V}_\square$ is an \textit{interpretation} of $\PL_\square$ over $W$ just in case for each $w\in W$ and $i\geq1$, either $\g{V}_\square(p_i)(w)=1$ or $\g{V}_\square(p_i)(w)=0$, but not both.
-%\item[\bf Intension:] For any interpretation $\g{V}_\square$ of $\PL_\square$ and sentence letter $p_i$ in $\PL_\square$, we may refer to the function $\g{V}_\square(p_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $p_i$.
-\item[\bf Model:] A \textit{model} of $\PL_\square$ is any ordered triple $\mathcal{M}_\square=\tuple{W,R,\g{V}_\square}$ where $\tuple{W,R}$ is a Kripke frame and $\g{V}_\square$ is an interpretation of $\PL_\square$.
+\item[\bf Interpretation:] $\PLmodel_\square$ is an \textit{interpretation} of $\PL_\square$ over $W$ just in case for each $w\in W$ and $i\geq1$, either $\PLmodel_\square(p_i)(w)=1$ or $\PLmodel_\square(p_i)(w)=0$, but not both.
+%\item[\bf Intension:] For any interpretation $\PLmodel_\square$ of $\PL_\square$ and sentence letter $p_i$ in $\PL_\square$, we may refer to the function $\PLmodel_\square(p_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $p_i$.
+\item[\bf Model:] A \textit{model} of $\PL_\square$ is any ordered triple $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ where $\tuple{W,R}$ is a Kripke frame and $\PLmodel_\square$ is an interpretation of $\PL_\square$.
 \item[\bf Semantics:] Given a model $\mathcal{M}_\square$ of $\PL_\square$, and a world $w\in W$, we may recursively define $\mathcal{M}_\square,w\vDash A$ for all wfss $A$ of $\PL_\square$ as follows:
 \begin{small}
 \begin{itemize}[leftmargin=.36in]
-\item[$(p_i)$] $\mathcal{M}_\square,w\vDash  p_i$ \textit{iff} $\g{V}_\square(p_i)(w)=1$.
+\item[$(p_i)$] $\mathcal{M}_\square,w\vDash  p_i$ \textit{iff} $\PLmodel_\square(p_i)(w)=1$.
 \item[$(\hspace{.3pt}\Box\hspace{.3pt})$] $\mathcal{M}_\square,w\vDash  \Box A$ \textit{iff} $\mathcal{M}_\square,w'\vDash A$ for every $w'\in W$ such that $R(w,w')$.
 \item[$(\neg)$] $\mathcal{M}_\square,w\vDash  \neg A$ \textit{iff} $\mathcal{M},\underline{a}\nvDash A$.
 \item[$(\vee)$] $\mathcal{M}_\square,w\vDash  A\vee B$ \textit{iff} $\mathcal{M},\underline{a}\vDash  A$ or $\mathcal{M},\underline{a}\vDash  B$.
-%\item[$(\wedge)$] $\g{V}\vDash A\wedge B$ \textit{iff} $\g{V}\vDash A$ and $\g{V}\vDash B$. 
-%\item[$(\shortrightarrow)$] $\g{V}\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\g{V}} A$ or $\g{V}\vDash B$.
-%\item[$(\leftrightarrow)$] $\g{V}\vDash A\leftrightarrow B$ \textit{iff} $\g{V}\vDash A$ and $\g{V}\vDash B$, or $\nvDash_{\g{V}} A$ and $\nvDash_{\g{V}} B$.
+%\item[$(\wedge)$] $\PLmodel\vDash A\wedge B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$. 
+%\item[$(\shortrightarrow)$] $\PLmodel\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\PLmodel} A$ or $\PLmodel\vDash B$.
+%\item[$(\leftrightarrow)$] $\PLmodel\vDash A\leftrightarrow B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$, or $\nvDash_{\PLmodel} A$ and $\nvDash_{\PLmodel} B$.
 \end{itemize}
 \end{small}
 \item[\bf Proposition:] The proposition $\interpret{A}_{\Scale[0.5]{\mathcal{M}_\square}}$ that a wfs ${A}$ of $\PL_\square$ expresses on a model $\mathcal{M}_\square$ is the set of worlds $\set{w\in W: ~\mathcal{M}_\square,w\vDash  A}$ at which ${A}$ is true. Every model $\mathcal{M}_\square$ of $\PL_\square$ may then be though of as assigning each wfs of $\PL_\square$ to a proposition, conceived of as a subset of $W$.
@@ -802,9 +797,9 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 \item[\bf Logical Consequence:] $\MetaG\vDash_\mathcal{C} A$ \textit{iff} for all $\mathcal{M}\in\mathcal{C}$, if $\mathcal{M}\vDash G$ for all $G\in\MetaG$, then $\mathcal{M}\vDash  A$.
 \item[\bf Logical Equivalence:] $A\equiv_\mathcal{C} B$ \textit{iff} $A\vDash_\mathcal{C} B$ and $B\vDash_\mathcal{C} A$.  
 \item[\bf Logical Truth:] A wfs $A$ of $\PL_\square$ is \textit{valid} on a class of models $\mathcal{C}$ just in case $\vDash_\mathcal{C} A$.%; and (ii) \textit{valid} on a Kripke frame $\mathcal{K}$ just in case $\vDash_{\mathcal{C}_\mathcal{K}} A$, where $\mathcal{C}_\mathcal{K}$ includes every model of $\PL_\square$ on the frame $\mathcal{K}$. 
-\item[\bf Reflexive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{reflexive} just in case $R(w,w)$ for every $w\in W$. A model $\mathcal{M}_\square=\tuple{W,R,\g{V}_\square}$ is \textit{reflexive} just in case $\tuple{W,R}$ is a reflexive frame. Let $\mathcal{C}_r$ be the class of all reflexive models of $\PL_\square$.
-\item[\bf Symmetric:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{symmetric} just in case $R(w',w)$ whenever $R(w,w')$. A model $\mathcal{M}_\square=\tuple{W,R,\g{V}_\square}$ is \textit{symmetric} just in case $\tuple{W,R}$ is symmetric. Let $\mathcal{C}_s$ be the class of all symmetric models of $\PL_\square$.
-\item[\bf Transitive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{transitive} just in case $R(w,w'')$ whenever $R(w,w')$ and $R(w',w'')$. A model $\mathcal{M}_\square=\tuple{W,R,\g{V}_\square}$ is \textit{transitive} just in case $\tuple{W,R}$ is transitive. Let $\mathcal{C}_t$ be the class of transitive models of $\PL_\square$.
+\item[\bf Reflexive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{reflexive} just in case $R(w,w)$ for every $w\in W$. A model $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ is \textit{reflexive} just in case $\tuple{W,R}$ is a reflexive frame. Let $\mathcal{C}_r$ be the class of all reflexive models of $\PL_\square$.
+\item[\bf Symmetric:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{symmetric} just in case $R(w',w)$ whenever $R(w,w')$. A model $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ is \textit{symmetric} just in case $\tuple{W,R}$ is symmetric. Let $\mathcal{C}_s$ be the class of all symmetric models of $\PL_\square$.
+\item[\bf Transitive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{transitive} just in case $R(w,w'')$ whenever $R(w,w')$ and $R(w',w'')$. A model $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ is \textit{transitive} just in case $\tuple{W,R}$ is transitive. Let $\mathcal{C}_t$ be the class of transitive models of $\PL_\square$.
 \item[\bf Modal Logics:]
 	\begin{enumerate}
 	\item[$(K)$] The modal system $K$ is sound and complete over the class of all models $\mathcal{C}_K$, i.e., $\vdash_K A$ if and only if $\vDash_{\mathcal{C}_K} A$.
