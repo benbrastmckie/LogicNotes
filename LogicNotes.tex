@@ -115,7 +115,7 @@
   \item[\bf Canonical Name:] A quoted symbol is the \textit{canonical name} for the symbol quoted.
   \item[\bf Language:] The propositional language $\PL$ includes \textit{symbols} for: \textit{sentence letters} `$p_1$',`$p_2$', \dots, \textit{sentential operators} `$\vee$',`$\neg$', and \textit{punctuation} `$($' and `$)$'.
   \item[\bf Strings:] The concatenation of a finite number of symbols in $\PL$ is a \textit{string} of $\PL$.
-  \item[\bf Schematic Variables:] Let `$\metaA$', `$\metaB$',\ldots be \textit{schematic variables} for strings of $\PL$
+  \item[\bf Schematic Variables:] Let `$\metaA$', `$\metaB$', `$\metaC$',\ldots\ be \textit{schematic variables} for strings of $\PL$.
   \item[\bf Corner Quotes:] Let $\corner{\cdot}$ map strings of $\PL$ to the canonical names for those strings.
     % (Corner quotes will often be omitted when clarity is not improved.)
   \item[\bf Well-Formed Sentences:] The set of \textit{well-formed sentences} $\wfs{\PL}$ is the smallest set to satisfy:
@@ -334,10 +334,10 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
   % \item[\bf Axioms:] An axiom is a rule with no assumptions (above the horizontal line).
   % \item[\bf Formal System:] The \textit{formal system} $\FCHsystem = \tuple{\FCH, \wfs{\FCH}, \FCHaxioms, \FCHrules}$ includes: (i) the language $\FCH$; (ii) the set $\wfs{\FCH}$ of wfs of $\FCH$; (iii) the empty set of \textit{axioms} $\FCHaxioms = \varnothing$; and (iv) the set of \textit{rules of inference} $\FCHrules$ which include all instances of the above.
   \item[\bf Proof Lines:] A \textit{proof line} may be represented by a tuple $\tuple{n,i,\metaA,J}$ consisting of a \textit{position number} $n$, \textit{indentation number} $i$, wfs $\metaA$ of $\FCH$, and \textit{justification} $J$. % where premises are justified by `PR'.
-  \item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of proof lines with consecutive position numbers starting from $1$ that ends in $\tuple{m,0,\metaA,K}$ where every line $\tuple{n,i,\metaB,J}$ in $X$ is either: (1) a \textit{premise} $i = 0$, $\metaB \in \MetaG$, and $J = \text{PR}$; (2) a \textit{discharged assumption} $i > 0$ and $J = \text{AS}$ ; or (3) follows by a \textit{Fitch rule} citing previous lines in $J$. 
+  \item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaB$ from $\MetaG$ is a finite sequence $X$ of proof lines with consecutive position numbers starting from $1$ that ends in $\tuple{m,0,\metaB,K}$ where every line $\tuple{n,i,\metaA,J}$ in $X$ is either: (1) a \textit{premise} where $i = 0$, $\metaB \in \MetaG$, and $J = \text{PR}$; (2) a \textit{discharged assumption} where $i > 0$ and $J = \text{AS}$ ; or (3) follows by a \textit{Fitch rule} where $J$ cites previous lines.
   % \item[\bf Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\FCH$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) a discharged assumption; or (3) follows by a \textit{Fitch rule} by citing previous lines. 
   \item[\bf Derivable:]
-    A wfs $\metaA$ of $\FCH$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ by the \textit{Fitch proof system} given above, i.e., $\MetaG \FCHproves \metaA$, just in case there is a Fitch proof $X$ of $\metaA$ from $\MetaG$.
+    A wfs $\metaB$ of $\FCH$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ by the \textit{Fitch proof system} given above, i.e., $\MetaG \FCHproves \metaB$, just in case there is a Fitch proof $X$ of $\metaB$ from $\MetaG$.
     % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
   % \item[\bf Theorem:] An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$ (written $\FCHproves \metaA$).
     % \item[\bf Logic:] The \textit{logic} for $\FCHsystem$ is the set $\FCHlogic \coloneq \set{\metaA :\ \FCHproves \metaA}$ of theorems of $\FCHsystem$.
@@ -396,17 +396,17 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\section*{\sc Propositional Logic: Metalogic}
+\section*{\sc Propositional Logic: Naturalness and Metalogic}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-  \item[\bf Fitch System:] The Fitch proof system enjoys the following metalogical properties:
+  \item[\bf Fitch System:] The Fitch proof system has the following metalogical properties:
     \begin{itemize}
-      \item[\it Sound:] $\MetaG \FCHmodels \metaA$ whenever $\MetaG \FCHproves \metaA$.
-      \item[\it Complete:] $\MetaG \FCHproves \metaA$ whenever $\MetaG \FCHmodels \metaA$.
+      \item[\it Sound:] $\MetaG \FCHmodels \metaB$ whenever $\MetaG \FCHproves \metaB$.
+      \item[\it Complete:] $\MetaG \FCHproves \metaB$ whenever $\MetaG \FCHmodels \metaB$.
     \end{itemize}
   % \item[\bf Propositional Logic:] The formal system $\FCHsystem$ is both sound and complete with respect to $\FCHmodels$. 
-  \item[\bf Equivalent:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaA$ if and only if $\MetaG \vdash_B \metaA$.  
-  \item[\bf Hilbert System:] Consider the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}:
+  \item[\bf Equivalent:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaB$ if and only if $\MetaG \vdash_B \metaB$.  
+  \item[\bf Hilbert System:] The \textit{Hilbert proof system} consists of the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}:
     \begin{itemize}[leftmargin=.5in]
       \item[\bf A1] $\varphi \rightarrow (\psi \rightarrow \varphi)$.
       \item[\bf A2] $(\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
@@ -418,40 +418,39 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
     % Whereas \textbf{M1} is called \textit{Cut Elimination}, \textbf{M2} is called \textit{Weakening}.
     Set notation will be typically be omitted, writing `$\MetaG, \metaA, \metaB \vdash \metaC$' in place of `$\MetaG\cup\set{\metaA,\metaB} \vdash \metaC$', and writing `$\vdash \metaA$' in place of `$\varnothing \vdash\metaA$'.
     % \item[\bf Logic:] Let $\PLproves$ be the smallest relation to include all instances of the rules \textbf{R1} -- \textbf{R4} that is closed under the metarules \textbf{M1} -- \textbf{M2} given above. 
-    \item[\bf Axioms:] The \textit{axioms} of the Hilbert proof system are the instances of \textbf{A1} -- \textbf{A3}.
-    \item[\bf Hilbert Proof:] A \textit{Hilbert proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaA$ where every wfs in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom}; or (3) follows from previous lines by an instance of \textbf{MP}. 
+    \item[\bf Instances:] The \textit{axioms} of the Hilbert proof system are the instances of \textbf{A1} -- \textbf{A3} and the \textit{rules} are the instances of \textbf{MP}.
+    \item[\bf Hilbert Proof:] A \textit{Hilbert proof} of $\metaB$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaB$ where every wfs in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an axiom; or (3) follows from previous wfss $\metaA$ and $\metaA \rightarrow \metaB$ in $X$ by a rule.
     \item[\bf Derivable:]
-      A wfs $\metaA$ of $\PL$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the Hilbert proof system, i.e., $\MetaG \PLproves \metaA$, just in case there is a Hilbert proof $X$ of $\metaA$ from $\MetaG$.
+      A wfs $\metaB$ of $\PL$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the Hilbert proof system, i.e., $\MetaG \PLproves \metaB$, just in case there is a Hilbert proof $X$ of $\metaB$ from $\MetaG$.
       % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
+    \item[\bf Metalogic:] The Hilbert proof system has the following metalogical properties:
       \begin{itemize}
-        \item[\it Sound:] $\MetaG \PLmodels \metaA$ whenever $\MetaG \PLproves \metaA$.
-        \item[\it Complete:] $\MetaG \PLproves \metaA$ whenever $\MetaG \PLmodels \metaA$.
+        \item[\it Sound:] $\MetaG \PLmodels \metaB$ whenever $\MetaG \PLproves \metaB$.
+        \item[\it Complete:] $\MetaG \PLproves \metaB$ whenever $\MetaG \PLmodels \metaB$.
       \end{itemize}
     \item[\bf Naturalness:] Whereas the Fitch system idealizes natural forms of reasoning, the Hilbert system is easier to state and study but harder to use.
 \end{enumerate}
 
 
-\section*{\it Problem Set: Metalogic}
+\section*{\it Problem Set: Naturalness and Metalogic}
 
 \begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
   \item 
 \end{enumerate}
 
 
-% TODO:
-  % Introduce an axiomatic system, and its equivalence to Fitch.
-  % Define what it is for a system to be a natural deduction system.
-  % eliminates redundancies but at the cost of ease of use and naturalness
-
-
 \noindent
 TO BE CONTINUED...
 \pagebreak
 
+
+
+
+
 \section*{\sc First-Order Logic: Syntax}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Language $\boldsymbol{\FI}$:] The first-order language $\FI$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$p_1^n$', `$p_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\vee$',`$\neg$', `$\exists x_i$', and parentheses `$($' and `$)$'.
+\item[\bf Language $\boldsymbol{\FI}$:] The first-order language $\FI$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$p_1^n$', `$p_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\neg$',`$\rightarrow$', `$\forall$', and parentheses `$($' and `$)$'.
 \item[\bf Terms:] A symbol is a \textit{term} just in case that symbol is a constant or variable.
 \item[\bf Well Formed Formulas:] Let `$t_1$',\dots, `$t_n$' be terms of $\FI$, `$x$' be a variable of $\FI$, `$H^n$' be an $n$-place predicate of $\FI$, and `$A$' and `$B$' name arbitrary sentences of $\FI$. We may then let $\mathcal{G}_1$ be the set of wff of $\FI$, defined recursively as follows:
 \begin{itemize}
@@ -487,48 +486,48 @@ Let $\FI$ include the symbols in $\FI$ together with the sentential operators `$
 \end{enumerate}
 
 
-\begin{multicols}{2}\it
-Universal Introduction:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{A(t^\star/x)}
-}{
-\formula{\forall xA(x) \hspace*{.458in}(\forall I)}
-}
-\end{equation*}
-
-Universal Elimination:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{\forall xA(x)}
-}{
-\formula{A(t/x) \hspace*{.568in}(\forall E)}
-}
-\end{equation*}
-\end{multicols}
-\vspace{-.05in}
-
-
-\begin{multicols}{2}\it
-Existential Introduction:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{A(t/x)}
-}{
-\formula{\exists xA(x) \hspace*{.477in}(\exists I)}
-}
-\end{equation*}
-
-Existential Elimination:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{\exists xA(x)}
-}{
-\formula{A(t^\star/x) \hspace*{.515in}(\exists E)}
-}
-\end{equation*}
-\end{multicols}
-\vspace{-.05in}
+% \begin{multicols}{2}\it
+% Universal Introduction:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{A(t^\star/x)}
+% }{
+% \formula{\forall xA(x) \hspace*{.458in}(\forall I)}
+% }
+% \end{equation*}
+%
+% Universal Elimination:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{\forall xA(x)}
+% }{
+% \formula{A(t/x) \hspace*{.568in}(\forall E)}
+% }
+% \end{equation*}
+% \end{multicols}
+% \vspace{-.05in}
+%
+%
+% \begin{multicols}{2}\it
+% Existential Introduction:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{A(t/x)}
+% }{
+% \formula{\exists xA(x) \hspace*{.477in}(\exists I)}
+% }
+% \end{equation*}
+%
+% Existential Elimination:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{\exists xA(x)}
+% }{
+% \formula{A(t^\star/x) \hspace*{.515in}(\exists E)}
+% }
+% \end{equation*}
+% \end{multicols}
+% \vspace{-.05in}
 
 
 
@@ -746,47 +745,47 @@ It is important that in the case where $n=0$, we adopt the convention that $\FIm
 \end{enumerate}
 	
 	
-\begin{multicols}{2}\it
-Necessitation:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{A}
-}{
-\formula{\Box A \hspace*{.83in}(N)}
-}
-\end{equation*}
-
-Modus Ponens:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{A\rightarrow B}\\
-\formula{A}
-}{
-\formula{B \hspace*{.8in}(MP)}
-}
-\end{equation*}
-\end{multicols}
-\vspace{-.2in}
-
-
-\begin{multicols}{2}\it
-Universal Substitution:\vspace{-.05in}
-\begin{equation*}
-\fitcharg{
-\formula{A}
-}{
-\formula{A[B/C] \hspace*{.477in}(US)}
-}
-\end{equation*}
-
-\vspace*{-.07in}
-
-\begin{quote}\small
-$A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, where $B$ and $C$ are wfs of $\PL_\square$.
-\end{quote}
-
-\end{multicols}
-\vspace{-.05in}
+% \begin{multicols}{2}\it
+% Necessitation:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{A}
+% }{
+% \formula{\Box A \hspace*{.83in}(N)}
+% }
+% \end{equation*}
+%
+% Modus Ponens:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{A\rightarrow B}\\
+% \formula{A}
+% }{
+% \formula{B \hspace*{.8in}(MP)}
+% }
+% \end{equation*}
+% \end{multicols}
+% \vspace{-.2in}
+%
+%
+% \begin{multicols}{2}\it
+% Universal Substitution:\vspace{-.05in}
+% \begin{equation*}
+% \fitcharg{
+% \formula{A}
+% }{
+% \formula{A[B/C] \hspace*{.477in}(US)}
+% }
+% \end{equation*}
+%
+% \vspace*{-.07in}
+%
+% \begin{quote}\small
+% $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, where $B$ and $C$ are wfs of $\PL_\square$.
+% \end{quote}
+%
+% \end{multicols}
+% \vspace{-.05in}
 	
 	
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
