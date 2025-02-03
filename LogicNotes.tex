@@ -406,29 +406,36 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
     \end{itemize}
   % \item[\bf Propositional Logic:] The formal system $\FCHsystem$ is both sound and complete with respect to $\FCHmodels$. 
   \item[\bf Equivalent:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaA$ if and only if $\MetaG \vdash_B \metaA$.  
-  \item[\bf Axiom System:] Consider the following \textit{rule schemata} \textbf{R1} -- \textbf{R4} and \textit{metarules} \textbf{M1} -- \textbf{M2}:
+  \item[\bf Hilbert System:] Consider the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}:
     \begin{itemize}[leftmargin=.5in]
-      \item[\bf R1] $\varnothing \vdash \varphi \rightarrow (\psi \rightarrow \varphi)$.
-      \item[\bf R2] $\varnothing \vdash (\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
-      \item[\bf R3] $\varnothing \vdash (\neg\varphi \rightarrow \neg\psi) \rightarrow (\psi \rightarrow \varphi)$.
-      \item[\bf R4] $\set{\varphi, \varphi \rightarrow \psi} \vdash \psi$.
-      \item[({\it Cut Elimination})~ {\bf M1}] If $\MetaG \vdash \varphi$ and $\MetaS\cup\set{\varphi} \vdash \psi$, then $\MetaS\cup\MetaG \vdash \psi$. 
-      \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \varphi$, then $\MetaS\cup\MetaG \vdash \psi$.
+      \item[\bf A1] $\varphi \rightarrow (\psi \rightarrow \varphi)$.
+      \item[\bf A2] $(\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
+      \item[\bf A3] $(\neg\varphi \rightarrow \neg\psi) \rightarrow (\psi \rightarrow \varphi)$.
+      \item[\bf MP] $\set{\varphi, \varphi \rightarrow \psi} \vdash \psi$.
+      % \item[({\it Cut Elimination})~ {\bf M1}] If $\MetaG \vdash \varphi$ and $\MetaS\cup\set{\varphi} \vdash \psi$, then $\MetaS\cup\MetaG \vdash \psi$. 
+      % \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \varphi$, then $\MetaS\cup\MetaG \vdash \psi$.
     \end{itemize}
     % Whereas \textbf{M1} is called \textit{Cut Elimination}, \textbf{M2} is called \textit{Weakening}.
     Set notation will be typically be omitted, writing `$\MetaG, \metaA, \metaB \vdash \metaC$' in place of `$\MetaG\cup\set{\metaA,\metaB} \vdash \metaC$', and writing `$\vdash \metaA$' in place of `$\varnothing \vdash\metaA$'.
-    \item[\bf Logic:] Let $\PLproves$ be the smallest relation to include all instances of the rules \textbf{R1} -- \textbf{R4} that is closed under the metarules \textbf{M1} -- \textbf{M2} given above. 
+    % \item[\bf Logic:] Let $\PLproves$ be the smallest relation to include all instances of the rules \textbf{R1} -- \textbf{R4} that is closed under the metarules \textbf{M1} -- \textbf{M2} given above. 
+    \item[\bf Axioms:] The \textit{axioms} of the Hilbert proof system are the instances of \textbf{A1} -- \textbf{A3}.
+    \item[\bf Hilbert Proof:] A \textit{Hilbert proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaA$ where every wfs in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom}; or (3) follows from previous lines by an instance of \textbf{MP}. 
+    \item[\bf Derivable:]
+      A wfs $\metaA$ of $\PL$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the Hilbert proof system, i.e., $\MetaG \PLproves \metaA$, just in case there is a Hilbert proof $X$ of $\metaA$ from $\MetaG$.
+      % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
       \begin{itemize}
         \item[\it Sound:] $\MetaG \PLmodels \metaA$ whenever $\MetaG \PLproves \metaA$.
         \item[\it Complete:] $\MetaG \PLproves \metaA$ whenever $\MetaG \PLmodels \metaA$.
       \end{itemize}
-  % \item[\bf Derivation:] An $\PLsystem$ \textit{derivation} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\PLaxioms$; or (3) follows by a \textit{rule} in $\PLrules$ from previous lines. 
-  % \item[\bf Derivable:]
-  %   A wfs $\metaA$ of $\PL$ is \textit{derivable} from $\MetaG$ in $\PLsystem$, i.e., $\MetaG \PLproves \metaA$, just in case there is a derivation $X$ of $\metaA$ from $\MetaG$ in $\PLsystem$.
-    % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
+    \item[\bf Naturalness:] Whereas the Fitch system idealizes natural forms of reasoning, the Hilbert system is easier to state and study but harder to use.
 \end{enumerate}
 
 
+\section*{\it Problem Set: Metalogic}
+
+\begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
+  \item 
+\end{enumerate}
 
 
 % TODO:
