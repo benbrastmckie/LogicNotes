@@ -103,20 +103,50 @@
 \newcommand{\R}{\mathcal{R}}               % Structure R
 \newcommand{\T}{\mathcal{T}}               % Theory T
 
-% Special language symbols
-\newcommand{\PL}{\mathcal{L}^{\textsc{pl}}}    % Propositional Logic
-\newcommand{\ML}{\mathcal{L}^{\square}}    % Propositional Logic
-\newcommand{\FOL}{\mathcal{L}^{\textsc{fol}}}   % First-Order Logic
-\newcommand{\FI}{\mathcal{L}^=}                 % First-Order Logic with Identity
-
-% Special derivation symbols
-\newcommand{\PLproves}{\vdash_{\textsc{pl}}}    % Propositional Logic
-\newcommand{\PLmodels}{\vDash_{\textsc{pl}}}    % Propositional Logic
-\newcommand{\PLlogic}{\Lambda_{\textsc{pl}}}    % Propositional Logic
-\newcommand{\PLsystem}{\mathcal{F}_{\textsc{pl}}}    % Propositional Logic
-\newcommand{\PLgrammar}{\mathcal{G}^{\textsc{pl}}}    % Propositional Logic
-\newcommand{\PLaxioms}{\mathcal{A}^{\textsc{pl}}}    % Propositional Logic
+% Propositional logic symbols
+\newcommand{\PL}{\mathcal{L}}         % Propositional Logic
+\newcommand{\PLmodels}{\vDash_{\textsc{pl}}}        % Propositional Logic
+\newcommand{\PLaxioms}{\mathcal{A}^{\textsc{pl}}}   % Propositional Logic
 \newcommand{\PLrules}{\mathcal{R}^{\textsc{pl}}}    % Propositional Logic
+\newcommand{\PLsystem}{\mathcal{F}_{\textsc{pl}}} % Propositional Logic
+\newcommand{\PLproves}{\vdash_{\textsc{pl}}}        % Propositional Logic
+\newcommand{\PLlogic}{\Lambda_{\textsc{pl}}}        % Propositional Logic
+
+% Propositional logic symbols (Fitch)
+\newcommand{\FCH}{\mathcal{L}^+}         % Propositional Logic
+\newcommand{\FCHmodels}{\vDash_{\textsc{pl}}^{+}}        % Propositional Logic
+\newcommand{\FCHaxioms}{\mathcal{A}^{\textsc{f}}}   % Propositional Logic
+\newcommand{\FCHrules}{\mathcal{R}^{\textsc{f}}}    % Propositional Logic
+\newcommand{\FCHsystem}{\mathcal{F}_{\textsc{f}}} % Propositional Logic
+\newcommand{\FCHproves}{\vdash_{\textsc{f}}}        % Propositional Logic
+\newcommand{\FCHlogic}{\Lambda_{\textsc{f}}}        % Propositional Logic
+
+% % First-order logic symbols
+% \newcommand{\FOL}{\mathcal{L}^{\textsc{fol}}}       % First-Order Logic
+% \newcommand{\FOLmodels}{\vDash_{\textsc{fol}}}      % Propositional Logic
+% \newcommand{\FOLaxioms}{\mathcal{A}^{\textsc{fol}}} % Propositional Logic
+% \newcommand{\FOLrules}{\mathcal{R}^{\textsc{fol}}}  % Propositional Logic
+% \newcommand{\FOLsystem}{\mathcal{F}_{\textsc{fol}}} % Propositional Logic
+% \newcommand{\FOLproves}{\vdash_{\textsc{fol}}}      % Propositional Logic
+% \newcommand{\FOLlogic}{\Lambda_{\textsc{fol}}}      % Propositional Logic
+
+% First-order logic with identity symbols
+\newcommand{\FI}{\mathcal{L}^1}                     % First-Order Logic with Identity
+\newcommand{\FIproves}{\vdash_1}                    % First-Order Logic with Identity
+\newcommand{\FImodels}{\vDash_1}                    % First-Order Logic with Identity
+\newcommand{\FIaxioms}{\mathcal{A}^1}               % First-Order Logic with Identity
+\newcommand{\FIrules}{\mathcal{R}^1}                % First-Order Logic with Identity
+\newcommand{\FIsystem}{\mathcal{F}_1}               % First-Order Logic with Identity
+\newcommand{\FIlogic}{\Lambda_1}                    % First-Order Logic with Identity
+
+% Modal Logic derivation symbols
+\newcommand{\ML}{\mathcal{L}^{\square}}             % Modal Logic
+\newcommand{\MLproves}{\vdash_{\square}}            % Modal Logic
+\newcommand{\MLmodels}{\vDash_{\square}}            % Modal Logic
+\newcommand{\MLaxioms}{\mathcal{A}^{\square}}       % Modal Logic
+\newcommand{\MLrules}{\mathcal{R}^{\square}}        % Modal Logic
+\newcommand{\MLsystem}{\mathcal{F}_{\square}}       % Modal Logic
+\newcommand{\MLlogic}{\Lambda_{\square}}            % Modal Logic
 
 % Variable and valuation notation
 \newcommand{\V}[1]{\mathcal{V}_{#1}}           % Valuation

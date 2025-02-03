@@ -113,38 +113,38 @@
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
   \item[\bf Canonical Name:] A quoted symbol is the \textit{canonical name} for the symbol quoted.
-  \item[\bf Language:] The propositional language $\g{L}$ includes \textit{symbols} for: \textit{sentence letters} `$p_1$',`$p_2$', \dots, \textit{sentential operators} `$\vee$',`$\neg$', and \textit{punctuation} `$($' and `$)$'.
-  \item[\bf Strings:] The concatenation of a finite number of symbols in $\g{L}$ is a \textit{string} of $\g{L}$.
-  \item[\bf Schematic Variables:] Let `$\metaA$', `$\metaB$',\ldots be \textit{schematic variables} for strings of $\g{L}$
-  \item[\bf Corner Quotes:] Let $\corner{\cdot}$ map strings of $\g{L}$ to the canonical names for those strings.
+  \item[\bf Language:] The propositional language $\PL$ includes \textit{symbols} for: \textit{sentence letters} `$p_1$',`$p_2$', \dots, \textit{sentential operators} `$\vee$',`$\neg$', and \textit{punctuation} `$($' and `$)$'.
+  \item[\bf Strings:] The concatenation of a finite number of symbols in $\PL$ is a \textit{string} of $\PL$.
+  \item[\bf Schematic Variables:] Let `$\metaA$', `$\metaB$',\ldots be \textit{schematic variables} for strings of $\PL$
+  \item[\bf Corner Quotes:] Let $\corner{\cdot}$ map strings of $\PL$ to the canonical names for those strings.
     % (Corner quotes will often be omitted when clarity is not improved.)
-  \item[\bf Well-Formed Sentences:] The set of \textit{well-formed sentences} $\wfs{\g{L}}$ is the smallest set to satisfy:
+  \item[\bf Well-Formed Sentences:] The set of \textit{well-formed sentences} $\wfs{\PL}$ is the smallest set to satisfy:
     \begin{itemize}\small
-      \item $\metaA \in \wfs{\g{L}}$ \textit{if} $\metaA$ is a sentence letter of $\g{L}$. 
-      \item $\corner{\neg \metaA} \in \wfs{\g{L}}$ \textit{if} $\metaA$ is a wfs of $\g{L}$ .
-      \item $\corner{(\metaA\vee \metaB)} \in \wfs{\g{L}}$ \textit{if} $\metaA$ and $\metaB$ are wfss of $\g{L}$.
+      \item $\metaA \in \wfs{\PL}$ \textit{if} $\metaA$ is a sentence letter of $\PL$. 
+      \item $\corner{\neg \metaA} \in \wfs{\PL}$ \textit{if} $\metaA$ is a wfs of $\PL$ .
+      \item $\corner{(\metaA \rightarrow \metaB)} \in \wfs{\PL}$ \textit{if} $\metaA$ and $\metaB$ are wfss of $\PL$.
     \end{itemize}
   \item[\bf Abbreviations:] Letting $\corner{\metaA \coloneq \metaB}$ signify that $\metaA$ abbreviates $\metaB$, assume the following:
     \begin{itemize}\small
-      \item $(\metaA\wedge \metaB) \coloneq \neg(\neg \metaA\vee\neg \metaB)$.
-      \item $(\metaA\rightarrow \metaB) \coloneq (\neg \metaA\vee \metaB)$.
+      \item $(\metaA \vee \metaB) \coloneq (\neg \metaA \rightarrow \metaB)$.
+      \item $(\metaA\wedge \metaB) \coloneq \neg(\metaA \rightarrow \neg\metaB)$.
       \item $(\metaA\leftrightarrow \metaB) \coloneq [(\metaA\rightarrow \metaB)\wedge(\metaB\rightarrow \metaA)]$.
     \end{itemize}
-  \item[\bf Models:] Let $\M$ be a \textit{model} of $\g{L}$ \textit{iff} for every sentence letter $\metaA$ of $\g{L}$, either $\M(\metaA)=0$ or $\M(\metaA)=1$, but not both.
-  \item[\bf Semantics:] We may extend a model $\M$ to interpret all wfss of $\g{L}$ by taking $\vDash$ to be the smallest relation to satisfy the following:
-  % Observe that $\M$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\g{L}$ and not all other wfss.
-  \begin{itemize}[leftmargin=.36in]\small
-  \item[$(p_i)$] $\M\vDash `p_i`$ \textit{iff} $\M(p_i)=1$.
-  \item[$(\neg)$] $\M\vDash \corner{\neg \metaA}$ \textit{iff} it is not the case that $\M\vDash \metaA$ (i.e., $\M\nvDash \metaA$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
-  \item[$(\vee)$] $\M\vDash \corner{(\metaA\vee \metaB)}$ \textit{iff} $\M\vDash \metaA$ or $\M\vDash \metaB$.
+  \item[\bf Models:] Let $\M$ be a \textit{model} of $\PL$ \textit{iff} for every sentence letter $\metaA$ of $\PL$, either $\M(\metaA)=0$ or $\M(\metaA)=1$, but not both.
+  \item[\bf Semantics:] We may extend a model $\M$ to interpret all wfss of $\PL$ by taking $\PLmodels$ to be the smallest relation to satisfy the following:
+  % Observe that $\M$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\PL$ and not all other wfss.
+  \begin{itemize}[leftmargin=.15in]\small
+  \item[] $\M\vDash `p_i`$ \textit{iff} $\M(p_i)=1$.
+  \item[] $\M\vDash \corner{\neg \metaA}$ \textit{iff} it is not the case that $\M\vDash \metaA$ (i.e., $\M\nvDash \metaA$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
+  \item[] $\M\vDash \corner{(\metaA \rightarrow \metaB)}$ \textit{iff} $\M\nvDash \metaA$ or $\M\vDash \metaB$.
   %\item[$(\wedge)$] $\M\vDash \metaA\wedge \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$. 
   %\item[$(\shortrightarrow)$] $\M\vDash \metaA\rightarrow \metaB$ \textit{iff} $\nvDash_{\M} \metaA$ or $\M\vDash \metaB$.
   %\item[$(\leftrightarrow)$] $\M\vDash \metaA\leftrightarrow \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$, or $\nvDash_{\M} \metaA$ and $\nvDash_{\PLmodel} \metaB$.
   \end{itemize}
-  We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\g{L}$ given the model $\M$. 
-  \item[\bf Logical Consequence:] $\MetaG \vDash \metaA$ \textit{iff} for all models $\M$, if $\M\vDash \metaG$ for all $\metaG\in\MetaG$, then $\M\vDash \metaA$.
-  \item[\bf Logical Equivalence:] $\metaA \Dashv\vDash \metaB$ \textit{iff} $\metaA\vDash \metaB$ and $\metaB\vDash \metaA$.  
-  \item[\bf Logical Truth:] A wfs $\metaA$ of $\g{L}$ is \textit{logical truth} (or a \textit{valid}) \textit{iff} $\varnothing\vDash \metaA$ (written: $\vDash \metaA$).
+  We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\PL$ given the model $\M$. 
+  \item[\bf Logical Consequence:] $\MetaG \PLmodels \metaA$ \textit{iff} for all models $\M$, if $\M\PLmodels \metaG$ for all $\metaG\in\MetaG$, then $\M\PLmodels \metaA$.
+  \item[\bf Logical Equivalence:] $\metaA \Dashv\PLmodels \metaB$ \textit{iff} $\metaA\PLmodels \metaB$ and $\metaB\PLmodels \metaA$.  
+  \item[\bf Logical Truth:] A wfs $\metaA$ of $\PL$ is \textit{logical truth} (or \textit{valid}) \textit{iff} $\varnothing\PLmodels \metaA$ (written $\PLmodels \metaA$).
 \end{enumerate}
 
 
@@ -152,12 +152,12 @@
 
 \section*{\it Problem Set: Metalinguistic Abbreviation}
 
-Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators `$\wedge$', `$\rightarrow$', and `$\leftrightarrow$' which are to be read `and', `(materially) implies that', and `if and only if', respectively.
+Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `$\vee$', `$\wedge$', and `$\leftrightarrow$' which are to be read `or', `and', and `if and only if', respectively.
 \begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
-  \item Provide a natural definition of the set $\wfs{\PL}$ of wfss of $\PL$.
-  \item Provide a semantics for $\PL$, defining the models of $\PL$ and logical consequence $\PLmodels$.
-  \item Prove $(\metaA\wedge \metaB)$, $(\metaA\rightarrow \metaB)$, and $(\metaA\leftrightarrow \metaB)$ from $\PL$ are each logically equivalent to a wfs of $\g{L}$.
-  \item For each operator in $\PL$, provide two examples of logical truths including that operator. 
+  \item Provide a natural definition of the set $\wfs{\FCH}$ of wfss of $\FCH$.
+  \item Provide a semantics for $\FCH$, defining the models of $\FCH$ and logical consequence $\vDash^+$.
+  \item Prove $(\metaA \vee \metaB)$, $(\metaA \vee (\metaA \wedge \metaB))$, and $(\metaA\leftrightarrow \metaB)$ from $\FCH$ are logically equivalent to wfss of $\PL$.
+  \item For each operator in $\FCH$, provide two examples of logical truths including that operator.
 \end{enumerate}
 
 %Confirm that the semantic clauses for the abbreviations are correct such that the abbreviations have the same truth-values as what they abbreviate on every interpretation.%\pagebreak
@@ -200,7 +200,7 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 \section*{\sc Propositional Logic: Proof Theory}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-  \item[\bf Rules of Inference:] Consider the following Fitch \textit{rules of inference} $\PLrules$ for $\PL$:
+  \item[\bf Rules of Inference:] Consider the following \textit{Fitch rules of inference} for $\FCH$:
 \end{enumerate}
 
 \begin{multicols}{2}\footnotesize
@@ -332,9 +332,15 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 
 \begin{enumerate}
   % \item[\bf Axioms:] An axiom is a rule with no assumptions (above the horizontal line).
-  \item[\bf Formal System:] The \textit{formal system} $\PLsystem = \tuple{\PL, \wfs{\PL}, \PLaxioms, \PLrules}$ includes: (i) the language $\PL$; (ii) the set $\wfs{\PL}$ of wfs of $\PL$; (iii) the empty set of axioms $\PLaxioms = \varnothing$; and (iv) the rules of inference $\PLrules$ specified above.
-  \item[\bf Derivation:] An $\PLsystem$ \textit{derivation} (or \textit{proof}) of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\PLaxioms$; or (3) follows by a \textit{rule} in $\PLrules$ where all assumptions have been discharged. 
-  \item[\bf Derivable:] A wfs $\metaA$ of $\PL$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ in $\PLsystem$, i.e., $\MetaG \PLproves \metaA$, just in case there is a derivation $X$ of $\metaA$ from $\MetaG$ in $\PLsystem$.
+  % \item[\bf Formal System:] The \textit{formal system} $\FCHsystem = \tuple{\FCH, \wfs{\FCH}, \FCHaxioms, \FCHrules}$ includes: (i) the language $\FCH$; (ii) the set $\wfs{\FCH}$ of wfs of $\FCH$; (iii) the empty set of \textit{axioms} $\FCHaxioms = \varnothing$; and (iv) the set of \textit{rules of inference} $\FCHrules$ which include all instances of the above.
+  \item[\bf Proof Lines:] A \textit{proof line} may be represented by a tuple $\tuple{n,i,\metaA,J}$ consisting of a \textit{position number} $n$, \textit{indentation number} $i$, wfs $\metaA$ of $\FCH$, and \textit{justification} $J$. % where premises are justified by `PR'.
+  \item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of proof lines with consecutive position numbers starting from $1$ that ends in $\tuple{m,0,\metaA,K}$ where every line $\tuple{n,i,\metaB,J}$ in $X$ is either: (1) a \textit{premise} $i = 0$, $\metaB \in \MetaG$, and $J = \text{PR}$; (2) a \textit{discharged assumption} $i > 0$ and $J = \text{AS}$ ; or (3) follows by a \textit{Fitch rule} citing previous lines in $J$. 
+  % \item[\bf Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\FCH$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) a discharged assumption; or (3) follows by a \textit{Fitch rule} by citing previous lines. 
+  \item[\bf Derivable:]
+    A wfs $\metaA$ of $\FCH$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ by the \textit{Fitch proof system} given above, i.e., $\MetaG \FCHproves \metaA$, just in case there is a Fitch proof $X$ of $\metaA$ from $\MetaG$.
+    % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
+  % \item[\bf Theorem:] An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$ (written $\FCHproves \metaA$).
+    % \item[\bf Logic:] The \textit{logic} for $\FCHsystem$ is the set $\FCHlogic \coloneq \set{\metaA :\ \FCHproves \metaA}$ of theorems of $\FCHsystem$.
 \end{enumerate}
 
 
@@ -342,7 +348,7 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 \section*{\it Problem Set: Translation and Deduction\footnote{I have adapted the following problems from \citet{Goldfarb2003} and \citet{Laboreo2005}.}}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Translation:] Resolve the following ambiguities (if any) by regimenting each in $\PL$:
+\item[\bf Translation:] Resolve the following ambiguities (if any) by regimenting each in $\FCH$:
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item Figaro exulted, and Basilio fretted, or the Court had a plan.
 	\item Fred danced and sang or Ginger went home.
@@ -353,7 +359,7 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 	\item If Figaro does not expose the Count and force him to reform, then the Countess will discharge Susanna and resign to loneliness.
 	\item The trade deficit will diminish and agriculture or industry will lead a recovery provided that both the dollar drops and neither Japan nor the EU raise their tariffs.
 	\end{enumerate}
-\item[\bf Arguments:] Regiment the following arguments in the propositional language $\PL$:
+\item[\bf Arguments:] Regiment the following arguments in the propositional language $\FCH$:
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item Basilio fretted. Thus, if Figaro exulted, then Basilio fretted.
 	\item Fred danced if Ginger went home. Fred didn't dance. And so Ginger didn't go home.
@@ -393,17 +399,42 @@ Let $\PL$ include the symbols in $\g{L}$ together with the sentential operators 
 \section*{\sc Propositional Logic: Metalogic}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Theorem:] A \textit{theorem} of the formal system $\PLsystem$ is a wfs that is derivable from no premises, i.e., any wfs $\metaA$ of $\PL$ for which $\varnothing\PLproves \metaA$ (written $\PLproves \metaA$).
-  % \item[\bf Logic:] The \textit{logic} for $\PLsystem$ is the set $\PLlogic \coloneq \set{\metaA :\ \PLproves \metaA}$ of theorems of $\PLsystem$.
-  \item[\bf Sound:] $\PLsystem$ is \textit{sound} just in case $\MetaG \PLmodels \metaA$ whenever $\MetaG \PLproves \metaA$.
-  \item[\bf Complete:] $\PLsystem$ is \textit{complete} just in case $\MetaG \PLproves \metaA$ whenever $\MetaG \PLmodels \metaA$.
-  \item[\bf Propositional Logic:] The formal system $\PLsystem$ is both sound and complete. 
-  \item[\bf Equivalent:] Two formal systems $\F_1$ and $\F_2$ in the same language are \textit{equivalent} just in case $\MetaG \vdash_1 \metaA$ if and only if $\MetaG \vdash_2 \metaA$.  
+  \item[\bf Fitch System:] The Fitch proof system enjoys the following metalogical properties:
+    \begin{itemize}
+      \item[\it Sound:] $\MetaG \FCHmodels \metaA$ whenever $\MetaG \FCHproves \metaA$.
+      \item[\it Complete:] $\MetaG \FCHproves \metaA$ whenever $\MetaG \FCHmodels \metaA$.
+    \end{itemize}
+  % \item[\bf Propositional Logic:] The formal system $\FCHsystem$ is both sound and complete with respect to $\FCHmodels$. 
+  \item[\bf Equivalent:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaA$ if and only if $\MetaG \vdash_B \metaA$.  
+  \item[\bf Axiom System:] Consider the following \textit{rule schemata} \textbf{R1} -- \textbf{R4} and \textit{metarules} \textbf{M1} -- \textbf{M2}:
+    \begin{itemize}[leftmargin=.5in]
+      \item[\bf R1] $\varnothing \vdash \varphi \rightarrow (\psi \rightarrow \varphi)$.
+      \item[\bf R2] $\varnothing \vdash (\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
+      \item[\bf R3] $\varnothing \vdash (\neg\varphi \rightarrow \neg\psi) \rightarrow (\psi \rightarrow \varphi)$.
+      \item[\bf R4] $\set{\varphi, \varphi \rightarrow \psi} \vdash \psi$.
+      \item[({\it Cut Elimination})~ {\bf M1}] If $\MetaG \vdash \varphi$ and $\MetaS\cup\set{\varphi} \vdash \psi$, then $\MetaS\cup\MetaG \vdash \psi$. 
+      \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \varphi$, then $\MetaS\cup\MetaG \vdash \psi$.
+    \end{itemize}
+    % Whereas \textbf{M1} is called \textit{Cut Elimination}, \textbf{M2} is called \textit{Weakening}.
+    Set notation will be typically be omitted, writing `$\MetaG, \metaA, \metaB \vdash \metaC$' in place of `$\MetaG\cup\set{\metaA,\metaB} \vdash \metaC$', and writing `$\vdash \metaA$' in place of `$\varnothing \vdash\metaA$'.
+    \item[\bf Logic:] Let $\PLproves$ be the smallest relation to include all instances of the rules \textbf{R1} -- \textbf{R4} that is closed under the metarules \textbf{M1} -- \textbf{M2} given above. 
+      \begin{itemize}
+        \item[\it Sound:] $\MetaG \PLmodels \metaA$ whenever $\MetaG \PLproves \metaA$.
+        \item[\it Complete:] $\MetaG \PLproves \metaA$ whenever $\MetaG \PLmodels \metaA$.
+      \end{itemize}
+  % \item[\bf Derivation:] An $\PLsystem$ \textit{derivation} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\PLaxioms$; or (3) follows by a \textit{rule} in $\PLrules$ from previous lines. 
+  % \item[\bf Derivable:]
+  %   A wfs $\metaA$ of $\PL$ is \textit{derivable} from $\MetaG$ in $\PLsystem$, i.e., $\MetaG \PLproves \metaA$, just in case there is a derivation $X$ of $\metaA$ from $\MetaG$ in $\PLsystem$.
+    % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
 \end{enumerate}
+
+
+
 
 % TODO:
   % Introduce an axiomatic system, and its equivalence to Fitch.
   % Define what it is for a system to be a natural deduction system.
+  % eliminates redundancies but at the cost of ease of use and naturalness
 
 
 \noindent
@@ -413,15 +444,15 @@ TO BE CONTINUED...
 \section*{\sc First-Order Logic: Syntax}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Language $\boldsymbol{\FOL}$:] The first-order language $\FOL$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$p_1^n$', `$p_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\vee$',`$\neg$', `$\exists x_i$', and parentheses `$($' and `$)$'.
+\item[\bf Language $\boldsymbol{\FI}$:] The first-order language $\FI$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$p_1^n$', `$p_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\vee$',`$\neg$', `$\exists x_i$', and parentheses `$($' and `$)$'.
 \item[\bf Terms:] A symbol is a \textit{term} just in case that symbol is a constant or variable.
-\item[\bf Well Formed Formulas:] Let `$t_1$',\dots, `$t_n$' be terms of $\FOL$, `$x$' be a variable of $\FOL$, `$H^n$' be an $n$-place predicate of $\FOL$, and `$A$' and `$B$' name arbitrary sentences of $\FOL$. We may then let $\mathcal{G}_1$ be the set of wff of $\FOL$, defined recursively as follows:
+\item[\bf Well Formed Formulas:] Let `$t_1$',\dots, `$t_n$' be terms of $\FI$, `$x$' be a variable of $\FI$, `$H^n$' be an $n$-place predicate of $\FI$, and `$A$' and `$B$' name arbitrary sentences of $\FI$. We may then let $\mathcal{G}_1$ be the set of wff of $\FI$, defined recursively as follows:
 \begin{itemize}
-\item The 0-place predicates `$p_1^0$',`$p_2^0$',\dots are all wff of $\FOL$.
-\item If ${H^n}$ is an $n$-place predicate of $\FOL$, and ${t_1},\dots,{t_n}$ are terms of $\FOL$, then the atomic sentence $\corner{H^n(t_1,\dots,t_n)}$ is a wff of $\FOL$.
-\item If ${A}$ is a wff of $\FOL$, then $\corner{\neg A}$ is a wff of $\FOL$.
-\item If ${A}$ and ${B}$ are wffs of $\FOL$, then $\corner{(A\vee B)}$ is a wff of $\FOL$.
-\item If ${A}$ is a wff of $\FOL$, then $\corner{\forall xA}$ is a wff of $\FOL$.
+\item The 0-place predicates `$p_1^0$',`$p_2^0$',\dots are all wff of $\FI$.
+\item If ${H^n}$ is an $n$-place predicate of $\FI$, and ${t_1},\dots,{t_n}$ are terms of $\FI$, then the atomic sentence $\corner{H^n(t_1,\dots,t_n)}$ is a wff of $\FI$.
+\item If ${A}$ is a wff of $\FI$, then $\corner{\neg A}$ is a wff of $\FI$.
+\item If ${A}$ and ${B}$ are wffs of $\FI$, then $\corner{(A\vee B)}$ is a wff of $\FI$.
+\item If ${A}$ is a wff of $\FI$, then $\corner{\forall xA}$ is a wff of $\FI$.
 \end{itemize}
 \item[\bf Abbreviations:] (i) $\corner{(A\wedge B)}$ abbreviates $\corner{\neg(\neg A\vee\neg B)}$;\\ (ii) $\corner{(A\rightarrow B)}$ abbreviates $\corner{(\neg A\vee B)}$;\\ (iii) $\corner{(A\leftrightarrow B)}$ abbreviates $\corner{[(A\rightarrow B)\wedge(B\rightarrow A)]}$;\\ (iv) $\corner{\exists xA}$ abbreviates $\corner{\neg\forall x\neg A}$.
 \end{enumerate}
@@ -430,7 +461,7 @@ TO BE CONTINUED...
 
 \section*{\it Problem Set: Metalinguistic Abbreviation}
 
-Let $\FOL$ include the symbols in $\FOL$ together with the sentential operators `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\exists x_i$' which are to be read `and', `(materially) implies that', `just in case', and `every $x_i$ is such that', respectively. Provide a definition $\mathcal{G}_1^+$ of the wfss of $\FOL$.
+Let $\FI$ include the symbols in $\FI$ together with the sentential operators `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\exists x_i$' which are to be read `and', `(materially) implies that', `just in case', and `every $x_i$ is such that', respectively. Provide a definition $\mathcal{G}_1^+$ of the wfss of $\FI$.
 
 
 
@@ -440,8 +471,8 @@ Let $\FOL$ include the symbols in $\FOL$ together with the sentential operators 
 %define atomic, and use this to define the free variables as those that occur in atomic wfs.
 %"All occurrences of free variables y in φ are also free in ∀xφ i y is distinct from x. All other occurrences of variables are not free." Volker p.60 from Syntax and Circularity: A Study in Self-Reference and Paradox (with Graham Leigh)
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
-\item[\bf Free Variable:] Every variable which occurs in an atomic sentence of $\FOL$ is \textit{free}. If $x$ is free in the wff $A$, then $x$ is \textit{bound} in the wff $\exists xA$. The wfss of $\FOL$ are those wff of $\FOL$ with no free variables.
-%\item[\bf Free Variable:] A variable $x_i$ that occurs in a wfs of $\FOL$ is \textit{free} just in case there is no outside quantifier binding that variable, as in: `$P^1_1(x)$', `$p_1^2(x,c)$', etc.
+\item[\bf Free Variable:] Every variable which occurs in an atomic sentence of $\FI$ is \textit{free}. If $x$ is free in the wff $A$, then $x$ is \textit{bound} in the wff $\exists xA$. The wfss of $\FI$ are those wff of $\FI$ with no free variables.
+%\item[\bf Free Variable:] A variable $x_i$ that occurs in a wfs of $\FI$ is \textit{free} just in case there is no outside quantifier binding that variable, as in: `$P^1_1(x)$', `$p_1^2(x,c)$', etc.
 \item[\bf Substitution:] For any wfs ${A}$ and terms $t$ and $k$, let $\corner{A(t/k)}$ be the wfs which result from replacing every occurrence of $k$ in the wfs ${A}$ with $t$.
 \item[\bf Available:] A term $t$ is \textit{available} (written $t^\star$) for substitution in ${A}$ iff $t$ does not occur in ${A}$ or in any premise or undischarged assumption used to prove $A$.
 %\item[\bf Open:] A term `$t^\#$' is \textit{open} at a point line of a proof just in case `$t^\#$' does not occur anywhere previously in that proof.
@@ -501,20 +532,20 @@ Existential Elimination:\vspace{-.05in}
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Domain:] Let the \textit{domain} $\mathcal{D}$ be a set of objects.% and $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}}$.
 \item[\bf Cartesian Domain:] Let $\mathcal{D}^n$ be the set of all ordered tuples $\tuple{d_1,\dots,d_n}$ where each $d_i$ is an object in the domain $\mathcal{D}$, i.e., $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}~\text{for}~1\leq i\leq n}$.
-\item[\bf Interpretation:] Let $\PLmodel_1$ be an \textit{interpretation} of $\FOL$ over $\mathcal{D}$ just in case: (i) $\PLmodel_1(p_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\PLmodel_1(c_i)\in\mathcal{D}$ for every $i\geq1$.
-%\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$p_i^n$' of $\FOL$ on an interpretation $\PLmodel_1$ over a domain $\mathcal{D}$ is the set of ordered tuples $\PLmodel_1(p_i^n)\subseteq\mathcal{D}^n$.
-\item[\bf Assignment:] An \textit{assignment} $\underline{a}$ is a function from the variables in $\FOL$ to the members of $\mathcal{D}$ such that $\underline{a}(x_i)$ is a member of the domain $\mathcal{D}$ for every $i\geq1$.
+\item[\bf Interpretation:] Let $\FImodels$ be an \textit{interpretation} of $\FI$ over $\mathcal{D}$ just in case: (i) $\FImodels(p_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\FImodels(c_i)\in\mathcal{D}$ for every $i\geq1$.
+%\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$p_i^n$' of $\FI$ on an interpretation $\FImodels$ over a domain $\mathcal{D}$ is the set of ordered tuples $\FImodels(p_i^n)\subseteq\mathcal{D}^n$.
+\item[\bf Assignment:] An \textit{assignment} $\underline{a}$ is a function from the variables in $\FI$ to the members of $\mathcal{D}$ such that $\underline{a}(x_i)$ is a member of the domain $\mathcal{D}$ for every $i\geq1$.
 \item[\bf Denotation:] Let $I(t)=
 	\begin{cases} 
-		\PLmodel_1(t) & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1\\
+		\FImodels(t) & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1\\
 		\underline{a}(t) & \text{if}~~ t=x_i ~~\text{for any}~~ i\geq1
 	\end{cases}$
 \item[\bf Variant:] The function $\underline{a}[d/x]$ is an \textit{$x$-variant} of the assignment $\underline{a}$ just in case $\underline{a}[d/x]$ differs from $\underline{a}$ at most by setting $\underline{a}[d/x](x)=d$.
-\item[\bf Model:] A \textit{model} of $\FOL$ is any ordered pair $\mathcal{M}=\tuple{\mathcal{D},\PLmodel_1}$, where $\mathcal{D}$ is a domain of individuals, and $\PLmodel_1$ an interpretation over $\mathcal{D}$.
-\item[\bf Semantics:] Given a model $\mathcal{M}$ of $\FOL$, and assignment $\underline{a}$, we may recursively define $\mathcal{M},\underline{a}\vDash A$ for all wfss $A$ of $\FOL$ as follows:
+\item[\bf Model:] A \textit{model} of $\FI$ is any ordered pair $\mathcal{M}=\tuple{\mathcal{D},\FImodels}$, where $\mathcal{D}$ is a domain of individuals, and $\FImodels$ an interpretation over $\mathcal{D}$.
+\item[\bf Semantics:] Given a model $\mathcal{M}$ of $\FI$, and assignment $\underline{a}$, we may recursively define $\mathcal{M},\underline{a}\vDash A$ for all wfss $A$ of $\FI$ as follows:
 \begin{small}
 \begin{itemize}[leftmargin=.36in]
-\item[$(p_i)$] $\mathcal{M},\underline{a}\vDash  p_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \PLmodel_1(p_i^n)$.
+\item[$(p_i)$] $\mathcal{M},\underline{a}\vDash  p_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \FImodels(p_i^n)$.
 \item[$(\hspace{1.5pt}\exists\hspace{1.5pt})$] $\mathcal{M},\underline{a}\vDash  \exists x_iA$ \textit{iff} $\mathcal{M},\underline{a}[d/x_i]\vDash A$, for some $d\in\mathcal{D}$.
 \item[$(\neg)$] $\mathcal{M},\underline{a}\vDash  \neg A$ \textit{iff} $\mathcal{M},\underline{a}\nvDash A$.
 \item[$(\vee)$] $\mathcal{M},\underline{a}\vDash  A\vee B$ \textit{iff} $\mathcal{M},\underline{a}\vDash  A$ or $\mathcal{M},\underline{a}\vDash  B$.
@@ -523,7 +554,7 @@ Existential Elimination:\vspace{-.05in}
 %\item[$(\leftrightarrow)$] $\PLmodel\vDash A\leftrightarrow B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$, or $\nvDash_{\PLmodel} A$ and $\nvDash_{\PLmodel} B$.
 \end{itemize}
 \end{small}
-It is important that in the case where $n=0$, we adopt the convention that $\PLmodel_1(p_i^0)=\set{\varnothing}$ indicates truth, and $\PLmodel_1(p_i^0)=\varnothing$ indicates falsity.
+It is important that in the case where $n=0$, we adopt the convention that $\FImodels(p_i^0)=\set{\varnothing}$ indicates truth, and $\FImodels(p_i^0)=\varnothing$ indicates falsity.
 \end{enumerate}
 
 
@@ -534,8 +565,8 @@ It is important that in the case where $n=0$, we adopt the convention that $\PLm
 \item[\bf Truth on a Model:] $\M\vDash_1 A$ \textit{iff} $\mathcal{M},\underline{a}\vDash A$ for all variable assignments $\underline{a}$.
 \item[\bf Logical Consequence:] $\MetaG\vDash_1 A$ \textit{iff} for all models $\M$, if $\mathcal{M}\vDash G$ for all $G\in\MetaG$, then $\mathcal{M}\vDash A$.
 \item[\bf Logical Equivalence:] $A\equiv_1 B$ \textit{iff} $A\vDash_1 B$ and $B\vDash_1 A$.  
-\item[\bf Logical Truth:] A wfs $A$ of $\FOL$ is \textit{valid} (or a logical truth) just in case $\vDash_1 A$.
-\item[\bf First-Order Logic:] The first-order formal system of natural deduction $\mathcal{F}_1^+=\tuple{\FOL,\mathcal{G}_1^+,\mathcal{A}_1^+,\mathcal{R}_1^+}$ is sound and complete, where $\mathcal{A}_1^+=\varnothing$.
+\item[\bf Logical Truth:] A wfs $A$ of $\FI$ is \textit{valid} (or a logical truth) just in case $\vDash_1 A$.
+\item[\bf First-Order Logic:] The first-order formal system of natural deduction $\mathcal{F}_1^+=\tuple{\FI,\mathcal{G}_1^+,\mathcal{A}_1^+,\mathcal{R}_1^+}$ is sound and complete, where $\mathcal{A}_1^+=\varnothing$.
 \end{enumerate}
 
 
@@ -545,8 +576,8 @@ It is important that in the case where $n=0$, we adopt the convention that $\PLm
 \section*{\it Problem Set: First-Order Logic\footnote{I have adapted some of the following problems from \citet{Carr2013}. See also \citet{Halbach2010}.}}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-\item[\bf Semantics:] Provide a semantics for the wfss of $\FOL$.
-\item[\bf Translation:] Translate the following arguments into $\FOL$.
+\item[\bf Semantics:] Provide a semantics for the wfss of $\FI$.
+\item[\bf Translation:] Translate the following arguments into $\FI$.
 	\begin{enumerate}[label=(\arabic*)]\small
 	%\item $\forall xPx\vdash \forall yPy$.
 	\item Everything that is beautiful is beautiful.
@@ -585,7 +616,7 @@ It is important that in the case where $n=0$, we adopt the convention that $\PLm
 	%\item $\neg\exists x\exists y(Rxy\wedge Ryx)\vdash\neg\exists xRxx$.
 	%\end{enumerate}
 \item[\bf Metalogic:] Prove that every theorem of $\mathcal{F}^+$ is also a theorem of $\mathcal{F}^+_1$.
-\item[\bf Bonus:] Translate the following into $\FOL$:
+\item[\bf Bonus:] Translate the following into $\FI$:
 	\begin{enumerate}[label=(\arabic*)]\small
 	\item Everybody loves somebody.
 	\item Everybody everybody loves loves somebody.
@@ -660,13 +691,13 @@ It is important that in the case where $n=0$, we adopt the convention that $\PLm
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
 \item[\bf Frame:] A \textit{Kripke frame} $\mathcal{K}$ is an ordered pair $\tuple{W,R}$, where $W$ is a set of points called \textit{possible worlds}, $R$ is an \textit{accessibility} relation between worlds.
-\item[\bf Interpretation:] $\PLmodel_\square$ is an \textit{interpretation} of $\PL_\square$ over $W$ just in case for each $w\in W$ and $i\geq1$, either $\PLmodel_\square(p_i)(w)=1$ or $\PLmodel_\square(p_i)(w)=0$, but not both.
-%\item[\bf Intension:] For any interpretation $\PLmodel_\square$ of $\PL_\square$ and sentence letter $p_i$ in $\PL_\square$, we may refer to the function $\PLmodel_\square(p_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $p_i$.
-\item[\bf Model:] A \textit{model} of $\PL_\square$ is any ordered triple $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ where $\tuple{W,R}$ is a Kripke frame and $\PLmodel_\square$ is an interpretation of $\PL_\square$.
+\item[\bf Interpretation:] $\MLmodels$ is an \textit{interpretation} of $\PL_\square$ over $W$ just in case for each $w\in W$ and $i\geq1$, either $\MLmodels(p_i)(w)=1$ or $\MLmodels(p_i)(w)=0$, but not both.
+%\item[\bf Intension:] For any interpretation $\MLmodels$ of $\PL_\square$ and sentence letter $p_i$ in $\PL_\square$, we may refer to the function $\MLmodels(p_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $p_i$.
+\item[\bf Model:] A \textit{model} of $\PL_\square$ is any ordered triple $\mathcal{M}_\square=\tuple{W,R,\MLmodels}$ where $\tuple{W,R}$ is a Kripke frame and $\MLmodels$ is an interpretation of $\PL_\square$.
 \item[\bf Semantics:] Given a model $\mathcal{M}_\square$ of $\PL_\square$, and a world $w\in W$, we may recursively define $\mathcal{M}_\square,w\vDash A$ for all wfss $A$ of $\PL_\square$ as follows:
 \begin{small}
 \begin{itemize}[leftmargin=.36in]
-\item[$(p_i)$] $\mathcal{M}_\square,w\vDash  p_i$ \textit{iff} $\PLmodel_\square(p_i)(w)=1$.
+\item[$(p_i)$] $\mathcal{M}_\square,w\vDash  p_i$ \textit{iff} $\MLmodels(p_i)(w)=1$.
 \item[$(\hspace{.3pt}\Box\hspace{.3pt})$] $\mathcal{M}_\square,w\vDash  \Box A$ \textit{iff} $\mathcal{M}_\square,w'\vDash A$ for every $w'\in W$ such that $R(w,w')$.
 \item[$(\neg)$] $\mathcal{M}_\square,w\vDash  \neg A$ \textit{iff} $\mathcal{M},\underline{a}\nvDash A$.
 \item[$(\vee)$] $\mathcal{M}_\square,w\vDash  A\vee B$ \textit{iff} $\mathcal{M},\underline{a}\vDash  A$ or $\mathcal{M},\underline{a}\vDash  B$.
@@ -797,9 +828,9 @@ $A[B/C]$ is the result of replacing all occurrences of $C$ in $A$ with $B$, wher
 \item[\bf Logical Consequence:] $\MetaG\vDash_\mathcal{C} A$ \textit{iff} for all $\mathcal{M}\in\mathcal{C}$, if $\mathcal{M}\vDash G$ for all $G\in\MetaG$, then $\mathcal{M}\vDash  A$.
 \item[\bf Logical Equivalence:] $A\equiv_\mathcal{C} B$ \textit{iff} $A\vDash_\mathcal{C} B$ and $B\vDash_\mathcal{C} A$.  
 \item[\bf Logical Truth:] A wfs $A$ of $\PL_\square$ is \textit{valid} on a class of models $\mathcal{C}$ just in case $\vDash_\mathcal{C} A$.%; and (ii) \textit{valid} on a Kripke frame $\mathcal{K}$ just in case $\vDash_{\mathcal{C}_\mathcal{K}} A$, where $\mathcal{C}_\mathcal{K}$ includes every model of $\PL_\square$ on the frame $\mathcal{K}$. 
-\item[\bf Reflexive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{reflexive} just in case $R(w,w)$ for every $w\in W$. A model $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ is \textit{reflexive} just in case $\tuple{W,R}$ is a reflexive frame. Let $\mathcal{C}_r$ be the class of all reflexive models of $\PL_\square$.
-\item[\bf Symmetric:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{symmetric} just in case $R(w',w)$ whenever $R(w,w')$. A model $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ is \textit{symmetric} just in case $\tuple{W,R}$ is symmetric. Let $\mathcal{C}_s$ be the class of all symmetric models of $\PL_\square$.
-\item[\bf Transitive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{transitive} just in case $R(w,w'')$ whenever $R(w,w')$ and $R(w',w'')$. A model $\mathcal{M}_\square=\tuple{W,R,\PLmodel_\square}$ is \textit{transitive} just in case $\tuple{W,R}$ is transitive. Let $\mathcal{C}_t$ be the class of transitive models of $\PL_\square$.
+\item[\bf Reflexive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{reflexive} just in case $R(w,w)$ for every $w\in W$. A model $\mathcal{M}_\square=\tuple{W,R,\MLmodels}$ is \textit{reflexive} just in case $\tuple{W,R}$ is a reflexive frame. Let $\mathcal{C}_r$ be the class of all reflexive models of $\PL_\square$.
+\item[\bf Symmetric:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{symmetric} just in case $R(w',w)$ whenever $R(w,w')$. A model $\mathcal{M}_\square=\tuple{W,R,\MLmodels}$ is \textit{symmetric} just in case $\tuple{W,R}$ is symmetric. Let $\mathcal{C}_s$ be the class of all symmetric models of $\PL_\square$.
+\item[\bf Transitive:] A frame $\mathcal{K}=\tuple{W,R}$ is \textit{transitive} just in case $R(w,w'')$ whenever $R(w,w')$ and $R(w',w'')$. A model $\mathcal{M}_\square=\tuple{W,R,\MLmodels}$ is \textit{transitive} just in case $\tuple{W,R}$ is transitive. Let $\mathcal{C}_t$ be the class of transitive models of $\PL_\square$.
 \item[\bf Modal Logics:]
 	\begin{enumerate}
 	\item[$(K)$] The modal system $K$ is sound and complete over the class of all models $\mathcal{C}_K$, i.e., $\vdash_K A$ if and only if $\vDash_{\mathcal{C}_K} A$.
