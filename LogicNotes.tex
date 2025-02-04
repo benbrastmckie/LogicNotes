@@ -153,7 +153,7 @@
 \section*{\it Problem Set: Metalinguistic Abbreviation}
 
 Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `$\vee$', `$\wedge$', and `$\leftrightarrow$' which are to be read `or', `and', and `if and only if', respectively.
-\begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
+\begin{enumerate}\small
   \item Provide a natural definition of the set $\wfs{\FCH}$ of wfss of $\FCH$.
   \item Provide a semantics for $\FCH$, defining the models of $\FCH$ and logical consequence $\vDash^+$.
   \item Prove $(\metaA \vee \metaB)$, $(\metaA \vee (\metaA \wedge \metaB))$, and $(\metaA\leftrightarrow \metaB)$ from $\FCH$ are logically equivalent to wfss of $\PL$.
@@ -197,7 +197,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\section*{\sc Propositional Logic: Proof Theory}
+\section*{\sc Propositional Logic: Fitch System}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] %,label=(\arabic*)]%,label=\roman*]
   \item[\bf Rules of Inference:] Consider the following \textit{Fitch rules of inference} for $\FCH$:
@@ -334,7 +334,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
   % \item[\bf Axioms:] An axiom is a rule with no assumptions (above the horizontal line).
   % \item[\bf Formal System:] The \textit{formal system} $\FCHsystem = \tuple{\FCH, \wfs{\FCH}, \FCHaxioms, \FCHrules}$ includes: (i) the language $\FCH$; (ii) the set $\wfs{\FCH}$ of wfs of $\FCH$; (iii) the empty set of \textit{axioms} $\FCHaxioms = \varnothing$; and (iv) the set of \textit{rules of inference} $\FCHrules$ which include all instances of the above.
   \item[\bf Proof Lines:] A \textit{proof line} may be represented by a tuple $\tuple{n,i,\metaA,J}$ consisting of a \textit{position number} $n$, \textit{indentation number} $i$, wfs $\metaA$ of $\FCH$, and \textit{justification} $J$. % where premises are justified by `PR'.
-  \item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaB$ from $\MetaG$ is a finite sequence $X$ of proof lines with consecutive position numbers starting from $1$ that ends in $\tuple{m,0,\metaB,K}$ where every line $\tuple{n,i,\metaA,J}$ in $X$ is either: (1) a \textit{premise} where $i = 0$, $\metaB \in \MetaG$, and $J = \text{PR}$; (2) a \textit{discharged assumption} where $i > 0$ and $J = \text{AS}$ ; or (3) follows by a \textit{Fitch rule} where $J$ cites previous lines.
+  \item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaB$ from $\MetaG$ is a finite sequence $X$ of proof lines with consecutive position numbers starting from $1$ that ends in $\tuple{m,0,\metaB,K}$ where every line $\tuple{n,i,\metaA,J}$ in $X$ is either: (1) a \textit{premise} where $i = 0$, $\metaB \in \MetaG$, and $J = \text{PR}$; (2) a \textit{discharged assumption} where $i > 0$ and $J = \text{AS}$ ; or (3) follows by a \textit{Fitch rule} where $J$ cites live lines.
   % \item[\bf Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\FCH$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) a discharged assumption; or (3) follows by a \textit{Fitch rule} by citing previous lines. 
   \item[\bf Derivable:]
     A wfs $\metaB$ of $\FCH$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ by the \textit{Fitch proof system} given above, i.e., $\MetaG \FCHproves \metaB$, just in case there is a Fitch proof $X$ of $\metaB$ from $\MetaG$.
@@ -349,7 +349,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
 \item[\bf Translation:] Resolve the following ambiguities (if any) by regimenting each in $\FCH$:
-	\begin{enumerate}[label=(\arabic*)]\small
+	\begin{enumerate}[label=\arabic*.]\small
 	\item Figaro exulted, and Basilio fretted, or the Court had a plan.
 	\item Fred danced and sang or Ginger went home.
 	\item If we are not in Paris then today is not Tuesday.
@@ -360,7 +360,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	\item The trade deficit will diminish and agriculture or industry will lead a recovery provided that both the dollar drops and neither Japan nor the EU raise their tariffs.
 	\end{enumerate}
 \item[\bf Arguments:] Regiment the following arguments in the propositional language $\FCH$:
-	\begin{enumerate}[label=(\arabic*)]\small
+	\begin{enumerate}[label=\arabic*.]\small
 	\item Basilio fretted. Thus, if Figaro exulted, then Basilio fretted.
 	\item Fred danced if Ginger went home. Fred didn't dance. And so Ginger didn't go home.
 	\item If Figaro exulted, then the Court had a plan if Basilio fretted. Thus if Basilio fretted, then the Court had a plan if Figaro exulted.
@@ -396,21 +396,22 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\section*{\sc Propositional Logic: Naturalness and Metalogic}
+\section*{\sc Propositional Logic: Hilbert System}
 
 \begin{enumerate}[leftmargin=1.2in,labelsep=.15in] 
-  \item[\bf Fitch System:] The Fitch proof system has the following metalogical properties:
-    \begin{itemize}
-      \item[\it Sound:] $\MetaG \FCHmodels \metaB$ whenever $\MetaG \FCHproves \metaB$.
-      \item[\it Complete:] $\MetaG \FCHproves \metaB$ whenever $\MetaG \FCHmodels \metaB$.
-    \end{itemize}
-  % \item[\bf Propositional Logic:] The formal system $\FCHsystem$ is both sound and complete with respect to $\FCHmodels$. 
-  \item[\bf Equivalent:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaB$ if and only if $\MetaG \vdash_B \metaB$.  
-  \item[\bf Hilbert System:] The \textit{Hilbert proof system} consists of the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}:
+  % \item[\bf Fitch Metalogic:] The Fitch proof system has the following metalogical properties:
+  %   \begin{itemize}
+  %     \item[\it Sound:] $\MetaG \FCHmodels \metaB$ whenever $\MetaG \FCHproves \metaB$.
+  %     \item[\it Complete:] $\MetaG \FCHproves \metaB$ whenever $\MetaG \FCHmodels \metaB$.
+  %   \end{itemize}
+  % % \item[\bf Propositional Logic:] The formal system $\FCHsystem$ is both sound and complete with respect to $\FCHmodels$. 
+  % \item[\bf Equivalence:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaB$ if and only if $\MetaG \vdash_B \metaB$.  
+  \item[\bf Hilbert System:] The \textit{Hilbert proof system} includes the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}:
     \begin{itemize}[leftmargin=.5in]
       \item[\bf A1] $\varphi \rightarrow (\psi \rightarrow \varphi)$.
       \item[\bf A2] $(\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
-      \item[\bf A3] $(\neg\varphi \rightarrow \neg\psi) \rightarrow (\psi \rightarrow \varphi)$.
+      % \item[\bf A3] $(\neg\varphi \rightarrow \neg\psi) \rightarrow (\psi \rightarrow \varphi)$.
+      \item[\bf A3] $(\neg\varphi \rightarrow \neg\psi) \rightarrow ((\neg\varphi \rightarrow \psi) \rightarrow \varphi)$.
       \item[\bf MP] $\set{\varphi, \varphi \rightarrow \psi} \vdash \psi$.
       % \item[({\it Cut Elimination})~ {\bf M1}] If $\MetaG \vdash \varphi$ and $\MetaS\cup\set{\varphi} \vdash \psi$, then $\MetaS\cup\MetaG \vdash \psi$. 
       % \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \varphi$, then $\MetaS\cup\MetaG \vdash \psi$.
@@ -423,22 +424,43 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
     \item[\bf Derivable:]
       A wfs $\metaB$ of $\PL$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the Hilbert proof system, i.e., $\MetaG \PLproves \metaB$, just in case there is a Hilbert proof $X$ of $\metaB$ from $\MetaG$.
       % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
-    \item[\bf Metalogic:] The Hilbert proof system has the following metalogical properties:
-      \begin{itemize}
-        \item[\it Sound:] $\MetaG \PLmodels \metaB$ whenever $\MetaG \PLproves \metaB$.
-        \item[\it Complete:] $\MetaG \PLproves \metaB$ whenever $\MetaG \PLmodels \metaB$.
-      \end{itemize}
-    \item[\bf Naturalness:] Whereas the Fitch system idealizes natural forms of reasoning, the Hilbert system is easier to state and study but harder to use.
+    % \item[\bf Hilbert Metalogic:] The Hilbert proof system has the following metalogical properties:
+    %   \begin{itemize}
+    %     \item[\it Sound:] $\MetaG \PLmodels \metaB$ whenever $\MetaG \PLproves \metaB$.
+    %     \item[\it Complete:] $\MetaG \PLproves \metaB$ whenever $\MetaG \PLmodels \metaB$.
+    %   \end{itemize}
+    % \item[\bf Naturalness:] Whereas the Fitch system aims to regiment natural forms of reasoning, the Hilbert system is easier to state and study but harder to use.
 \end{enumerate}
 
 
-\section*{\it Problem Set: Naturalness and Metalogic}
+\section*{\it Problem Set: Axiomatic Proofs}
 
-\begin{enumerate}[leftmargin=.32in,labelsep=.15in,label=(\arabic*)]\small
-  \item 
+\begin{enumerate}[itemsep=2pt]\small
+  \item \textit{Weakening} (\textbf{Weak}): if $\MetaG \PLproves \metaA$ and $\MetaG \subseteq \MetaS$, then $\MetaS \PLproves \metaA$.
+  \item \textit{Cut elimination} (\textbf{Cut}): if $\MetaG \PLproves \metaA$ and $\MetaS, \metaA \PLproves \metaB$, then $\MetaS,\MetaG \PLproves \metaB$.
+  \item \textit{Deduction theorem} (\textbf{DT}): if $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA \rightarrow \metaB$.
+  \item \textit{Hypothetical syllogism} (\textbf{HS}): $\metaA \rightarrow \metaB, \metaB \rightarrow \metaC \PLproves \metaA \rightarrow \metaC$.
+  \item \textit{Hypothetical exchange} (\textbf{HE}): $\metaA \rightarrow (\metaB \rightarrow \metaC) \PLproves \metaB \rightarrow (\metaA \rightarrow \metaC)$.
+  \item \textit{Reverse contraposition} (\textbf{RCP}): $\neg\metaA \rightarrow \neg\metaB \PLproves \metaB \rightarrow \metaA$.
+  \item \textit{Double negation elimination} (\textbf{DNE}): $\PLproves \neg\neg\metaA \rightarrow \metaA$.
+  \item \textit{Double negation introduction} (\textbf{DNI}): $\PLproves \metaA \rightarrow \neg\neg\metaA$.
+  \item \textit{Contraposition} (\textbf{CP}): $\metaA \rightarrow \metaB \PLproves \neg\metaB \rightarrow \neg\metaA$.
+  \item \textit{Negation elimination} (\textbf{NE}): if $\MetaG, \neg\metaA \PLproves \neg\metaB$ and $\MetaG, \neg\metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA$. 
+  \item \textit{Negation introduction} (\textbf{NI}): if $\MetaG, \metaA \PLproves \neg\metaB$ and $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \neg\metaA$. 
+  \item \textit{Ex falso quidlobet} (\textbf{EFQ}): $\metaA, \neg\metaA \PLproves \metaB$. 
+  \item \textit{Left disjunction introduction} (\textbf{LDI}): $\metaA \PLproves \neg\metaA \rightarrow \metaB$. 
+  \item \textit{Right disjunction introduction} (\textbf{RDI}): $\metaB \PLproves \neg\metaA \rightarrow \metaB$. 
+  \item \textit{Conjunction introduction} (\textbf{CI}): $\metaA, \metaB \PLproves \neg(\metaA \rightarrow \neg\metaB)$. 
+  \item \textit{Left conjunction elimination} (\textbf{LCE}): $\neg(\metaA \rightarrow \neg\metaB) \PLproves \metaA$. 
+  \item \textit{Right conjunction elimination} (\textbf{RCE}): $\neg(\metaA \rightarrow \neg\metaB) \PLproves \metaB$. 
+  \item \mbox{\textit{Disjunction elimination} (\textbf{DE}): if $\MetaG, \neg\metaA \rightarrow \metaB, \metaA \PLproves \metaC$ and $\MetaG, \neg\metaA \rightarrow \metaB, \metaB \PLproves \metaC$, then $\MetaG, \neg\metaA \rightarrow \metaB \PLproves \metaC$.} 
+  \item \mbox{\textit{Biconditional introduction} (\textbf{BI}): if $\MetaG, \metaA \PLproves \metaB$ and $\MetaG, \metaB \PLproves \metaA$, then $\MetaG \PLproves \neg((\metaA \rightarrow \metaB) \rightarrow \neg(\metaB \rightarrow \metaA))$.} 
+  \item \textit{Left biconditional elimination} (\textbf{LBE}): $\neg((\metaA \rightarrow \metaB) \rightarrow \neg(\metaB \rightarrow \metaA)), \metaA \PLproves \metaB$.
+  \item \textit{Right biconditional elimination} (\textbf{RBE}): $\neg((\metaA \rightarrow \metaB) \rightarrow \neg(\metaB \rightarrow \metaA)), \metaB \PLproves \metaA$.
 \end{enumerate}
 
 
+\pagebreak
 \noindent
 TO BE CONTINUED...
 \pagebreak
