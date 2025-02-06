@@ -336,9 +336,11 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
   % \item[\bf Axioms:] An axiom is a rule with no assumptions (above the horizontal line).
   % \item[\bf Formal System:] The \textit{formal system} $\FCHsystem = \tuple{\FCH, \wfs{\FCH}, \FCHaxioms, \FCHrules}$ includes: (i) the language $\FCH$; (ii) the set $\wfs{\FCH}$ of wfs of $\FCH$; (iii) the empty set of \textit{axioms} $\FCHaxioms = \varnothing$; and (iv) the set of \textit{rules of inference} $\FCHrules$ which include all instances of the above.
   \item[\bf Proof Lines:] A \textit{proof line} may be represented by a tuple $\tuple{n,i_n,\metaA_n,J_n}$ consisting of a \textit{position number} $n$ naming the line, \textit{indentation number} $i_n$, wfs $\metaA_n$ of $\FCH$, and \textit{justification} $J_n$. % where premises are justified by `PR'.
-  \item[\bf Branch:] The \textit{branch} to line $n$ consists of every proof line $m < n$ where either $i_m = 0$ or the indentations are weakly increasing $i_l \leq i_k$ for all proof lines $m \leq l \leq k \leq n$.
-  \item[\bf Live:] A proof line $m < n$ is \textit{live} at line $n$ just in case $m$ is on the branch to $n$.
-    A subproof on lines $m$-$k$ is \textit{live} at line $n$ just in case $k+1 = n$ or $k+1$ is on the branch to $n$. 
+  % \item[\bf Branch:] The \textit{branch} to line $n$ consists of every proof line $m < n$ where either $i_m = 0$ or the indentations are weakly increasing $i_l \leq i_k$ for all proof lines $m \leq l \leq k \leq n$.
+  \item[\bf Live:]
+    A proof line $n$ is \textit{live} from all lines $m > n$ if $i_n = 0$, and otherwise $n$ is \textit{live} from all lines $m > n$ in the same subproof (and sub-subproofs, etc.) as $n$.
+    A subproof $k$-$l$ is \textit{live} from all lines $m > l$ if $i_l = 1$, and otherwise $k$-$l$ is \textit{live} from all lines $m > l$ in the same subproof (and sub-subproofs, etc.) as the first line $n > l$ where $i_n = i_l - 1$. 
+    % A subproof on lines $m$-$k$ is \textit{live} at line $n$ just in case $k+1 = n$ or $k+1$ is on the branch to $n$. 
   \item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaB$ from $\MetaG$ is a finite sequence of proof lines $X$ with consecutive position numbers starting from $1$ that ends at $\metaB$ where every line $\tuple{n,i_n,\metaA_n,J_n}$ in $X$ is: (1) a \textit{premise} where $i_n = 0$, $\metaA_n \in \MetaG$, and $J_n = \text{PR}$; (2) a \textit{discharged assumption} where $i_n > 0$ and $J_n = \text{AS}$; or (3) follows by a \textit{Fitch rule} where $J_n$ cites live lines/subproofs.
   % \item[\bf Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\FCH$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) a discharged assumption; or (3) follows by a \textit{Fitch rule} by citing previous lines. 
   \item[\bf Derivable:]
@@ -411,7 +413,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
   %   \end{itemize}
   % % \item[\bf Propositional Logic:] The formal system $\FCHsystem$ is both sound and complete with respect to $\FCHmodels$. 
   % \item[\bf Equivalence:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaB$ if and only if $\MetaG \vdash_B \metaB$.  
-  \item[\bf Hilbert System:] The \textit{Hilbert proof system} includes the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP} using the abbreviations above when convenient:
+  \item[\bf Hilbert System:] The \textit{Hilbert proof system} includes the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}, using the abbreviations above when convenient:
     \begin{itemize}[leftmargin=.5in]
       \item[\bf A1] $\varphi \rightarrow (\psi \rightarrow \varphi)$.
       \item[\bf A2] $(\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
@@ -422,7 +424,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
       % \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \varphi$, then $\MetaS\cup\MetaG \vdash \psi$.
     \end{itemize}
     % Whereas \textbf{M1} is called \textit{Cut Elimination}, \textbf{M2} is called \textit{Weakening}.
-    Set notation will be typically be omitted, writing `$\MetaG, \metaA, \metaB \vdash \metaC$' in place of `$\MetaG\cup\set{\metaA,\metaB} \vdash \metaC$', and writing `$\vdash \metaA$' in place of `$\varnothing \vdash\metaA$'.
+    Set notation will typically be omitted, writing `$\MetaG, \metaA, \metaB \vdash \metaC$' in place of `$\MetaG\cup\set{\metaA,\metaB} \vdash \metaC$', and writing `$\vdash \metaA$' in place of `$\varnothing \vdash\metaA$'.
     % \item[\bf Logic:] Let $\PLproves$ be the smallest relation to include all instances of the rules \textbf{R1} -- \textbf{R4} that is closed under the metarules \textbf{M1} -- \textbf{M2} given above. 
     \item[\bf Instances:] The \textit{axioms} of the Hilbert proof system are the instances of \textbf{A1} -- \textbf{A3} and the \textit{rules} are the instances of \textbf{MP}.
     \item[\bf Hilbert Proof:] A \textit{Hilbert proof} of $\metaB$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaB$ where every wfs in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an axiom; or (3) follows from previous wfss $\metaA$ and $\metaA \rightarrow \metaB$ in $X$ by a rule.
