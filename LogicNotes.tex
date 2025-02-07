@@ -507,8 +507,8 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	      \end{itemize}
 	\item[\bf Abbreviations:] We maintain the previous abbreviations along with:
 	      \begin{itemize}\small
-		      \item $\corner{\Diamond \metaA}$ abbreviates $\corner{\neg\Box\neg \metaA}$.
-		      \item $\corner{\metaA \strictif \metaB}$ abbreviates $\corner{\Box(\metaA \rightarrow \metaB)}$.
+		      \item $\Diamond \metaA \coloneq \neg\Box\neg \metaA$.
+		      \item $\metaA \strictif \metaB \coloneq \Box(\metaA \rightarrow \metaB)$.
 	      \end{itemize}
 	      \citet{Lewis1932} took the \textit{strict conditional} `$\strictif$' to capture the ``usual sense'' of `implies', improving on the material conditional `$\rightarrow$'.
 \end{enumerate}
@@ -537,9 +537,8 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 \section*{\sc Propositional Modal Logic: Axiomatic Systems}
 
-\begin{enumerate}[leftmargin=1.2in,itemsep=2pt] %,label=(\arabic*)]%,label=\roman*]
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]
 	\item[\bf Axiom Schemata:] Consider the following axiom schemata:\vspace{-.05in}
-    \vspace{-.05in}
     \begin{multicols}{2}
       \begin{enumerate}
         \item[\bf K] $\Box(\metaA\rightarrow B)\rightarrow(\Box \metaA\rightarrow\Box B)$.
@@ -557,15 +556,13 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
         % \item[] $[R(w,w')\wedge R(w,w'')]{\rightarrow}R(w',w'')$.
       \end{enumerate}
     \end{multicols}
-    \vspace{-.1in}
 	\item[\bf Necessitation Rule:] Consider the following metarule:
     \begin{enumerate}
       \item[\bf N] If $ \vdash \metaA$, then $ \vdash\Box \metaA$.
     \end{enumerate}
 	\item[\bf Axioms:] The \textit{axioms} for the following systems include all $\ML$ instances of the Hilbert axioms together with the following additions respectively:
-    \vspace{-.05in}
     \begin{multicols}{2}
-      \setlength{\itemsep}{0pt}
+      % \setlength{\itemsep}{0pt}
       \item[$\K$] All \textbf{K} axioms.
       \item[$\T$] All \textbf{K} and \textbf{T} axioms.
       \item[$\De$] All \textbf{K} and \textbf{D} axioms.
@@ -573,7 +570,6 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
       \item[$\4$] All \textbf{K}, \textbf{T}, and \textbf{4} axioms.
       \item[$\5$] All \textbf{K}, \textbf{T}, and \textbf{5} axioms.
     \end{multicols}
-    \vspace{-.1in}
   \item[\bf Modal Proofs:] Letting $\Q$ be the set of axioms for one of the systems above, a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ is defined recursively as follows:
     \item[\sc Base:] Any finite sequence $X$ of wfss of $\ML$ ending in $\metaB$ is a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ if every wfs $\metaA$ in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\Q$; or (3) follows from previous wfss $\metaC$ and $\metaC \rightarrow \metaA$ in $X$ by a \textit{rule}.
     \item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\Gamma$ that includes every wfs from $Y$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
@@ -584,7 +580,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\section*{\it Problem Set: Axiomatic Proofs\footnote{I have adapted some of the following exercises from \citet{Studd2016} and \citet{Sider2010}.}}
+\section*{\it Problem Set: Axiomatic Proofs}
 
 \begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
 	%\item[\bf Austerity:] Regiment the axioms belonging to $\mathcal{A}_5^+$ into the language $\ML$.
