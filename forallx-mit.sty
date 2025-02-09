@@ -2,6 +2,58 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{forallx-mit}[2025/01/29 Support for MIT logic texts]
 
+%% ========== Bibliography and Citations ==========
+\usepackage[round]{natbib}       % Bibliography support
+\usepackage{bibentry}            % Inline bibliography entries
+\usepackage{verbatim}            % Verbatim text support
+\setcitestyle{aysep={}}
+ %   \citet{key} ==>>                Jones et al. (1990)
+ %   \citet*{key} ==>>               Jones, Baker, and Smith (1990)
+ %   \citep{key} ==>>                (Jones et al., 1990)
+ %   \citep*{key} ==>>               (Jones, Baker, and Smith, 1990)
+ %   \citep[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
+ %   \citep[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
+ %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
+ %   \citeauthor{key} ==>>           Jones et al.
+ %   \citeauthor*{key} ==>>          Jones, Baker, and Smith
+ %   \citeyear{key} ==>>             1990
+\usepackage{etoolbox} %%For \citepos
+\usepackage{xstring} %%For \citepos
+
+\makeatletter %definition of \citepos
+% \patchcmd{\NAT@test}{\else \NAT@nm}{\else \NAT@nmfmt{\NAT@nm}}{}{} %turn on for numeric citations
+\DeclareRobustCommand\citepos% define \citepos
+  {\begingroup
+   \let\NAT@nmfmt\NAT@posfmt% same as for citet except with a different name format
+   \NAT@swafalse\let\NAT@ctype\z@\NAT@partrue
+   \@ifstar{\NAT@fulltrue\NAT@citetp}{\NAT@fullfalse\NAT@citetp}
+  }
+   
+\let\NAT@orig@nmfmt\NAT@nmfmt %makes adapt to last names ending with an 's'.
+\def\NAT@posfmt#1{%
+  \StrRemoveBraces{#1}[\NAT@temp]%
+  \IfEndWith{\NAT@temp}{s}
+    {\NAT@orig@nmfmt{#1'}}
+    {\NAT@orig@nmfmt{#1's}}}
+\makeatother
+%% ========== Graphics and Color ==========
+\usepackage{graphicx}            % Image support
+\usepackage{adjustbox}           % Graphics adjustments
+\usepackage[dvipsnames]{xcolor}  % Color support
+
+%% ========== Glossary ==========
+\usepackage{glossaries}%[automake,%builds index
+%  nogroupskip,% makes spacing of entries uniform
+%  postpunc={dot},% full stop after description
+%  nostyles,% don't load default style packages
+%   load glossaries-extra-stylemods.sty and glossary-tree.sty:
+%  stylemods={tree}
+%  ]{glossaries-extra}
+\loadglsentries{Glossary}% sources file from local project folder
+\newcommand{\g}{\glssymbol*}% unstar to allow hyperlinks
+\makeglossaries
+% \printglossary[style={index}] %Add to end
+
 %% ========== Font Configuration ==========
 \usepackage[T1]{fontenc}          % Required for accented characters
 \usepackage{lmodern}              % Latin Modern fonts
@@ -29,6 +81,39 @@
 %% ========== Logic-Specific Packages ==========
 \usepackage{lplfitch}            % Fitch-style proofs
 \usepackage{prooftrees}          % Proof tree diagrams
+
+%% ========== Hyperlinks (load last) ==========
+\usepackage[
+    linktocpage=true,
+    pdfusetitle
+]{hyperref}
+
+%% ========== Title ==========
+\makeatletter
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{$#2$}}%
+
+% Configure hyperlink colors
+\definecolor{URLblue}{RGB}{0,0,150}
+\hypersetup{
+    colorlinks   = true,         % Use colored links instead of boxes
+    urlcolor     = URLblue,      % Color for external hyperlinks
+    linkcolor    = URLblue,      % Color of internal links
+    citecolor    = red          % Color of citations
+}
+
+\raggedbottom    % Put gaps at bottom of pages with insufficient content
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\@date\hfill \LARGE\@title} % Increase the font size of the title
+
+\vspace{5pt} % Some vertical space between the title and author name
+
+{\@author} % Author name
+
+%\vspace{-20pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
 
 
 %    ****************************************

@@ -3,92 +3,6 @@
 \usepackage[protrusion=true,expansion=true]{microtype} % Better typography
 \usepackage{forallx-mit} %calls local modified style file
 
-%% ========== Glossary ==========
-\usepackage{glossaries}%[automake,%builds index
-%  nogroupskip,% makes spacing of entries uniform
-%  postpunc={dot},% full stop after description
-%  nostyles,% don't load default style packages
-%   load glossaries-extra-stylemods.sty and glossary-tree.sty:
-%  stylemods={tree}
-%  ]{glossaries-extra}
-\loadglsentries{Glossary}% sources file from local project folder
-\newcommand{\g}{\glssymbol*}% unstar to allow hyperlinks
-\makeglossaries
-% \printglossary[style={index}] %Add to end
-
-%% ========== Graphics and Color ==========
-\usepackage{graphicx}            % Image support
-\usepackage{adjustbox}           % Graphics adjustments
-\usepackage[dvipsnames]{xcolor}  % Color support
-
-%% ========== Bibliography and Citations ==========
-\usepackage[round]{natbib}       % Bibliography support
-\usepackage{bibentry}            % Inline bibliography entries
-\usepackage{verbatim}            % Verbatim text support
-\setcitestyle{aysep={}}
- %   \citet{key} ==>>                Jones et al. (1990)
- %   \citet*{key} ==>>               Jones, Baker, and Smith (1990)
- %   \citep{key} ==>>                (Jones et al., 1990)
- %   \citep*{key} ==>>               (Jones, Baker, and Smith, 1990)
- %   \citep[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
- %   \citep[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
- %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
- %   \citeauthor{key} ==>>           Jones et al.
- %   \citeauthor*{key} ==>>          Jones, Baker, and Smith
- %   \citeyear{key} ==>>             1990
-\usepackage{etoolbox} %%For \citepos
-\usepackage{xstring} %%For \citepos
-
-\makeatletter %definition of \citepos
-% \patchcmd{\NAT@test}{\else \NAT@nm}{\else \NAT@nmfmt{\NAT@nm}}{}{} %turn on for numeric citations
-\DeclareRobustCommand\citepos% define \citepos
-  {\begingroup
-   \let\NAT@nmfmt\NAT@posfmt% same as for citet except with a different name format
-   \NAT@swafalse\let\NAT@ctype\z@\NAT@partrue
-   \@ifstar{\NAT@fulltrue\NAT@citetp}{\NAT@fullfalse\NAT@citetp}
-  }
-   
-\let\NAT@orig@nmfmt\NAT@nmfmt %makes adapt to last names ending with an 's'.
-\def\NAT@posfmt#1{%
-  \StrRemoveBraces{#1}[\NAT@temp]%
-  \IfEndWith{\NAT@temp}{s}
-    {\NAT@orig@nmfmt{#1'}}
-    {\NAT@orig@nmfmt{#1's}}}
-\makeatother
-
-\makeatletter
-\newcommand*{\Scale}[2][4]{\scalebox{#1}{$#2$}}%
-
-
-
-%% ========== Hyperlinks (load last) ==========
-\usepackage[
-    linktocpage=true,
-    pdfusetitle
-]{hyperref}
-
-% Configure hyperlink colors
-\definecolor{URLblue}{RGB}{0,0,150}
-\hypersetup{
-    colorlinks   = true,         % Use colored links instead of boxes
-    urlcolor     = URLblue,      % Color for external hyperlinks
-    linkcolor    = URLblue,      % Color of internal links
-    citecolor    = red          % Color of citations
-}
-
-\raggedbottom    % Put gaps at bottom of pages with insufficient content
-
-\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
-\begin{flushright} % Right align
-{\@date\hfill \LARGE\@title} % Increase the font size of the title
-
-\vspace{5pt} % Some vertical space between the title and author name
-
-{\@author} % Author name
-
-%\vspace{-20pt} % Some vertical space between the author block and abstract
-\end{flushright}
-}
 
 %----------------------------------------------------------------------------------------
 %	TITLE
@@ -155,10 +69,10 @@
 
 Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `$\vee$', `$\wedge$', and `$\leftrightarrow$' which are to be read `or', `and', and `if and only if', respectively.
 \begin{enumerate}[itemsep=2pt]\small
-	\item Provide a natural definition of the set $\wfs{\FCH}$ of wfss of $\FCH$.
-	\item Provide a semantics for $\FCH$, defining the models of $\FCH$ and logical consequence $\vDash^+$.
-	\item Prove that $\metaA \vee \metaB$, $\metaA \vee (\metaA \wedge \metaB)$, and $\metaA\leftrightarrow \metaB$ from $\FCH$ are logically equivalent to wfss of $\PL$.
-	\item For each operator in $\FCH$, provide two examples of logical truths including that operator.
+	\item Provide a recursive definition of the set $\wfs{\FCH}$ of wfss of $\FCH$.
+	\item Provide a semantics for $\FCH$ by defining the models of $\FCH$ and $\vDash^+$.
+	\item Prove that $\metaA \vee \metaB$, $\metaA \vee (\metaA \wedge \metaB)$, and $\metaA\leftrightarrow \metaB$ are logically equivalent to wfss of $\PL$.
+	\item For each new operator in $\FCH$, provide two logical truths including that operator.
 \end{enumerate}
 
 %Confirm that the semantic clauses for the abbreviations are correct such that the abbreviations have the same truth-values as what they abbreviate on every interpretation.%\pagebreak
@@ -440,27 +354,40 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 \end{enumerate}
 
 
-\section*{\it Problem Set: Axiomatic Proofs}
+
+\section*{\it Problem Set: Derived Metarules}
 
 \begin{enumerate}[itemsep=2pt]\small
 	\item \textit{Weakening} (\textbf{WK}): if $\MetaG \PLproves \metaA$ and $\MetaG \subseteq \MetaS$, then $\MetaS \PLproves \metaA$.
-	\item \textit{Cut elimination} (\textbf{CT}): if $\MetaG \PLproves \metaA$ and $\MetaS, \metaA \PLproves \metaB$, then $\MetaS,\MetaG \PLproves \metaB$.
+  \item \textit{Cut elimination} (\textbf{CUT}): if $\MetaG \PLproves \metaA$ and $\MetaS, \metaA \PLproves \metaB$, then $\MetaS,\MetaG \PLproves \metaB$.
 	\item \textit{Deduction theorem} (\textbf{DT}): if $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA \rightarrow \metaB$.
+	\item \textit{Metamodus ponens} (\textbf{MMP}): if $\MetaG \PLproves \metaA \rightarrow \metaB$ and $\MetaS \PLproves \metaA$, then $\MetaG, \MetaS \PLproves \metaB$.
+	\item \textit{Converse deduction} (\textbf{CD}): if $\MetaG \PLproves \metaA \rightarrow \metaB$, then $\MetaG, \metaA \PLproves \metaB$.
+\end{enumerate}
+
+
+
+\section*{\it Problem Set: Axiomatic Proofs}
+
+\begin{enumerate}[itemsep=2pt]\small
 	\item \textit{Hypothetical syllogism} (\textbf{HS}): $\metaA \rightarrow \metaB, \metaB \rightarrow \metaC \PLproves \metaA \rightarrow \metaC$.
 	\item \textit{Hypothetical exchange} (\textbf{HE}): $\metaA \rightarrow (\metaB \rightarrow \metaC) \PLproves \metaB \rightarrow (\metaA \rightarrow \metaC)$.
+	\item \textit{Reductio ad absurdum} (\textbf{RAA}): $\PLproves \metaA \rightarrow (\neg\metaA \rightarrow \metaB)$.
+	\item \textit{Ex falso quidlobet} (\textbf{EFQ}): $\PLproves \neg\metaA \rightarrow (\metaA \rightarrow \metaB)$.
+
 	\item \textit{Reverse contraposition} (\textbf{RCP}): $\neg\metaA \rightarrow \neg\metaB \PLproves \metaB \rightarrow \metaA$.
 	\item \textit{Double negation elimination} (\textbf{DNE}): $\PLproves \neg\neg\metaA \rightarrow \metaA$.
 	\item \textit{Double negation introduction} (\textbf{DNI}): $\PLproves \metaA \rightarrow \neg\neg\metaA$.
 	\item \textit{Contraposition} (\textbf{CP}): $\metaA \rightarrow \metaB \PLproves \neg\metaB \rightarrow \neg\metaA$.
 	\item \textit{Negation elimination} (\textbf{NE}): if $\MetaG, \neg\metaA \PLproves \neg\metaB$ and $\MetaG, \neg\metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA$.
 	\item \textit{Negation introduction} (\textbf{NI}): if $\MetaG, \metaA \PLproves \neg\metaB$ and $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \neg\metaA$.
-	\item \textit{Ex falso quidlobet} (\textbf{EFQ}): $\metaA, \neg\metaA \PLproves \metaB$.
+	\item \textit{Ex contradictione quidlobet} (\textbf{ECQ}): $\metaA, \neg\metaA \PLproves \metaB$.
 	\item \textit{Left disjunction introduction} (\textbf{LDI}): $\metaA \PLproves \metaA \vee \metaB$.
 	\item \textit{Right disjunction introduction} (\textbf{RDI}): $\metaB \PLproves \metaA \vee \metaB$.
 	\item \textit{Conjunction introduction} (\textbf{CI}): $\metaA, \metaB \PLproves \metaA \wedge \metaB$.
 	\item \textit{Left conjunction elimination} (\textbf{LCE}): $\metaA \wedge \metaB \PLproves \metaA$.
 	\item \textit{Right conjunction elimination} (\textbf{RCE}): $\metaA \wedge \metaB \PLproves \metaB$.
-	\item \mbox{\textit{Disjunction elimination} (\textbf{DE}): if $\MetaG, \metaA \vee \metaB, \metaA \PLproves \metaC$ and $\MetaG, \metaA \vee \metaB, \metaB \PLproves \metaC$, then $\MetaG, \metaA \vee \metaB \PLproves \metaC$.}
+	\item \mbox{\textit{Disjunction elimination} (\textbf{DE}): if $\MetaG, \metaA \PLproves \metaC$ and $\MetaG, \metaB \PLproves \metaC$, then $\MetaG, \metaA \vee \metaB \PLproves \metaC$.}
 	\item \textit{Biconditional introduction} (\textbf{BI}): if $\MetaG, \metaA \PLproves \metaB$ and $\MetaG, \metaB \PLproves \metaA$, then $\MetaG \PLproves \metaA \leftrightarrow \metaB$.
 	\item \textit{Left biconditional elimination} (\textbf{LBE}): $\metaA \leftrightarrow \metaB, \metaA \PLproves \metaB$.
 	\item \textit{Right biconditional elimination} (\textbf{RBE}): $\metaA \leftrightarrow \metaB, \metaB \PLproves \metaA$.
@@ -484,7 +411,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	      \begin{itemize}
 		      \item[(X)] If sugar is sweet, then if roses are red, sugar is sweet.
 		            %\\ Sugar is sweet implies that: roses are red implies that sugar is sweet.
-          \item[(Y)] If snow is not green, then if snow is green, roses are red.
+		      \item[(Y)] If snow is not green, then if snow is green, roses are red.
 		            %\\ Snow is not green implies that: snow is green implies that roses are red.
 	      \end{itemize}
 	      % \item[\bf Problem:] The material conditional `$\rightarrow$' fails to adequately capture a strong enough sense of `implies', sometimes represented in natural language by means of conditional constructions such as `if\dots, then\dots'.%\footnote{See \citet{Edgington1995} for a review of modern attempts to understand conditionals in natural language.}
@@ -519,18 +446,20 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 \begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
 	\item[\bf Regimentation:] Regiment the following in $\ML$ using metalinguistic abbreviations.
+  \item If sugar is sweet, then if roses are red, sugar is sweet.
+  \item If snow is not green, then if snow is green, roses are red.
 	\item Either it could rain or not.
-	\item If rain is necessary, then the possibility of rain is necessary.
+	% \item If rain is necessary, then the possibility of rain is necessary.
 	\item It's necessarily possible that it either rains or doesn't.
 	\item If rain is possibly necessary, then it's necessarily possible.
 	\item It cannot both necessarily rain and necessarily not rain.
 	\item If rain is necessary, then it cannot necessarily not rain.
 	\item If rain and snow are jointly possible, then each is possible individually.
-	\item If rain necessarily implies clouds, then the necessity of rain implies the necessity of clouds.
+	% \item If rain necessarily implies clouds, then the necessity of rain implies the necessity of clouds.
 	\item If rain could imply snow, then it could snow if it necessarily rains.
 	\item If rain or snow are necessary, then either rain is necessary or snow is possible.
-	% \item[\bf No Abrveviations:] Regiment the above in $\ML$ without using metalinguistic abbreviations.
-  \item[\bf Paradox:] Regiment (X) and (Y) using $\strictif$, rewriting the result without abbreviations. 
+	      % \item[\bf No Abrveviations:] Regiment the above in $\ML$ without using metalinguistic abbreviations.
+	% \item[\bf Paradox:] Regiment (X) and (Y) using $\strictif$, and write the result in $\ML$ without abbreviations.
 \end{enumerate}
 
 
@@ -539,42 +468,42 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 
 \begin{enumerate}[leftmargin=1.2in,itemsep=2pt]
 	\item[\bf Axiom Schemata:] Consider the following axiom schemata:\vspace{-.05in}
-    \begin{multicols}{2}
-      \begin{enumerate}
-        \item[\bf K] $\Box(\metaA\rightarrow B)\rightarrow(\Box \metaA\rightarrow\Box B)$.
-        \item[\bf D] $\Box \metaA\rightarrow\Diamond \metaA$.
-        \item[\bf T] $\Box \metaA\rightarrow \metaA$.
-        \item[\bf B] $\metaA\rightarrow\Box\Diamond \metaA$.
-        \item[\bf 4] $\Box \metaA\rightarrow\Box\Box \metaA$.
-        \item[\bf 5] $\Diamond \metaA\rightarrow\Box\Diamond \metaA$.
-        %
-        % \item[] \textit{None}.
-        % \item[] $\exists w'R(w,w')$.
-        % \item[] $R(w,w)$.
-        % \item[] $R(w,w')\rightarrow R(w',w)$.
-        % \item[] $[R(w,w')\wedge R(w',w'')]{\rightarrow}R(w,w'')$.
-        % \item[] $[R(w,w')\wedge R(w,w'')]{\rightarrow}R(w',w'')$.
-      \end{enumerate}
-    \end{multicols}
+	      \begin{multicols}{2}
+		      \begin{enumerate}
+			      \item[\bf K] $\Box(\metaA\rightarrow B)\rightarrow(\Box \metaA\rightarrow\Box B)$.
+			      \item[\bf D] $\Box \metaA\rightarrow\Diamond \metaA$.
+			      \item[\bf T] $\Box \metaA\rightarrow \metaA$.
+			      \item[\bf B] $\metaA\rightarrow\Box\Diamond \metaA$.
+			      \item[\bf 4] $\Box \metaA\rightarrow\Box\Box \metaA$.
+			      \item[\bf 5] $\Diamond \metaA\rightarrow\Box\Diamond \metaA$.
+			            %
+			            % \item[] \textit{None}.
+			            % \item[] $\exists w'R(w,w')$.
+			            % \item[] $R(w,w)$.
+			            % \item[] $R(w,w')\rightarrow R(w',w)$.
+			            % \item[] $[R(w,w')\wedge R(w',w'')]{\rightarrow}R(w,w'')$.
+			            % \item[] $[R(w,w')\wedge R(w,w'')]{\rightarrow}R(w',w'')$.
+		      \end{enumerate}
+	      \end{multicols}
 	\item[\bf Necessitation Rule:] Consider the following metarule:
-    \begin{enumerate}
-      \item[\bf N] If $ \vdash \metaA$, then $ \vdash\Box \metaA$.
-    \end{enumerate}
+	      \begin{enumerate}
+		      \item[\bf N] If $ \vdash \metaA$, then $ \vdash\Box \metaA$.
+	      \end{enumerate}
 	\item[\bf Axioms:] The \textit{axioms} for the following systems include all $\ML$ instances of the Hilbert axioms together with the following additions respectively:
-    \begin{multicols}{2}
-      % \setlength{\itemsep}{0pt}
-      \item[$\K$] All \textbf{K} axioms.
-      \item[$\T$] All \textbf{K} and \textbf{T} axioms.
-      \item[$\De$] All \textbf{K} and \textbf{D} axioms.
-      \item[$\B$] All \textbf{K}, \textbf{B}, and \textbf{T} axioms.
-      \item[$\4$] All \textbf{K}, \textbf{T}, and \textbf{4} axioms.
-      \item[$\5$] All \textbf{K}, \textbf{T}, and \textbf{5} axioms.
-    \end{multicols}
-  \item[\bf Modal Proofs:] Letting $\Q$ be the set of axioms for one of the systems above, a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ is defined recursively as follows:
-    \item[\sc Base:] Any finite sequence $X$ of wfss of $\ML$ ending in $\metaB$ is a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ if every wfs $\metaA$ in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\Q$; or (3) follows from previous wfss $\metaC$ and $\metaC \rightarrow \metaA$ in $X$ by a \textit{rule}.
-    \item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\Gamma$ that includes every wfs from $Y$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
+	      \begin{multicols}{2}
+		      % \setlength{\itemsep}{0pt}
+		      \item[$\K$] All \textbf{K} axioms.
+		      \item[$\T$] All \textbf{K} and \textbf{T} axioms.
+		      \item[$\De$] All \textbf{K} and \textbf{D} axioms.
+		      \item[$\B$] All \textbf{K}, \textbf{B}, and \textbf{T} axioms.
+		      \item[$\4$] All \textbf{K}, \textbf{T}, and \textbf{4} axioms.
+		      \item[$\5$] All \textbf{K}, \textbf{T}, and \textbf{5} axioms.
+	      \end{multicols}
+	\item[\bf Modal Proofs:] Letting $\Q$ be the set of axioms for one of the systems above, a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ is defined recursively as follows:
+	\item[\sc Base:] Any finite sequence $X$ of wfss of $\ML$ ending in $\metaB$ is a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ if every wfs $\metaA$ in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\Q$; or (3) follows from previous wfss $\metaC$ and $\metaC \rightarrow \metaA$ in $X$ by a \textit{rule}.
+	\item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\Gamma$ that includes every wfs from $Y$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
 	\item[\bf Derivable:] A wfs $\metaB$ of $\ML$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the proof system $\Q$, i.e., $\MetaG \Qproves \metaB$, just in case there is a $\Q$-proof $X$ of $\metaB$ from $\MetaG$.
-  %\item[\bf Metalogic:] $T$ is sound and complete over the class of reflexive frames. $S4$ is sound and complete over the class of reflexive and transitive frames. $S5$ is sound and complete over the class of reflexive, symmetric, and transitive frames.
+	      %\item[\bf Metalogic:] $T$ is sound and complete over the class of reflexive frames. $S4$ is sound and complete over the class of reflexive and transitive frames. $S5$ is sound and complete over the class of reflexive, symmetric, and transitive frames.
 \end{enumerate}
 
 
@@ -601,6 +530,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	\item[\bf Proofs:] Provide a proof of each of the following:
     \begin{multicols}{2}
       \item If $\Kproves \metaA \rightarrow \metaB$, then $\Kproves \Box\metaA \rightarrow \Box\metaB$.
+      \item If $\metaA \Kproves \metaB$, then $\Box\metaA \Kproves \Box\metaB$.
       \item $\Kproves \Box(\metaA \wedge \metaB) \leftrightarrow (\Box \metaA \wedge \Box \metaB)$.
       \item $\Kproves (\Box \metaA \vee \Box \metaB) \rightarrow \Box(\metaA \vee \metaB)$.
       \item $\Kproves \Box(\metaA\rightarrow \metaB)\rightarrow\Box(\neg \metaB\rightarrow \neg \metaA)$.
@@ -608,10 +538,6 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
       \item If $\Kproves \metaA \rightarrow \metaB$, then $\Kproves \Diamond\metaA \rightarrow \Diamond\metaB$.
       % \item $\Kproves (\Box \metaA \wedge \Box \metaB)\rightarrow\Box(\metaA\rightarrow \metaB)$.
       \item $\Kproves \Diamond(\metaA \vee \metaB)\leftrightarrow(\Diamond \metaA \vee \Diamond \metaB)$.
-      \item $\Kproves \metaA \strictif (\metaB \strictif \metaA)$.
-      \item $\Kproves \neg\metaB \strictif (\metaA \strictif \metaB)$.
-    \end{multicols}
-    \begin{multicols}{2}
       \item $\Tproves \Box \metaA\rightarrow\Diamond \metaA$.
       \item $\Tproves \neg\Box(\metaA\wedge \neg \metaA)$.
       \item $\Dproves \Diamond(\metaA \rightarrow \metaA)$.
@@ -625,7 +551,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
       \item $\Fiveproves \Diamond\Box \metaA\leftrightarrow\Box \metaA$.
       \item $\Fiveproves \Box \metaA \rightarrow \Box\Box \metaA$.
       \item $\Fiveproves \metaA \rightarrow \Box\Diamond \metaA$.
-      % \item $\Fiveproves \Diamond\Box \metaA \rightarrow \metaA$.
+      \item $\Fiveproves \Diamond\Box \metaA \rightarrow \metaA$.
     \end{multicols}
 \end{enumerate}
 
