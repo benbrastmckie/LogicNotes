@@ -258,7 +258,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	\item[\bf Fitch Proof:] A \textit{Fitch proof} of $\metaB$ from $\MetaG$ is a finite sequence of proof lines $X$ with consecutive position numbers starting from $1$ that ends at $\metaB$ where every line $\tuple{n,i_n,\metaA_n,J_n}$ in $X$ is: (1) a \textit{premise} where $i_n = 0$, $\metaA_n \in \MetaG$, and $J_n = \text{PR}$; (2) a \textit{discharged assumption} where $i_n > 0$ and $J_n = \text{AS}$; or (3) follows by a \textit{Fitch rule} where $J_n$ cites live lines/subproofs.
 	      % \item[\bf Proof:] A \textit{Fitch proof} of $\metaA$ from $\MetaG$ is a finite sequence $X$ of wfss of $\FCH$ ending in $\metaA$ where every wfs in the sequence is either: (1) a \textit{premise} in $\MetaG$; (2) a discharged assumption; or (3) follows by a \textit{Fitch rule} by citing previous lines. 
 	\item[\bf Derivable:]
-	      A wfs $\metaB$ of $\FCH$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ by the \textit{Fitch proof system} given above, i.e., $\MetaG \FCHproves \metaB$, just in case there is a Fitch proof $X$ of $\metaB$ from $\MetaG$.
+	      A wfs $\metaB$ of $\FCH$ is \textit{derivable} (or \textit{provable}) from $\MetaG$ by the Fitch proof system given above--- i.e., $\MetaG \FCHproves \metaB$--- just in case there is a Fitch proof $X$ of $\metaB$ from $\MetaG$.
 	      % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
 	      % \item[\bf Theorem:] An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$ (written $\FCHproves \metaA$).
 	      % \item[\bf Logic:] The \textit{logic} for $\FCHsystem$ is the set $\FCHlogic \coloneq \set{\metaA :\ \FCHproves \metaA}$ of theorems of $\FCHsystem$.
@@ -343,7 +343,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	      % \item[\bf Logic:] Let $\PLproves$ be the smallest relation to include all instances of the rules \textbf{R1} -- \textbf{R4} that is closed under the metarules \textbf{M1} -- \textbf{M2} given above. 
 	\item[\bf Instances:] The \textit{axioms} of the Hilbert proof system are the instances of \textbf{A1} -- \textbf{A3} and the \textit{rules} are the instances of \textbf{MP}.
 	\item[\bf Hilbert Proof:] A \textit{Hilbert proof} of $\metaB$ from $\MetaG$ is a finite sequence $X$ of wfss of $\PL$ ending in $\metaB$ where every wfs $\metaA$ in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom}; or (3) follows from previous wfss $\metaC$ and $\metaC \rightarrow \metaA$ in $X$ by a \textit{rule}.
-	\item[\bf Derivable:] A wfs $\metaB$ of $\PL$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the Hilbert proof system, i.e., $\MetaG \PLproves \metaB$, just in case there is a Hilbert proof $X$ of $\metaB$ from $\MetaG$.
+	\item[\bf Derivable:] A wfs $\metaB$ of $\PL$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the Hilbert proof system--- i.e., $\MetaG \PLproves \metaB$--- just in case there is a Hilbert proof $X$ of $\metaB$ from $\MetaG$.
 	      % An $\FCHsystem$ \textit{theorem} is any wfs $\metaA$ of $\FCH$ where $\varnothing\FCHproves \metaA$. % (written $\FCHproves \metaA$).
 	      % \item[\bf Hilbert Metalogic:] The Hilbert proof system has the following metalogical properties:
 	      %   \begin{itemize}
@@ -361,7 +361,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	\item \textit{Weakening} (\textbf{WK}): if $\MetaG \PLproves \metaA$ and $\MetaG \subseteq \MetaS$, then $\MetaS \PLproves \metaA$.
   \item \textit{Cut elimination} (\textbf{CUT}): if $\MetaG \PLproves \metaA$ and $\MetaS, \metaA \PLproves \metaB$, then $\MetaS,\MetaG \PLproves \metaB$.
 	\item \textit{Deduction theorem} (\textbf{DT}): if $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA \rightarrow \metaB$.
-	\item \textit{Metamodus ponens} (\textbf{MMP}): if $\MetaG \PLproves \metaA \rightarrow \metaB$ and $\MetaS \PLproves \metaA$, then $\MetaG, \MetaS \PLproves \metaB$.
+	\item \textit{Principle of detachment} (\textbf{PD}): if $\MetaG \PLproves \metaA \rightarrow \metaB$ and $\MetaS \PLproves \metaA$, then $\MetaG, \MetaS \PLproves \metaB$.
 	\item \textit{Converse deduction} (\textbf{CD}): if $\MetaG \PLproves \metaA \rightarrow \metaB$, then $\MetaG, \metaA \PLproves \metaB$.
 \end{enumerate}
 
@@ -487,7 +487,7 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	      \end{multicols}
 	\item[\bf Necessitation Rule:] Consider the following metarule:
 	      \begin{enumerate}
-		      \item[\bf N] If $ \vdash \metaA$, then $ \vdash\Box \metaA$.
+		      \item[\bf N] If $\vdash \metaA$, then $\vdash\Box \metaA$.
 	      \end{enumerate}
 	\item[\bf Axioms:] The \textit{axioms} for the following systems include all $\ML$ instances of the Hilbert axioms together with the following additions respectively:
 	      \begin{multicols}{2}
@@ -501,7 +501,8 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 	      \end{multicols}
 	\item[\bf Modal Proofs:] Letting $\Q$ be the set of axioms for one of the systems above, a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ is defined recursively as follows:
 	\item[\sc Base:] Any finite sequence $X$ of wfss of $\ML$ ending in $\metaB$ is a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ if every wfs $\metaA$ in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\Q$; or (3) follows from previous wfss $\metaC$ and $\metaC \rightarrow \metaA$ in $X$ by a \textit{rule}.
-	\item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\Gamma$ that includes every wfs from $Y$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
+	% \item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\Gamma$ that includes every wfs from $Z$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
+  \item[\sc Recursive:] Given a $\Q$-proof $Y$ of $\metaA$ from $\varnothing$ and a $\Q$-proof $Z$ with premises $\Gamma$ which includes every wfs in $Y$, the result of appending $\Box\metaA$ to the end of $Z$ is a $\Q$-\textit{proof} of $\Box\metaA$ from $\MetaG$.
 	\item[\bf Derivable:] A wfs $\metaB$ of $\ML$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the proof system $\Q$, i.e., $\MetaG \Qproves \metaB$, just in case there is a $\Q$-proof $X$ of $\metaB$ from $\MetaG$.
 	      %\item[\bf Metalogic:] $T$ is sound and complete over the class of reflexive frames. $S4$ is sound and complete over the class of reflexive and transitive frames. $S5$ is sound and complete over the class of reflexive, symmetric, and transitive frames.
 \end{enumerate}
