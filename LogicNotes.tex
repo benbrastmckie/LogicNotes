@@ -27,10 +27,10 @@
 
 \begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
 	\item[\bf Canonical Name:] A quoted symbol is the \textit{canonical name} for the symbol quoted.
-	\item[\bf Language:] The propositional language $\PL$ includes \textit{symbols} for: \textit{sentence letters} `$p_1$',`$p_2$', \dots, \textit{sentential operators} `$\vee$',`$\neg$', and \textit{punctuation} `$($' and `$)$'.
+	\item[\bf Language:] The propositional language $\PL$ includes \textit{symbols} for: \textit{sentence letters} `$p_1$',`$p_2$', \dots, \textit{sentential operators} `$\neg$', `$\rightarrow$', and \textit{punctuation} `$($' and `$)$'.
 	\item[\bf Strings:] The concatenation of a finite number of symbols in $\PL$ is a \textit{string} of $\PL$.
 	\item[\bf Schematic Variables:] Let `$\metaA$', `$\metaB$', `$\metaC$',\ldots\ be \textit{schematic variables} for strings of $\PL$.
-	\item[\bf Corner Quotes:] Let $\corner{\cdot}$ map strings of $\PL$ to the canonical names for those strings.
+	\item[\bf Corner Quotes:] Let $\corner{\cdot}$ map concatenations of strings of $\PL$ to names for those strings.
 	      % (Corner quotes will often be omitted when clarity is not improved.)
 	\item[\bf Well-Formed Sentences:] The set of \textit{well-formed sentences} $\wfs{\PL}$ is the smallest set to satisfy:
 	      \begin{itemize}\small
@@ -360,9 +360,9 @@ Let $\FCH$ include the symbols in $\PL$ together with the sentential operators `
 \begin{enumerate}[itemsep=2pt]\small
 	\item \textit{Weakening} (\textbf{WK}): if $\MetaG \PLproves \metaA$ and $\MetaG \subseteq \MetaS$, then $\MetaS \PLproves \metaA$.
   \item \textit{Cut elimination} (\textbf{CUT}): if $\MetaG \PLproves \metaA$ and $\MetaS, \metaA \PLproves \metaB$, then $\MetaS,\MetaG \PLproves \metaB$.
-	\item \textit{Deduction theorem} (\textbf{DT}): if $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA \rightarrow \metaB$.
 	\item \textit{Principle of detachment} (\textbf{PD}): if $\MetaG \PLproves \metaA \rightarrow \metaB$ and $\MetaS \PLproves \metaA$, then $\MetaG, \MetaS \PLproves \metaB$.
-	\item \textit{Converse deduction} (\textbf{CD}): if $\MetaG \PLproves \metaA \rightarrow \metaB$, then $\MetaG, \metaA \PLproves \metaB$.
+  \item \textit{Deduction theorem} (\textbf{DT}): if $\MetaG, \metaA \PLproves \metaB$, then $\MetaG \PLproves \metaA \rightarrow \metaB$.
+	\item \textit{Reverse deduction} (\textbf{RD}): if $\MetaG \PLproves \metaA \rightarrow \metaB$, then $\MetaG, \metaA \PLproves \metaB$.
 \end{enumerate}
 
 
