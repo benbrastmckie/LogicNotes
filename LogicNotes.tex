@@ -592,6 +592,8 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
     \item $\interpret{\M}{\metaA \leftrightarrow \metaB} = (\interpret{\M}{\metaA} \cap \interpret{\M}{\metaB}) \cup (\interpret{\M}{\metaA}^c \cap \interpret{\M}{\metaB}^c)$.
     \item $\interpret{\M}{\Box \metaA} = \set{w \in W : (w)_R \subseteq \interpret{\M}{\metaA}}$.
 	\item[\bf Relative:] Establish the following by appealing to the definitions:
+    \item $\M, w \MLmodels[] \metaA \wedge \metaB$ \textit{iff} $\M, w \MLmodels \metaA$ and $\M, w \MLmodels \metaB$.
+    \item $\M, w \MLmodels[] \Diamond\metaA$ \textit{iff} $\M, u \MLmodels \metaA$ for some $u \in W$ such that $R(w, u)$.
     \item $\interpret{\M}{\metaA}^w = (w)_R \cap \interpret{\M}{\metaA}$.
     \item $\M, w \MLmodels[] \Box\metaA$ \textit{iff} $(w)_R \subseteq \interpret{\M}{\metaA}$.
     \item $\M, w \MLmodels[] \Box(\metaA \rightarrow \metaB)$ \textit{iff} $\interpret{\M}{\metaA}^w \subseteq \interpret{\M}{\metaB}$.
@@ -666,10 +668,10 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
         \item $\Box \metaA \MLmodels[K] \Box\Box \metaA$
         \item $\Box \metaA \MLmodels[K] \metaA$
         \item $\metaA \MLmodels[K] \Box \metaA$
-        \item $\Box(\metaA \wedge B) \MLmodels[K] \Box \metaA \wedge \Box B$
-        \item $\Box \metaA \wedge \Box \metaB \MLmodels[K] \Box(\metaA \wedge B)$
-        \item $\Box(\metaA \vee B) \MLmodels[K] \Box \metaA \vee \Box B$
-        \item $\Box \metaA \vee \Box \metaB \MLmodels[K] \Box(\metaA \vee B)$
+        \item $\Box(\metaA \vee \metaB) \MLmodels[K] \Box\metaA \vee \Box\metaB$
+        \item $\Box(\metaA \wedge \metaB) \MLmodels[K] \Box\metaA \wedge \Box\metaB$
+        \item $\Box\metaA \vee \Box\metaB \MLmodels[K] \Box(\metaA \vee \metaB)$
+        \item $\Box\metaA \wedge \Box\metaB \MLmodels[K] \Box(\metaA \wedge \metaB)$
         \item $\Box \metaA \MLmodels[K] \Diamond \metaA$
         \item $\Diamond \metaA \MLmodels[K] \Box \metaA$
         \item $\Diamond\Box \metaA \MLmodels[K] \Box\Diamond \metaA$
@@ -677,8 +679,8 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
         \item $\Box \metaA \MLmodels[K] \Box\Diamond \metaA$
         \item $\MLmodels[K] \neg\Box(\metaA \wedge \neg \metaA)$
         \item $\Diamond \metaB \MLmodels[K] \neg\Box(\metaA \wedge \neg \metaA)$
-        \item $\Box A \MLmodels[K] \Box(B\rightarrow A)$.
-        \item $\neg\Box A \MLmodels[K] \Box(A\rightarrow B)$.
+        \item $\Box \metaA \MLmodels[K] \Box(\metaB \rightarrow \metaA)$.
+        \item $\neg\Box\metaA \MLmodels[K] \Box(\metaA \rightarrow \metaB)$.
       \end{multicols}
     \end{enumerate}
 	\item[\bf Logical Consequence:] Replace $K$ with the weakest set of constraints $C$ to make the above hold. 
@@ -726,11 +728,11 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	\item[\bf Semantic Proofs:] Provide semantic proofs of the following:
     \begin{enumerate}[label=\arabic*.]\small
       \begin{multicols}{2}
-        \item $\MLmodels[K] \Box(\metaA\rightarrow B)\rightarrow(\Box \metaA\rightarrow\Box B)$
-        \item $\MLmodels[K] \Box A\rightarrow \Box A$
-        \item $\MLmodels[D] \Box A\rightarrow\Diamond A$
-        \item $\MLmodels[T] \Box A\rightarrow A$
-        \item $\MLmodels[T] \Box\Box A\rightarrow \Box A$
+        \item $\MLmodels[K] \Box(\metaA\rightarrow \metaB)\rightarrow(\Box \metaA\rightarrow\Box \metaB)$
+        \item $\MLmodels[K] \Box \metaA\rightarrow \Box \metaA$
+        \item $\MLmodels[D] \Box \metaA\rightarrow\Diamond \metaA$
+        \item $\MLmodels[T] \Box \metaA\rightarrow \metaA$
+        \item $\MLmodels[T] \Box\Box \metaA\rightarrow \Box \metaA$
         \item $\MLmodels[B] \metaA\rightarrow\Box\Diamond \metaA$
         \item $\MLmodels[4] \Box \metaA\rightarrow\Box\Box \metaA$
         \item $\MLmodels[5] \Diamond \metaA\rightarrow\Box\Diamond \metaA$
@@ -739,12 +741,12 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	\item[\bf Equivalences:] Provide semantic proofs of the following equivalences:
     \begin{enumerate}[label=(\arabic*),resume]\small
       \begin{multicols}{2}
-        \item $\neg\Box A \MLequiv[K] \Diamond\neg A$.
-        \item $\neg\Diamond A \MLequiv[K] \Box\neg A$.
+        \item $\neg\Box \metaA \MLequiv[K] \Diamond\neg \metaA$.
+        \item $\neg\Diamond \metaA \MLequiv[K] \Box\neg \metaA$.
         \item $\Diamond\Box \metaA \MLequiv[B] \Diamond\Box\Diamond\Box \metaA$ 
-        \item $\Box\Box A \MLequiv[4] \Box A$.
-        \item $\Box\Diamond A \MLequiv[4] \Diamond A$.
-        \item $\Diamond\Box A \MLequiv[5] \Box A$.
+        \item $\Box\Box \metaA \MLequiv[4] \Box \metaA$.
+        \item $\Box\Diamond \metaA \MLequiv[4] \Diamond \metaA$.
+        \item $\Diamond\Box \metaA \MLequiv[5] \Box \metaA$.
       \end{multicols}
     \end{enumerate}
 	% \item[\bf Counter Models:] Provide counter models to demonstrate the following:
