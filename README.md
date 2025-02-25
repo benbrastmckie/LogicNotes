@@ -20,3 +20,4 @@ I will be both rewriting these notes to conform to the conventions in the [ForAl
 The [ForAllX textbook](https://github.com/benbrastmckie/ForAllX) provides a more systematic treatment of propositional and first-order logic.
 You can also find some basic set theory presented in an accessible way [here](https://github.com/benbrastmckie/OpenLogic/tree/master/courses/sets-logic-computation).
 
+
