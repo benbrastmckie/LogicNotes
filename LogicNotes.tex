@@ -48,17 +48,17 @@
 	      \end{itemize}
 	\item[\bf Models:] Let $\M$ be a \textit{model} of $\PL$ \textit{iff} for every sentence letter $\metaA$ of $\PL$, either $\M(\metaA)=0$ or $\M(\metaA)=1$, but not both.
 	\item[\bf Semantics:] We may extend a model $\M$ to interpret all wfss of $\PL$ by taking $\PLmodels$ to be the smallest relation to satisfy the following:
-	      % Observe that $\M$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\PL$ and not all other wfss.
-	      \begin{itemize}[leftmargin=.15in]\small
-		      \item[] $\M\vDash `p_i`$ \textit{iff} $\M(p_i)=1$.
-		      \item[] $\M\vDash \corner{\neg \metaA}$ \textit{iff} it is not the case that $\M\vDash \metaA$ (i.e., $\M\nvDash \metaA$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
-		      \item[] $\M\vDash \corner{(\metaA \rightarrow \metaB)}$ \textit{iff} $\M\nvDash \metaA$ or $\M\vDash \metaB$.
-		            %\item[$(\wedge)$] $\M\vDash \metaA\wedge \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$. 
-		            %\item[$(\shortrightarrow)$] $\M\vDash \metaA\rightarrow \metaB$ \textit{iff} $\nvDash_{\M} \metaA$ or $\M\vDash \metaB$.
-		            %\item[$(\leftrightarrow)$] $\M\vDash \metaA\leftrightarrow \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$, or $\nvDash_{\M} \metaA$ and $\nvDash_{\PLmodel} \metaB$.
-	      \end{itemize}
-	      Quotes, corner quotes, and the outermost parentheses of a wfs will often be omitted, relying on the reader to know where they belong.
-	      % We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\PL$ given the model $\M$. 
+    % Observe that $\M$ is only defined for the sentence letters $p_1,p_2,\dots$ of $\PL$ and not all other wfss.
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M\vDash `p_i`$ \textit{iff} $\M(p_i)=1$.
+      \item[] $\M\vDash \corner{\neg \metaA}$ \textit{iff} it is not the case that $\M\vDash \metaA$ (i.e., $\M\nvDash \metaA$). %\footnote{Strictly speaking, the schemata with schematic variables should be enclosed in corner quotes. It is common to also leave off corner quotes for sake of readability in defining the wfs of a language.}
+      \item[] $\M\vDash \corner{(\metaA \rightarrow \metaB)}$ \textit{iff} $\M\nvDash \metaA$ or $\M\vDash \metaB$.
+            %\item[$(\wedge)$] $\M\vDash \metaA\wedge \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$. 
+            %\item[$(\shortrightarrow)$] $\M\vDash \metaA\rightarrow \metaB$ \textit{iff} $\nvDash_{\M} \metaA$ or $\M\vDash \metaB$.
+            %\item[$(\leftrightarrow)$] $\M\vDash \metaA\leftrightarrow \metaB$ \textit{iff} $\M\vDash \metaA$ and $\M\vDash \metaB$, or $\nvDash_{\M} \metaA$ and $\nvDash_{\PLmodel} \metaB$.
+    \end{itemize}
+    Quotes, corner quotes, and the outermost parentheses of a wfs will often be omitted, relying on the reader to know where they belong.
+    % We rely on our grasp of the English expressions `it is not the case that' and `or' to interpret all wfss of $\PL$ given the model $\M$. 
 	\item[\bf Logical Consequence:] $\MetaG \PLmodels \metaA$ \textit{iff} for all models $\M$, if $\M\PLmodels \metaG$ for all $\metaG\in\MetaG$, then $\M\PLmodels \metaA$.
 	\item[\bf Logical Equivalence:] $\metaA \Dashv\PLmodels \metaB$ \textit{iff} $\metaA\PLmodels \metaB$ and $\metaB\PLmodels \metaA$.
 	\item[\bf Logical Truth:] A wfs $\metaA$ of $\PL$ is \textit{logical truth} (or \textit{valid}) \textit{iff} $\varnothing\PLmodels \metaA$ (written $\PLmodels \metaA$).
@@ -332,13 +332,13 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	% \item[\bf Equivalence:] Two proof systems $A$ and $B$ for the same language are \textit{extensionally equivalent} just in case $\MetaG \vdash_A \metaB$ if and only if $\MetaG \vdash_B \metaB$.  
 	\item[\bf Hilbert System:] The \textit{Hilbert proof system} includes the following \textit{axiom schemata} \textbf{A1} -- \textbf{A3} and \textit{rule schema} \textbf{MP}, using the abbreviations above when convenient:
 	      \begin{itemize}[leftmargin=.5in]
-		      \item[\bf A1] $\varphi \rightarrow (\psi \rightarrow \varphi)$.
-		      \item[\bf A2] $(\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi))$.
-		            % \item[\bf A3] $(\neg\varphi \rightarrow \neg\psi) \rightarrow (\psi \rightarrow \varphi)$.
-		      \item[\bf A3] $(\neg\varphi \rightarrow \neg\psi) \rightarrow ((\neg\varphi \rightarrow \psi) \rightarrow \varphi)$.
-		      \item[\bf MP] $\set{\varphi, \varphi \rightarrow \psi} \vdash \psi$.
-		            % \item[({\it Cut Elimination})~ {\bf M1}] If $\MetaG \vdash \varphi$ and $\MetaS\cup\set{\varphi} \vdash \psi$, then $\MetaS\cup\MetaG \vdash \psi$. 
-		            % \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \varphi$, then $\MetaS\cup\MetaG \vdash \psi$.
+		      \item[\bf A1] $\metaA \rightarrow (\metaB \rightarrow \metaA)$.
+		      \item[\bf A2] $(\metaA \rightarrow (\metaB \rightarrow \chi)) \rightarrow ((\metaA \rightarrow \metaB) \rightarrow (\metaA \rightarrow \chi))$.
+		            % \item[\bf A3] $(\neg\metaA \rightarrow \neg\metaB) \rightarrow (\metaB \rightarrow \metaA)$.
+		      \item[\bf A3] $(\neg\metaA \rightarrow \neg\metaB) \rightarrow ((\neg\metaA \rightarrow \metaB) \rightarrow \metaA)$.
+		      \item[\bf MP] $\set{\metaA, \metaA \rightarrow \metaB} \vdash \metaB$.
+		            % \item[({\it Cut Elimination})~ {\bf M1}] If $\MetaG \vdash \metaA$ and $\MetaS\cup\set{\metaA} \vdash \metaB$, then $\MetaS\cup\MetaG \vdash \metaB$. 
+		            % \item[({\it Weakening})~ {\bf M2}] If $\MetaG \vdash \metaA$, then $\MetaS\cup\MetaG \vdash \metaB$.
 	      \end{itemize}
 	      % Whereas \textbf{M1} is called \textit{Cut Elimination}, \textbf{M2} is called \textit{Weakening}.
 	      Set notation will typically be omitted, writing `$\MetaG, \metaA, \metaB \vdash \metaC$' in place of `$\MetaG\cup\set{\metaA,\metaB} \vdash \metaC$', and writing `$\vdash \metaA$' in place of `$\varnothing \vdash\metaA$'.
@@ -445,7 +445,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\section*{\it Problem Set: Motivation and Regimentation}
+\section*{\it Problem Set: Syntax}
 
 \begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
 	\item[\bf Regimentation:] Regiment the following in $\ML$ using metalinguistic abbreviations.
@@ -504,8 +504,8 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	      \end{multicols}
 	\item[\bf Modal Proofs:] Letting $\Q$ be the set of axioms for one of the systems above, a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ is defined recursively as follows:
 	\item[\sc Base:] Any finite sequence $X$ of wfss of $\ML$ ending in $\metaB$ is a $\Q$-\textit{proof} of $\metaB$ from $\MetaG$ if every wfs $\metaA$ in $X$ is either: (1) a \textit{premise} in $\MetaG$; (2) an \textit{axiom} in $\Q$; or (3) follows from previous wfss $\metaC$ and $\metaC \rightarrow \metaA$ in $X$ by a \textit{rule}.
-	% \item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\Gamma$ that includes every wfs from $Z$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
-  \item[\sc Recursive:] Given a $\Q$-proof $Y$ of $\metaA$ from $\varnothing$ and a $\Q$-proof $Z$ with premises $\Gamma$ which includes every wfs in $Y$, the result of appending $\Box\metaA$ to the end of $Z$ is a $\Q$-\textit{proof} of $\Box\metaA$ from $\MetaG$.
+	% \item[\sc Recursive:] Any finite sequence $X$ of wfss of $\ML$ where: (1) $Z$ is a $\Q$-proof of $\metaA$ from $\varnothing$; (2) $Y$ is a $\Q$-proof with premises $\MetaG$ that includes every wfs from $Z$; and $X$ is the result of extending $Y$ to include $\metaB$ where $\metaB = \Box\metaA$.
+  \item[\sc Recursive:] Given a $\Q$-proof $Y$ of $\metaA$ from $\varnothing$ and a $\Q$-proof $Z$ with premises $\MetaG$ which includes every wfs in $Y$, the result of appending $\Box\metaA$ to the end of $Z$ is a $\Q$-\textit{proof} of $\Box\metaA$ from $\MetaG$.
 	\item[\bf Derivable:] A wfs $\metaB$ of $\ML$ is \textit{derivable} (\textit{provable}) from $\MetaG$ by the proof system $\Q$, i.e., $\MetaG \Qproves \metaB$, just in case there is a $\Q$-proof $X$ of $\metaB$ from $\MetaG$.
   \item[\bf Modal Systems:] Letting the $\Q$-\textit{modal proof system} includes all $\Q$-proofs we may abuse notation by referring to the $\Q$-modal proof system simply as $\Q$.
 \end{enumerate}
@@ -538,7 +538,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
       \item $\Tproves \neg\Box(\metaA\wedge \neg \metaA)$.
       \item $\Dproves \Diamond(\metaA \rightarrow \metaA)$.
       \item $\Bproves \Box\metaA \rightarrow \Diamond\metaA$.
-      \item $\Fourproves (\Diamond \metaA\wedge\Box \metaB)\rightarrow\Diamond(\metaA\wedge\Box \metaB).$ % TODO: CHECK 
+      \item $\Fourproves (\Diamond \metaA\wedge\Box \metaB)\rightarrow\Diamond(\metaA\wedge\Box \metaB).$
       \item $\Fourproves \Box \metaA\rightarrow\Box\Diamond\Box \metaA$.
 
       \item $\Fourproves \Diamond\Diamond \metaA\leftrightarrow\Diamond \metaA$.
@@ -553,35 +553,108 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\newpage
 
-\section*{\sc Propositional Modal Logic: Semantics}
+\section*{\sc Propositional Modal Logic: Frames}
 
 \begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
-  \item[\bf Frame:] A \textit{frame} is an ordered pair $\F = \tuple{W,R}$, where $W$ is any nonempty set (called \textit{worlds}) and $R \subseteq W^2$ is any relation (called \textit{accessibility}).
-  \item[\bf Interpretation:] An \textit{interpretation} of $\ML$ over a frame $\F_\K$ is any function $\I : \SL \to \wp(W)$, i.e., where $\I(p) \subseteq W$ for every sentence letter $p \in \SL$.
-	      %\item[\bf Intension:] For any interpretation $\MLmodels$ of $\ML$ and sentence letter $p_i$ in $\ML$, we may refer to the function $\MLmodels(p_i)$ from $W$ to $\set{0,1}$ as the \textit{intension} of $p_i$.
-  \item[\bf Semantics:] Let $\vDash$ to be the smallest relation to satisfy the following conditions where $\M = \tuple{W, R, \I}$ is any model of $\ML$, both $w, u \in W$, $p_i \in \SL$, $\metaA, \metaB \in \wfs{\ML}$, and we adopt the abbreviation $R(w,u) \coloneq \tuple{w, u} \in R$:
-	      \begin{small}
-		      \begin{itemize}[leftmargin=.36in]
-			      \item[] $\M, w\vDash  p_i$ \textit{iff} $w \in \I(p_i)$.
-			      \item[] $\M, w\vDash  \neg \metaA$ \textit{iff} $\M, w\nvDash \metaA$.
-			      \item[] $\M, w\vDash  \metaA\rightarrow \metaB$ \textit{iff} $\M, w\nvDash \metaA$ or $\M, w\vDash  \metaB$.
-            \item[] $\M, w\vDash  \Box \metaA$ \textit{iff} $\M, u\vDash \metaA$ for every $u \in W$ such that $R(w,u)$.
-		      \end{itemize}
-	      \end{small}
-  \item[\bf Truth-Condition:] The \textit{truth-condition} $\interpret{\M}{\metaA} \coloneq \set{w\in W: ~\M, w\vDash  \metaA}$ for a wfs $\metaA \in \wfs{\ML}$ on a model $\M$ is the set of worlds at which $\metaA$ is true.
-  \item[\bf Relative:] The truth-condition \textit{relative} to $u \in W$ for a wfs $\metaA \in \wfs{\ML}$ on a model $\M$ is the set of worlds $\interpret{\M}{\metaA}^w \coloneq \set{u\in W : R(w, u) \text{ and } \M, u\vDash  \metaA}$.
-  \item[\bf Accessible Worlds:] For a frame $\tuple{W, R}$, let $(w)_R \coloneq \set{u \in W : R(w,u)}$ be the set of worlds that are \textit{accessible} from $w \in W$ by the relation $R$.
+  \item[\bf Frame:] A \textit{modal frame} is an ordered pair $\F = \tuple{W,R}$, where $W$ is any nonempty set (called \textit{worlds}) and $R \subseteq W^2$ is any relation (called \textit{accessibility}).
+  \item[\bf Frame Constraints:]
+    % For an arbitrary set of frame constraints $C$, we may consider all models which satisfy the constraints in $C$.
+    Consider the following constraints on an arbitrary frame $\tuple{W, R}$:
+    \begin{itemize}
+      \item[\sc Serial (ser):] For all $w \in W$ there is some $u \in W$ where $R(w,u)$.
+      \item[\sc Reflexive (ref):] $R(w,w)$ for every $w\in W$.
+      \item[\sc Empty (emp):] $\neg R(w,u)$ for all $w, u\in W$.
+      \item[\sc Symmetric (sym):] $R(u,w)$ whenever $R(w,u)$. 
+      \item[\sc Transitive (tra):] $R(w,v)$ whenever both $R(w,u)$ and $R(u,v)$. 
+      \item[\sc Left Euclidean (leu):] $R(u,v)$ whenever both $R(u,w)$ and $R(v,w)$. 
+      \item[\sc Right Euclidean (reu):] $R(u,v)$ whenever both $R(w,u)$ and $R(w,v)$. 
+      \item[\sc Total (tot):] Either $R(w,u)$ or $R(u,w)$ for all $w,u \in W$. 
+    \end{itemize}
+  \item[\bf Partition:] Given a set $X$, a \textit{partition} of $X$ is any set of subsets $Y \subseteq \wp(X)$ where:
+    \begin{itemize}
+      \item[\it Empty Set:] The empty set is excluded $\varnothing \notin Y$.
+      \item[\it Disjoint:] $A \cap B = \varnothing$ for all $A, B \in Y$ where $A \neq B$. 
+      \item[\it Covering:] For all $x \in X$ there is a $A \in Y$ where $x \in A$, i.e., $X \subseteq \bigcup Y$.\footnote{The \textit{union} of a set of sets $Y$ is defined $\bigcup Y \coloneq \set{x : \exists A \in Y \text{ where } x \in A}$.}
+    \end{itemize}
+  \item[\bf Relational Image:] Let $\img{R} \coloneq \set{(w)_R : w \in W}$ be the \textit{relational image} of $R$.
+\end{enumerate}
+
+
+
+\section*{\it Problem Set: Frames}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
+	\item[\bf Relations:] Evaluate the following, providing a proof or counterexample:
+    \item Every reflexive frame is serial.
+    \item Every serial frame is reflexive.
+    \item How many frames are both symmetric and transitive but not reflexive.
+    \item Every frame that is left and right Euclidean is symmetric and transitive.
+    \item Every frame that is symmetric and transitive is left and right Euclidean.
+    \item Every frame that is transitive and both left and right Euclidean is symmetric.
+    \item Every frame that is symmetric and left Euclidean is transitive.
+    \item There is a finite serial transitive frame that is neither reflexive nor symmetric.
+    \item A symmetric frame is left Euclidean just in case it is right Euclidean.
+    \item The relational image of a transitive, symmetric, reflexive frame is a partition.
+    \item Every total frame is a partition.
+    \item There is a symmetric total frame that is not a partition.
 \end{enumerate}
 
 
 
 
-\section*{\it Problem Set: Truth-Conditions}
+\section*{\sc Propositional Modal Logic: Logical Consequence}
+
+\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
+  \item[\bf Interpretation:] An \textit{interpretation} of $\ML$ over a frame $\F$ is any function $\I : \SL \to \wp(W)$, i.e., where $\I(p_i) \subseteq W$ for every sentence letter $p_i \in \SL$.
+	\item[\bf Model:] A $C$-\textit{model} of $\ML$ is an ordered triple $\M = \tuple{W, R, \I}$ where $\tuple{W, R}$ is a frame satisfying the constraints in $C$ and $\I$ is an interpretation of $\ML$.
+  \item[\bf Semantics:] Let $\vDash$ be the smallest relation to satisfy the following conditions where $\M = \tuple{W, R, \I}$ is any model of $\ML$, both $w, u \in W$, $p_i \in \SL$, $\metaA, \metaB \in \wfs{\ML}$, and we adopt the abbreviation $R(w,u) \coloneq \tuple{w, u} \in R$:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, w\vDash  p_i$ \textit{iff} $w \in \I(p_i)$.
+      \item[] $\M, w\vDash  \neg \metaA$ \textit{iff} $\M, w\nvDash \metaA$.
+      \item[] $\M, w\vDash  \metaA\rightarrow \metaB$ \textit{iff} $\M, w\nvDash \metaA$ or $\M, w\vDash  \metaB$.
+      \item[] $\M, w\vDash  \Box \metaA$ \textit{iff} $\M, u\vDash \metaA$ for every $u \in W$ such that $R(w,u)$.
+    \end{itemize}
+  \item[\bf Truth-Condition:] The \textit{truth-condition} $\interpret{\M}{\metaA} \coloneq \set{w\in W: ~\M, w\vDash  \metaA}$ for a wfs $\metaA \in \wfs{\ML}$ on a model $\M$ is the set of worlds at which $\metaA$ is true.
+  \item[\bf Accessible Worlds:] For a frame $\tuple{W, R}$, let $(w)_R \coloneq \set{u \in W : R(w,u)}$ be the set of worlds that are \textit{accessible} from $w \in W$ by the relation $R$.
+  \item[\bf Restricted:] The truth-condition \textit{restricted} to $(u)_R$ for a wfs $\metaA \in \wfs{\ML}$ on a model $\M$ is the set of worlds $\interpret{\M}{\metaA}^w \coloneq \set{u\in W : R(w, u) \text{ and } \M, u\vDash  \metaA}$.
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[C] \metaA$ just in case for any $C$-model $\M = \tuple{W, R, \I}$ of $\ML$ and world $w \in W$, if $\M, w \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w \vDash \metaA$.
+  \item[\bf Logical Equivalence:] $\metaA \MLequiv[C] \metaB$ just in case $\metaA \MLmodels[C] \metaB$ and $\metaB \MLmodels[C] \metaA$.
+  \item[\bf Logical Truth:] A wfs $\metaA$ of $\ML$ is a $C$-\textit{logical truth} (or $C$-\textit{valid}) just in case $\MLmodels[C] \metaA$.
+  \item[\bf Constraint Set:] Let $C$ be an arbitrary set of frame constraints (not just those above).
+  \item[\bf Extension:] A set of constraints $C'$ \textit{extends} $C$ just in case $C \subseteq C'$. 
+  \item[\bf Strength:] $\MLmodels[C']$ is \textit{at least as strong} as $\MLmodels[C]$ just in case $C'$ extends $C$. 
+\end{enumerate}
+
+
+
+
+\section*{\it Problem Set: Logical Consequence}
 
 \begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
 	\item[\bf Nonempty:] Why are frames required to be nonempty?
+	\item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
+    \begin{enumerate}[label=\arabic*.,resume]\small
+      \begin{multicols}{2}
+        \item $\Box \metaA \MLmodels[K] \Box\Box \metaA$
+        \item $\Box \metaA \MLmodels[K] \metaA$
+        \item $\metaA \MLmodels[K] \Box \metaA$
+        \item $\Box(\metaA \vee \metaB) \MLmodels[K] \Box\metaA \vee \Box\metaB$
+        \item $\Box(\metaA \wedge \metaB) \MLmodels[K] \Box\metaA \wedge \Box\metaB$
+        \item $\Box\metaA \vee \Box\metaB \MLmodels[K] \Box(\metaA \vee \metaB)$
+        \item $\Box\metaA \wedge \Box\metaB \MLmodels[K] \Box(\metaA \wedge \metaB)$
+        \item $\Box \metaA \MLmodels[K] \Diamond \metaA$
+        \item $\Diamond \metaA \MLmodels[K] \Box \metaA$
+        \item $\Diamond\Box \metaA \MLmodels[K] \Box\Diamond \metaA$
+        \item $\Box\Diamond \metaA \MLmodels[K] \Diamond\Box \metaA$
+        \item $\Box \metaA \MLmodels[K] \Box\Diamond \metaA$
+        \item $\MLmodels[K] \neg\Box(\metaA \wedge \neg \metaA)$
+        \item $\Diamond \metaB \MLmodels[K] \neg\Box(\metaA \wedge \neg \metaA)$
+        \item $\Box \metaA \MLmodels[K] \Box(\metaB \rightarrow \metaA)$.
+        \item $\neg\Box\metaA \MLmodels[K] \Box(\metaA \rightarrow \metaB)$.
+      \end{multicols}
+    \end{enumerate}
+	\item[\bf Logical Consequence:] Replace $K$ with the weakest set of constraints $C$ to make the above hold. 
 	\item[\bf Truth-Conditions:] Draw on the semantic definitions above to establish the following:
     % \item $\M, w \MLmodels[] \metaA$ \textit{iff} $w\in\interpret{\M}{\metaA}$.
     % \item $\interpret{\M}{\metaA} \subseteq W$ for all $\metaA \in \wfs{\ML}$, models $\M$ of $\ML$, and worlds $w \in W$.
@@ -608,83 +681,6 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-
-
-\section*{\sc Propositional Modal Logic: Logical Consequence}
-
-\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
-  \item[\bf Frame Constraints:]
-    % For an arbitrary set of frame constraints $C$, we may consider all models which satisfy the constraints in $C$.
-    Consider the following constraints on an arbitrary frame $\tuple{W, R}$:
-    \begin{itemize}
-      \item[\sc Serial (ser):] For all $w \in W$ there is some $u \in W$ where $R(w,u)$.
-      \item[\sc Reflexive (ref):] $R(w,w)$ for every $w\in W$.
-      \item[\sc Empty (emp):] $\neg R(w,u)$ for all $w, u\in W$.
-      \item[\sc Symmetric (sym):] $R(u,w)$ whenever $R(w,u)$. 
-      \item[\sc Transitive (tra):] $R(w,v)$ whenever both $R(w,u)$ and $R(u,v)$. 
-      \item[\sc Left Euclidean (leu):] $R(u,v)$ whenever both $R(u,w)$ and $R(v,w)$. 
-      \item[\sc Right Euclidean (reu):] $R(u,v)$ whenever both $R(w,u)$ and $R(w,v)$. 
-      \item[\sc Total (tot):] Either $R(w,u)$ or $R(u,w)$ for all $w,u \in W$. 
-    \end{itemize}
-  \item[\bf Constraint Set:] Let $C$ be an arbitrary set of frame constraints (not just those above).
-	\item[\bf Model:] A $C$-\textit{model} of $\ML$ is an ordered triple $\M = \tuple{W, R, \I}$ where $\tuple{W, R}$ is a frame satisfying the constraints in $C$ and $\I$ is an interpretation of $\ML$.
-  \item[\bf Logical Consequence:] $\MetaG \MLmodels[C] \metaA$ just in case for any $C$-model $\M = \tuple{W, R, \I}$ of $\ML$ and world $w \in W$, if $\M, w \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w \vDash \metaA$.
-  \item[\bf Logical Equivalence:] $\metaA \MLequiv[C] \metaB$ just in case $\metaA \MLmodels[C] \metaB$ and $\metaB \MLmodels[C] \metaA$.
-  \item[\bf Logical Truth:] A wfs $\metaA$ of $\ML$ is a $C$-\textit{logical truth} (or $C$-\textit{valid}) just in case $\MLmodels[C] \metaA$.
-  \item[\bf Extension:] A set of constraints $C'$ \textit{extends} $C$ just in case $C \subseteq C'$. 
-  \item[\bf Strength:] $\MLmodels[C']$ is \textit{at least as strong} as $\MLmodels[C]$ just in case $C'$ extends $C$. 
-  \item[\bf Partition:] Given a set $X$, a \textit{partition} of $X$ is any set of subsets $Y \subseteq \wp(X)$ where:
-    \begin{itemize}
-      \item[\it Empty Set:] The empty set is excluded $\varnothing \notin Y$.
-      \item[\it Disjoint:] $A \cap B = \varnothing$ for all $A, B \in Y$ where $A \neq B$. 
-      \item[\it Covering:] For all $x \in X$ there is a $A \in Y$ where $x \in A$, i.e., $X \subseteq \bigcup Y$.\footnote{The \textit{union} of a set of sets $Y$ is defined $\bigcup Y \coloneq \set{x : \exists A \in Y \text{ where } x \in A}$.}
-    \end{itemize}
-  \item[\bf Relational Image:] Let $\img{R} \coloneq \set{(w)_R : w \in W}$ be the \textit{relational image} of $R$.
-\end{enumerate}
-
-
-
-
-
-\section*{\it Problem Set: Relations}
-
-\begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
-	\item[\bf Relations:] Evaluate the following, providing a proof or counterexample:
-    \item Every reflexive frame is serial.
-    \item Every serial frame is reflexive.
-    \item How many frames are both symmetric and transitive but not reflexive.
-    \item Every frame that is left and right Euclidean is symmetric and transitive.
-    \item Every frame that is symmetric and transitive is left and right Euclidean.
-    \item Every frame that is transitive and both left and right Euclidean is symmetric.
-    \item Every frame that is symmetric and left Euclidean is transitive.
-    \item There is a finite serial transitive frame that is neither reflexive nor symmetric.
-    \item A symmetric frame is left Euclidean just in case it is right Euclidean.
-    \item The relational image of a transitive, symmetric, reflexive frame is a partition.
-    \item Every total frame is a partition.
-    \item There is a symmetric total frame that is not a partition.
-	\item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
-    \begin{enumerate}[label=\arabic*.,resume]\small
-      \begin{multicols}{2}
-        \item $\Box \metaA \MLmodels[K] \Box\Box \metaA$
-        \item $\Box \metaA \MLmodels[K] \metaA$
-        \item $\metaA \MLmodels[K] \Box \metaA$
-        \item $\Box(\metaA \vee \metaB) \MLmodels[K] \Box\metaA \vee \Box\metaB$
-        \item $\Box(\metaA \wedge \metaB) \MLmodels[K] \Box\metaA \wedge \Box\metaB$
-        \item $\Box\metaA \vee \Box\metaB \MLmodels[K] \Box(\metaA \vee \metaB)$
-        \item $\Box\metaA \wedge \Box\metaB \MLmodels[K] \Box(\metaA \wedge \metaB)$
-        \item $\Box \metaA \MLmodels[K] \Diamond \metaA$
-        \item $\Diamond \metaA \MLmodels[K] \Box \metaA$
-        \item $\Diamond\Box \metaA \MLmodels[K] \Box\Diamond \metaA$
-        \item $\Box\Diamond \metaA \MLmodels[K] \Diamond\Box \metaA$
-        \item $\Box \metaA \MLmodels[K] \Box\Diamond \metaA$
-        \item $\MLmodels[K] \neg\Box(\metaA \wedge \neg \metaA)$
-        \item $\Diamond \metaB \MLmodels[K] \neg\Box(\metaA \wedge \neg \metaA)$
-        \item $\Box \metaA \MLmodels[K] \Box(\metaB \rightarrow \metaA)$.
-        \item $\neg\Box\metaA \MLmodels[K] \Box(\metaA \rightarrow \metaB)$.
-      \end{multicols}
-    \end{enumerate}
-	\item[\bf Logical Consequence:] Replace $K$ with the weakest set of constraints $C$ to make the above hold. 
-\end{enumerate}
 
 
 
@@ -722,7 +718,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
-\section*{\it Problem Set: Characterization}
+\section*{\it Problem Set: Metalogic}
 
 \begin{enumerate}[leftmargin=1.2in]
 	\item[\bf Semantic Proofs:] Provide semantic proofs of the following:
@@ -776,6 +772,268 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
  %    \end{enumerate}
 \end{enumerate}
 
+
+
+
+\section*{\sc Propositional Tense Logic: Syntax}
+
+\begin{enumerate}[leftmargin=1.2in]
+  \item[\bf Language $\boldsymbol{\TL}$:] The propositional language $\TL$ extends $\PL$ to include:
+    \begin{itemize}
+      \item `$\Past$' where $\corner{\Past\metaA}$ reads $\ulcorner$It has always been that $\metaA\urcorner$.
+      \item `$\Future$' where $\corner{\Future\metaA}$ reads $\ulcorner$It is always going to be that $\metaA\urcorner$.
+      % \item `$\Boxdot$' where $\corner{\Boxdot\metaA}$ reads $\ulcorner$It is unpreventable that $\metaA\urcorner$.
+      \item A zero-place operator $\bot$ called the \textit{falsum}.
+    \end{itemize}
+	\item[\bf Well-Formed Sentences:] Letting $p_i \in \L$, the \textit{well-formed sentences} $\TL$ may be defined succinctly:
+    \[ \metaA \Coloneq p_i \mid 
+      \bot \mid 
+      \neg\metaA \mid 
+      \metaA \rightarrow \metaA \mid 
+      \Past\metaA \mid 
+      \Future\metaA
+    \]
+    This is a compact notation for a standard recursive definition.
+    We may then let $\wfs{\TL}$ be the set of all well-formed sentences of $\TL$. 
+	      % \begin{itemize}
+		     %  \item $\bot \in \wfs{\PL}$.
+		     %  \item $\metaA \in \wfs{\PL}$ \textit{if} $\metaA$ is a sentence letter of $\PL$.
+		     %  \item $\corner{\neg \metaA}, \corner{(\metaA \rightarrow \metaB)}, \corner{\Past \metaA}, \corner{\Future \metaA} \in \wfs{\PL}$ \textit{if} $\metaA$ is a wfs of $\PL$ .
+		     %  % \item $\corner{(\metaA \rightarrow \metaB)} \in \wfs{\PL}$ \textit{if} $\metaA$ and $\metaB$ are wfss of $\PL$.
+		     %  % \item $\corner{\Past \metaA} \in \wfs{\PL}$ \textit{if} $\metaA$ is a wfs of $\PL$ .
+		     %  % \item $\corner{\Future \metaA} \in \wfs{\PL}$ \textit{if} $\metaA$ is a wfs of $\PL$ .
+		     %  % \item $\corner{\Boxdot \metaA} \in \wfs{\PL}$ \textit{if} $\metaA$ is a wfs of $\PL$ .
+	      % \end{itemize}
+	\item[\bf Abbreviations:] We maintain the abbreviations given for $\PL$ along with:
+	      \begin{itemize}
+          \begin{multicols}{2}
+            \item $\past\metaA \coloneq \neg\Past\neg \metaA$.
+            \item $\future\metaA \coloneq \neg\Future\neg \metaA$.
+            \item $\top \coloneq \neg \bot$.
+
+            \item $\always\metaA \coloneq \Past\metaA \wedge \metaA \wedge \Future\metaA$.
+            \item $\sometimes\metaA \coloneq \past\metaA \vee \metaA \vee \future\metaA$.
+            \item $\Q\MetaG \coloneq \set{\Q\metaA \mid \metaA \in \MetaG}$
+            % \item $\Diamonddot\metaA \coloneq \neg\Boxdot\neg \metaA$.
+          \end{multicols}
+	      \end{itemize}
+\end{enumerate}
+
+
+
+% eliminate negation from the language
+
+\section*{\it Problem Set: Syntax}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+	\item[\bf Regimentation:] Regiment the following in $\TL$ disambiguating as needed.
+  \item If it is raining, it will stop.
+  \item If it wasn't that cold before, it might still be that cold at some point.
+	\item Either it has rained or it will snow.
+  \item If it will rain, then it has always been so.
+	\item If it will always rain, then it must have rained before.
+	\item It has always been true that it either will rain or it won't.
+	\item If it has always rained, then it will always been that it rained before.
+	\item If it has always rained, then it has always been that it has rained.
+	\item If it will always rain, then it cannot have always not rained.
+	\item If has rained and snowed, then it could tomorrow.
+	\item If rain has always implied clouds, it will always be cloudy if it always rains.
+	\item If rain lead to snow before, then snow might lead to rain.
+\end{enumerate}
+
+
+
+
+\section*{\sc Propositional Tense Logic: Frames}
+
+\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
+  \item[\bf Frame:] A \textit{temporal frame} is an ordered pair $\T = \tuple{T,<}$, where $T$ is a nonempty set (called \textit{times}) and $<$ is a binary relation on $T$ (called \textit{earlier-than}).
+  \item[\bf Abbreviations:] We maintain the usual infix notation for convenience:
+    \begin{itemize}
+      \begin{multicols}{2}
+        \item $x < y \coloneq \tuple{x, y} \in\ <$
+        \item $x \nless y \coloneq \neg(x < y)$
+        \item $x \leq y \coloneq (x < y) \vee (x = y)$ 
+
+        \item $y > x \coloneq x < y$
+        \item $y \ngtr x \coloneq x \nless y$
+        \item $x \geq y \coloneq y \leq x$.
+      \end{multicols}
+    \end{itemize}
+  \item[\bf Frame Constraints:]
+    % For an arbitrary set of frame constraints $C$, we may consider all models which satisfy the constraints in $C$.
+    Consider the following constraints on an arbitrary frame $\tuple{T, <}$:
+    \begin{itemize}
+      \item[\sc Infinite Future (inf):] For all $x \in T$ there is some $y \in T$ where $x < y$.
+      \item[\sc Infinite Past (inp):] For all $x \in T$ there is some $y \in T$ where $y < x$.
+      \item[\sc Irreflexive (irr):] $x \nless x$ for every $x\in T$.
+      \item[\sc Asymmetric (asm):] $y \nless x$ whenever $x < y$. 
+      \item[\sc Transitive (tra):] $x < z$ whenever both $x < y$ and $y < z$. 
+      \item[\sc Left Linear (lln):] Either $y < z$, $y = z$, or $z < y$ whenever both $y < x$ and $z < x$. 
+      \item[\sc Right Linear (rln):] Either $y < z$, $y = z$, or $z < y$ whenever both $x < y$ and $x < z$.
+      \item[\sc Total (tot):] Either $x < y$, $x = y$, or $y < x$ for all $x,y \in T$. 
+      \item[\sc Density (den):] Whenever $x < z$, there is some $y \in T$ where $x < y$ and $y < z$. 
+      \item[\sc Left Discrete (ldi):] Whenever $x < y$, there is some $z < y$ where $u < z$ for all $u < y$. 
+      \item[\sc Right Discrete (rdi):] Whenever $x < y$, there is some $z > x$ where $u > z$ for all $u > x$. 
+    \end{itemize}
+  % \item[\bf Subframe:] $\tuple{T', <'}$ is a \textit{subframe} of $\tuple{T, <}$ \textit{iff} $T' \subseteq T$ and $x < y$ whenever $x <' y$. 
+  % \item[\bf History:] $\T'$ is a \textit{history} of $\T$ \textit{iff} (1) $\T'$ is a subframe of $\T$ that satisfies \textsc{tot}; and (2) for every subframe $\T''$ of $\T$ that satisfies \textsc{tot}, if $\T'$ is a subframe of $\T''$, then $\T' = \T''$ (i.e., $\T'$ is a maximal total subframe of $\T$).
+  % \item[\bf Possible Histories:] Let $H_\T$ be the set of all histories of $\T$.
+  % \item[\bf Inclusion:] We may take $x \in \T' \coloneq (x \in T') \wedge (\T' = \tuple{T', <'})$ for convenience. 
+  % \item[\bf Stability Set:] Let $H_\T^x \coloneq \set{\T' \in H_\T \mid x \in \T'}$ be the histories of $\T$ where $x \in \T'$.
+\end{enumerate}
+
+% left and right linear do not entail tot but the converse hold
+
+
+\section*{\it Problem Set: Frames}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
+	\item[\bf Relations:] Evaluate the following, providing a proof or counterexample:
+    \item Every asymmetric frame is irreflexive.
+    \item Every irreflexive transitive frame is asymmetric.
+    \item Every frame that is not irreflexive has neither beginning nor end.
+    \item Every left and right linear frame is total.
+    \item Every total frame is left and right linear.
+    \item Every frame that is left and right linear is transitive.
+    \item Every frame that is not right linear is right discrete.
+    \item Every frame that is dense is both left and right linear.
+    \item Every frame that is asymmetric and left linear is transitive.
+    \item There is a dense frame with both a beginning and end.
+    \item The relational image of a frame with a beginning and end is finite.
+    \item The relational image of an asymmetric frame is not a partition.
+\end{enumerate}
+
+
+
+
+\section*{\sc Propositional Tense Logic: Logical Consequence}
+
+\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
+  \item[\bf Interpretation:] An \textit{interpretation} of $\TL$ over a frame $\T$ is any function $\I : \SL \to \wp(T)$, i.e., where $\I(p_i) \subseteq T$ for every sentence letter $p_i \in \SL$.
+	\item[\bf Model:] A $C$-\textit{model} of $\TL$ is an ordered triple $\M = \tuple{T, <, \I}$ where $\tuple{T, <}$ is a frame satisfying the constraints in $C$ and $\I$ is an interpretation of $\TL$.
+  \item[\bf Semantics:] Let $\vDash$ be the smallest relation to satisfy the following conditions where $\M = \tuple{T, <, \I}$ is a model of $\TL$, and $x, y \in T$, $p_i \in \SL$, $\metaA, \metaB \in \wfs{\TL}$:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
+      \item[] $\M, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
+      \item[] $\M, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, x\nvDash \metaA$ or $\M, x \vDash  \metaB$.
+      \item[] $\M, x \vDash \Past \metaA$ \textit{iff} $\M, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
+      \item[] $\M, x \vDash \Future \metaA$ \textit{iff} $\M, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
+    \end{itemize}
+  \item[\bf Truth-Condition:] The \textit{truth-condition} $\interpret{\M}{\metaA} \coloneq \set{x \in T: ~\M, x \vDash \metaA}$ for a wfs $\metaA \in \wfs{\TL}$ on a model $\M$ is the set of times when $\metaA$ is true.
+  \item[\bf Constraint Set:] Let $C$ be an arbitrary set of frame constraints (not just those above).
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[C] \metaA$ just in case for any $C$-model $\M = \tuple{T, <, \I}$ of $\TL$ and time $x \in T$, if $\M, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, x \vDash \metaA$.
+  \item[\bf Logical Equivalence:] $\metaA \MLequiv[C] \metaB$ just in case $\metaA \MLmodels[C] \metaB$ and $\metaB \MLmodels[C] \metaA$.
+  \item[\bf Logical Truth:] A wfs $\metaA$ of $\TL$ is a $C$-\textit{logical truth} (or $C$-\textit{valid}) just in case $\MLmodels[C] \metaA$.
+  % \item[\bf Extension:] A set of constraints $C'$ \textit{extends} $C$ just in case $C \subseteq C'$. 
+  % \item[\bf Strength:] $\MLmodels[C']$ is \textit{at least as strong} as $\MLmodels[C]$ just in case $C'$ extends $C$. 
+  % \item[\bf Sound:] The system $\Q$ is \textit{sound} with respect to $\MLmodels[C]$ just in case $\MetaG \MLmodels[C] \metaB$ whenever $\MetaG \Qproves \metaB$.
+  % \item[\bf Complete:] The system $\Q$ is \textit{complete} with respect to $\MLmodels[C]$ just in case $\MetaG \Qproves \metaB$ whenever $\MetaG \MLmodels[C] \metaB$.
+  % \item[\bf Characterization:] The frame constraints $C$ \textit{characterize} the modal proof system $\Q$ just in case $\Q$ is both sound and complete with respect to $\MLmodels[C]$. 
+	\item[\bf Tense Systems:] Consider the following sets of temporal frame constraints:
+    \begin{itemize}
+      \begin{multicols}{2}
+        \item[\it Strict Partial:] $P = \set{\textsc{irr}, \textsc{tra}}$.
+        \item[\it Open Future:] $O = P \cup \set{\textsc{lln}}$.
+        \item[\it Linear:] $L = O \cup \set{\textsc{rln}}$.
+        \item[\it Dense Linear:] $E = L \cup \set{\textsc{den}}$.
+
+        \item[\it Dense Infinite:] $Q = E \cup \set{\textsc{inf}, \textsc{inp}}$.
+        \item[\it Discrete Linear:] $I = L \cup \set{\textsc{ldi}, \textsc{rdi}}$.
+        \item[\it Discrete Infinite:] $Z = I \cup \set{\textsc{inf}, \textsc{inp}}$.
+        \item[\it Discrete Finite:] $F = I \cup \set{\neg\textsc{inf}, \neg\textsc{inp}}$.
+      \end{multicols}
+    \end{itemize}
+    % \item[\bf Abbreviation:] Let $\MetaG \MLmodels[] \metaA \coloneq \MetaG \MLmodels[\varnothing] \metaA$ for convenience. 
+  % \item[\bf Extension:] A set of constraints $C'$ \textit{extends} $C$ just in case $C \subseteq C'$. 
+  % \item[\bf Stronger:] A proof system $\Q$ is \textit{at least as strong as} $\Q'$ just in case every $\Q'$-proof is a $\Q$-proof. 
+  % \item[\bf Hierarchy:] The modal proof systems form a hierarchy of increasing strength:
+  %   \begin{itemize}
+  %     \begin{multicols}{2}
+  %       \item $\K$ is weaker than $\De$
+  %       \item $\De$ is weaker than $\T$
+  %       \item $\T$ is weaker than $\B$ and $\Sfour$ 
+  %       \item $\B$ and $\Sfour$ are weaker than $\Sfive$
+  %     \end{multicols}
+  %   \end{itemize}
+\end{enumerate}
+
+% what is the constraint for beginning and end
+% show that C is the same as P + tot
+% what are some other natural systems of constraints
+
+
+
+
+
+
+
+
+\section*{\it Problem Set: Characterization}
+
+\begin{enumerate}[leftmargin=1.2in]
+	\item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
+    \begin{enumerate}[label=\arabic*.,resume]\small
+      \begin{multicols}{2}
+        % \item \textit{If} $\MetaG \MLmodels[] \metaA$, \textit{then} $\Future\MetaG \MLmodels[] \Future \metaA$.
+        \item $\MLmodels[] \Past(\metaA \rightarrow \metaB) \rightarrow (\Past\metaA \rightarrow \Past\metaB)$.
+        \item $\MLmodels[] \past\top$.
+        \item $\MLmodels[] \metaA \rightarrow \Future \past \metaA$.
+        \item $\MLmodels[] \Past\Past\metaA \rightarrow \Past\metaA$.
+        \item $\MLmodels[] \Past\bot \vee \past\Past\bot$.
+        \item $\MLmodels[] \Past\Future\metaA \rightarrow \always\metaA$.
+        \item $\MLmodels[] \Past\metaA \rightarrow \Past\Past\metaA$.
+        \item $\MLmodels[] (\past\top \wedge \metaA \wedge \Future\metaA) \rightarrow \past\Future\metaA$.
+
+        % \item \textit{If} $\MLmodels[] \metaA$, \textit{then} $\MLmodels[] \metaA_{\tuple{\textsc{p} | \textsc{f}}}$.
+        \item $\MLmodels[] \Future(\metaA \rightarrow \metaB) \rightarrow (\Future\metaA \rightarrow \Future\metaB)$.
+        \item $\MLmodels[] \future\top$.
+        \item $\MLmodels[] \metaA \rightarrow \Past \future \metaA$.
+        \item $\MLmodels[] \Future\Future\metaA \rightarrow \Future\metaA$.
+        \item $\MLmodels[] \Future\bot \vee \future\Future\bot$.
+        \item $\MLmodels[] \Future\Past\metaA \rightarrow \always\metaA$.
+        \item $\MLmodels[] \Future\metaA \rightarrow \Future\Future\metaA$.
+        \item $\MLmodels[] (\future\top \wedge \metaA \wedge \Past\metaA) \rightarrow \future\Past\metaA$.
+      \end{multicols}
+    \end{enumerate}
+  \item[\bf Logical Consequence:] For each of the claims above, strengthen $\MLmodels[]$ by imposing the weakest set of constraints $C$ which make that claim valid. 
+	% \item[\bf Equivalences:] Provide semantic proofs of the following equivalences:
+ %    \begin{enumerate}[label=(\arabic*),resume]\small
+ %      \begin{multicols}{2}
+ %        \item $\neg\Box \metaA \MLequiv[K] \Diamond\neg \metaA$.
+ %        \item $\neg\Diamond \metaA \MLequiv[K] \Box\neg \metaA$.
+ %        \item $\Diamond\Box \metaA \MLequiv[B] \Diamond\Box\Diamond\Box \metaA$ 
+ %        \item $\Box\Box \metaA \MLequiv[4] \Box \metaA$.
+ %        \item $\Box\Diamond \metaA \MLequiv[4] \Diamond \metaA$.
+ %        \item $\Diamond\Box \metaA \MLequiv[5] \Box \metaA$.
+ %      \end{multicols}
+ %    \end{enumerate}
+	% \item[\bf Counter Models:] Provide counter models to demonstrate the following:
+ %    \begin{enumerate}[label=(\arabic*),resume]\small
+ %      \begin{multicols}{2}
+ %        \item $\nvDash_{\mathcal{C}_{K}} \Box A \rightarrow A$.
+ %        \item $\nvDash_{\mathcal{C}_{K}} \Box A \rightarrow \Box A$.
+ %        \item $\nvDash_{\mathcal{C}_{S4}} A \rightarrow \Box\Box A$.
+ %        \item $\nvDash_{\mathcal{C}_{S4}} \Box A \rightarrow \Box\Box A$.
+ %        \item $\nvDash_{\mathcal{C}_{T}} \Box A \rightarrow \Box\Box A$.
+ %        \item $\nvDash_{\mathcal{C}_{T}} \Box A \rightarrow \Box\Box A$.
+ %      \end{multicols}
+ %    \end{enumerate}
+	% \item[\bf Paradoxes:] Prove the following analogues of the paradoxes given above:
+ %    \begin{enumerate}[label=(\arabic*),resume]\small
+ %      \begin{multicols}{2}
+ %        \item $\MLmodels[K] \Box A\rightarrow\Box(B\rightarrow A)$.
+ %        \item $\MLmodels[K] \neg\Box A\rightarrow\Box(A\rightarrow B)$.
+ %      \end{multicols}
+ %    \end{enumerate}
+	% \item[\bf Irrelevance:] Prove the following for an arbitrary $A,B$ and $\M^\square$ of $\ML$:
+ %    \begin{enumerate}[label=(\arabic*),resume]\small
+ %      \item If $\Box A$, then $\interpret{\M^\square}{B}=\interpret{\M^\square}{B\wedge A}$.
+ %      \item If $\neg\Box A$, then $\interpret{\M^\square}{B}=\interpret{\M^\square}{B\vee A}$.
+ %            %\item $\M^\square,w\vDash  \Box A$ \textit{iff} $\interpret{\M^\square}{A}=W$.
+ %            %\item $\M^\square,w\vDash  \neg\Box A$ \textit{iff} $\interpret{\M^\square}{A}=\varnothing$.
+ %    \end{enumerate}
+\end{enumerate}
 
 \pagebreak
 \noindent
