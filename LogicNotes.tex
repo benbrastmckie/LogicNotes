@@ -571,6 +571,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
       \item[\sc Right Euclidean (reu):] $R(u,v)$ whenever both $R(w,u)$ and $R(w,v)$. 
       \item[\sc Total (tot):] Either $R(w,u)$ or $R(u,w)$ for all $w,u \in W$. 
     \end{itemize}
+  \item[\bf Accessible Worlds:] Let $(w)_R \coloneq \set{u \in W : R(w,u)}$ be the set of worlds that are \textit{accessible} from $w \in W$ by the relation $R$.
   \item[\bf Partition:] Given a set $X$, a \textit{partition} of $X$ is any set of subsets $Y \subseteq \wp(X)$ where:
     \begin{itemize}
       \item[\it Empty Set:] The empty set is excluded $\varnothing \notin Y$.
@@ -616,7 +617,6 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
       \item[] $\M, w\vDash  \Box \metaA$ \textit{iff} $\M, u\vDash \metaA$ for every $u \in W$ such that $R(w,u)$.
     \end{itemize}
   \item[\bf Truth-Condition:] The \textit{truth-condition} $\interpret{\M}{\metaA} \coloneq \set{w\in W: ~\M, w\vDash  \metaA}$ for a wfs $\metaA \in \wfs{\ML}$ on a model $\M$ is the set of worlds at which $\metaA$ is true.
-  \item[\bf Accessible Worlds:] For a frame $\tuple{W, R}$, let $(w)_R \coloneq \set{u \in W : R(w,u)}$ be the set of worlds that are \textit{accessible} from $w \in W$ by the relation $R$.
   \item[\bf Restricted:] The truth-condition \textit{restricted} to $(u)_R$ for a wfs $\metaA \in \wfs{\ML}$ on a model $\M$ is the set of worlds $\interpret{\M}{\metaA}^w \coloneq \set{u\in W : R(w, u) \text{ and } \M, u\vDash  \metaA}$.
   \item[\bf Logical Consequence:] $\MetaG \MLmodels[C] \metaA$ just in case for any $C$-model $\M = \tuple{W, R, \I}$ of $\ML$ and world $w \in W$, if $\M, w \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w \vDash \metaA$.
   \item[\bf Logical Equivalence:] $\metaA \MLequiv[C] \metaB$ just in case $\metaA \MLmodels[C] \metaB$ and $\metaB \MLmodels[C] \metaA$.
@@ -877,11 +877,6 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
       \item[\sc Left Discrete (ldi):] Whenever $x < y$, there is some $z < y$ where $u < z$ for all $u < y$. 
       \item[\sc Right Discrete (rdi):] Whenever $x < y$, there is some $z > x$ where $u > z$ for all $u > x$. 
     \end{itemize}
-  % \item[\bf Subframe:] $\tuple{T', <'}$ is a \textit{subframe} of $\tuple{T, <}$ \textit{iff} $T' \subseteq T$ and $x < y$ whenever $x <' y$. 
-  % \item[\bf History:] $\T'$ is a \textit{history} of $\T$ \textit{iff} (1) $\T'$ is a subframe of $\T$ that satisfies \textsc{tot}; and (2) for every subframe $\T''$ of $\T$ that satisfies \textsc{tot}, if $\T'$ is a subframe of $\T''$, then $\T' = \T''$ (i.e., $\T'$ is a maximal total subframe of $\T$).
-  % \item[\bf Possible Histories:] Let $H_\T$ be the set of all histories of $\T$.
-  % \item[\bf Inclusion:] We may take $x \in \T' \coloneq (x \in T') \wedge (\T' = \tuple{T', <'})$ for convenience. 
-  % \item[\bf Stability Set:] Let $H_\T^x \coloneq \set{\T' \in H_\T \mid x \in \T'}$ be the histories of $\T$ where $x \in \T'$.
 \end{enumerate}
 
 % left and right linear do not entail tot but the converse hold
@@ -1034,6 +1029,35 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
  %            %\item $\M^\square,w\vDash  \Box A$ \textit{iff} $\interpret{\M^\square}{A}=W$.
  %            %\item $\M^\square,w\vDash  \neg\Box A$ \textit{iff} $\interpret{\M^\square}{A}=\varnothing$.
  %    \end{enumerate}
+\end{enumerate}
+
+
+\section*{\sc Propositional Tense Logic: Indeterminacy}
+  
+
+\begin{enumerate}[leftmargin=1.2in]
+  \item[\bf Subframe:] $\tuple{T', <'}$ is a \textit{subframe} of $\tuple{T, <}$ \textit{iff} $T' \subseteq T$ and $x < y$ whenever $x <' y$. 
+  \item[\bf History:] $\T'$ is a \textit{history} of $\T$ \textit{iff} (1) $\T'$ is a subframe of $\T$ that satisfies \textsc{tot}; and (2) for every subframe $\T''$ of $\T$ that satisfies \textsc{tot}, if $\T'$ is a subframe of $\T''$, then $\T' = \T''$ (i.e., $\T'$ is a maximal total subframe of $\T$).
+  \item[\bf Possible Histories:] Let $H_\T$ be the set of all histories of $\T$.
+  \item[\bf Inclusion:] We may take $x \in \T' \coloneq (x \in T') \wedge (\T' = \tuple{T', <'})$ for convenience. 
+  \item[\bf Stability Set:] Let $H_\T^x \coloneq \set{\T' \in H_\T \mid x \in \T'}$ be the histories of $\T$ where $x \in \T'$.
+  \item[\bf Language $\boldsymbol{\TL_\square}$:] $\TL_\square$ extend $\TL$ to include `$\Boxdot$' where $\corner{\Boxdot\metaA}$ reads $\ulcorner$It is inevitable that $\metaA\urcorner$.
+  \item[\bf Inevitability:] $\vDash$ is defined recursively for a model $\M = \tuple{T, <, \I}$ of $\TL$, history $\tuple{T', <'}$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\TL}$:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, \tuple{T', <'}, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
+      \item[] $\M, \tuple{T', <'}, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
+      \item[] $\M, \tuple{T', <'}, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \tuple{T', <'}, x\nvDash \metaA$ or $\M, \tuple{T', <'}, x \vDash  \metaB$.
+      \item[] $\M, \tuple{T', <'}, x \vDash \Past \metaA$ \textit{iff} $\M, \tuple{T', <'}, y\vDash \metaA$ for every $y \in T'$ such that $y <' x$.
+      \item[] $\M, \tuple{T', <'}, x \vDash \Future \metaA$ \textit{iff} $\M, \tuple{T', <'}, y\vDash \metaA$ for every $y \in T'$ such that $x <' y$.
+      \item[] $\M, \tuple{T', <'}, x \vDash \Boxdot \metaA$ \textit{iff} $\M, \tuple{T'', <''}, x\vDash \metaA$ for every $\tuple{T'', <''} \in H_\T^x$.
+    \end{itemize}
+  \item[\bf Truth-Value Gaps:] Thomason defines \textit{truth relative to a model and time} as:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, x \vDash \metaA$ \textit{iff} $\M, \T', x \vDash \metaA$ for all $\T' \in H_\T^x$.
+      \item[] $\M, x \Dashv \metaA$ \textit{iff} $\M, \T', x \vDash \metaA$ for all $\T' \in H_\T^x$.
+    \end{itemize}
+    % Otherwise neither, e.g, $\Future\metaA \vee \Future\neg\metaA$.
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{T, <, \I}$ of $\TL_\square$ and time $x \in T$, if $\M, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, x \vDash \metaA$.
 \end{enumerate}
 
 \pagebreak
