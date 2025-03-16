@@ -910,6 +910,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	\item[\bf Model:] A $C$-\textit{model} of $\TL$ is an ordered triple $\M = \tuple{T, <, \I}$ where $\tuple{T, <}$ is a frame satisfying the constraints in $C$ and $\I$ is an interpretation of $\TL$.
   \item[\bf Semantics:] Let $\vDash$ be the smallest relation to satisfy the following conditions where $\M = \tuple{T, <, \I}$ is a model of $\TL$, and $x, y \in T$, $p_i \in \SL$, $\metaA, \metaB \in \wfs{\TL}$:
     \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, x \nvDash \bot$
       \item[] $\M, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
       \item[] $\M, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
       \item[] $\M, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, x\nvDash \metaA$ or $\M, x \vDash  \metaB$.
