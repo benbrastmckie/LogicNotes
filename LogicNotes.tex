@@ -1032,6 +1032,9 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 \end{enumerate}
 
 
+
+
+
 \section*{\sc Propositional Tense Logic: Indeterminacy}
   
 \begin{enumerate}[leftmargin=1.2in]
@@ -1055,6 +1058,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
   \item[\bf Language $\boldsymbol{\TL_\square}$:] Let $\TL_\square$ extend $\TL$ to include `$\Inevitably$' where $\corner{\Inevitably\metaA}$ reads $\ulcorner$Inevitably $\metaA\urcorner$.
   \item[\bf Inevitability:] We define $\vDash$ recursively for a model $\M = \tuple{T, <, \I}$ of $\TL$, history $\T_i = \tuple{T_i, <_i}$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\TL}$:
     \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, \T_i, x \nvDash \bot$.
       \item[] $\M, \T_i, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
       \item[] $\M, \T_i, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
       \item[] $\M, \T_i, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \T_i, x\nvDash \metaA$ or $\M, \T_i, x \vDash  \metaB$.
@@ -1071,6 +1075,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
   %   % Otherwise neither, e.g, $\Future\metaA \vee \Future\neg\metaA$.
   % \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{T, <, \I}$ of $\TL_\square$ and time $x \in T$, if $\M, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, x \vDash \metaA$.
 \end{enumerate}
+
 
 
 
@@ -1091,6 +1096,59 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
         \item $\MLmodels[] \future\metaA \vee \future\neg\metaA$.
         \item $\MLmodels[] \metaA \rightarrow \Past \future \metaA$.
         \item $\MLmodels[] \Future\Past\metaA \rightarrow \always\metaA$.
+      \end{multicols}
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\section*{\sc Propositional Bimodal Logic: Cartesian Semantics}
+  
+\begin{enumerate}[leftmargin=1.2in]
+	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BL$ are defined:
+    \[ \metaA \Coloneq p_i \mid 
+      \bot \mid 
+      \neg\metaA \mid 
+      \metaA \rightarrow \metaA \mid 
+      \Past\metaA \mid 
+      \Future\metaA \mid
+      \Box\metaA
+    \]
+    Define $\wfs{\BL}$ to be the set of all well-formed sentences of $\BL$.
+  \item[\bf Abbreviation:] We maintain the abbreviations from $\PL$, $\ML$, and $\TL$.
+  \item[\bf Frame:] A \textit{Cartesian frame} is an ordered quadruple $\C = \tuple{W, R, T, <}$ where $\tuple{W, R}$ is a modal frame and $\tuple{T, <}$ is a temporal frame. 
+  \item[\bf Interpretation:] A \textit{Cartesian interpretation} of $\BL$ over $\C$ is a function $\I : \SL \to \wp(W \times T)$, i.e., where $\I(p_i) \subseteq W \times T$ for every sentence letter $p_i \in \SL$. 
+  \item[\bf Model:] A Cartesian model of $\BL$ is an $\M = \tuple{W, R, T, <, \I}$ where $\tuple{W, R, T, <}$ is a Cartesian frame and $\I$ is a Cartesian interpretation of $\BL$.
+  \item[\bf Semantics:] We define $\vDash$ recursively for a model $\M = \tuple{W, R, T, <, \I}$ of $\BL$, worlds $w, u \in W$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\TL}$:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, w, x \nvDash \bot$.
+      \item[] $\M, w, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
+      \item[] $\M, w, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
+      \item[] $\M, w, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, w, x\nvDash \metaA$ or $\M, w, x \vDash  \metaB$.
+      \item[] $\M, w, x \vDash \Past \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
+      \item[] $\M, w, x \vDash \Future \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
+      \item[] $\M, w, x \vDash \Box \metaA$ \textit{iff} $\M, u, x\vDash \metaA$ for every $u \in W$. % where $R(w, u)$.
+    \end{itemize}
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, R, T, <, \I}$ of $\BL$, world $w \in W$, and time $x \in T$, if $\M, w, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w, x \vDash \metaA$.
+  % \item[\bf Truth-Value Gaps:] Thomason defines \textit{truth} relative to a model and time as:
+  %   \begin{itemize}[leftmargin=.15in]\small
+  %     \item[] $\M, x \vDash \metaA$ \textit{iff} $\M, \T_i, x \vDash \metaA$ for all $\T_i \in H_\T^x$.
+  %     \item[] $\M, x \Dashv \metaA$ \textit{iff} $\M, \T_i, x \vDash \metaA$ for all $\T_i \in H_\T^x$.
+  %   \end{itemize}
+  %   % Otherwise neither, e.g, $\Future\metaA \vee \Future\neg\metaA$.
+  % \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{T, <, \I}$ of $\TL_\square$ and time $x \in T$, if $\M, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, x \vDash \metaA$.
+\end{enumerate}
+
+
+
+\section*{\it Problem Set: Cartesian Semantics}
+
+\begin{enumerate}[leftmargin=1.2in]
+  \item[\bf Logical Consequence:] Without imposing any restriction on the models of $\TL_\square$, evaluate the following where $p_i \in \SL$, providing a proof or countermodel:
+    \begin{enumerate}[label=\arabic*.,resume]\small
+      \begin{multicols}{2}
+        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$.
       \end{multicols}
     \end{enumerate}
 \end{enumerate}

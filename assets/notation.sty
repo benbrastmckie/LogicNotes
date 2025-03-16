@@ -87,14 +87,14 @@
 % Number systems
 \newcommand{\N}{\mathbb{N}}                % Natural numbers ℕ
 \newcommand{\Z}{\mathbb{Z}}                % Integers ℤ
-\newcommand{\C}{\mathbb{C}}                % Complex numbers ℂ
+% \newcommand{\C}{\mathbb{C}}                % Complex numbers ℂ
 \newcommand{\D}{\mathbb{D}}                % Domain D
 \newcommand{\W}{\mathbb{W}}                % World set W
 
 % Calligraphic letters for sets and structures
 \newcommand{\F}{\mathcal{F}}               % Structure F
 \newcommand{\A}{\mathcal{A}}               % Structure A
-\newcommand{\B}{\mathcal{B}}               % Structure B
+% \newcommand{\B}{\mathcal{B}}               % Structure B
 \newcommand{\I}{\mathcal{I}}               % Structure I
 \newcommand{\J}{\mathcal{J}}               % Structure J
 \renewcommand{\P}{\mathcal{P}}             % Structure P
@@ -147,7 +147,7 @@
 \DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 \newcommand{\Inevitably}{\mathpalette\superimpose{{\Box}{\cdot}}}
-\newcommand{\inevitably}{\mathpalette\superimpose{{\Diamond}{\raisebox{1pt}{$\cdot$}}}}
+\newcommand{\inevitably}{\mathpalette\superimpose{{\Diamond}{\raisebox{.5pt}{$\cdot$}}}}
 
 % Modal Logic derivation symbols
 \newcommand{\ML}{\mathcal{L}^{\square}}             % Modal Logic
@@ -162,6 +162,8 @@
 % Modal systems
 \newcommand{\K}{\mathcal{K}}                  % Normal modal logic
 \newcommand{\T}{\mathcal{T}}                  % Alethic
+\newcommand{\B}{\mathcal{B}}                  % Bimodal
+\newcommand{\C}{\mathcal{C}}                  % Bimodal
 \newcommand{\De}{\mathcal{D}}                 % Deontic
 \newcommand{\Sfour}{\mathcal{S}4}             % Alethic + Transitive 
 \newcommand{\Sfive}{\mathcal{S}5}             % Alethic + Euclidean
@@ -177,7 +179,8 @@
 \newcommand{\Qproves}{\vdash_\Q}              % Arbitrary
 
 % Tense operators
-\newcommand{\TL}{\mathcal{L}^{\textsc{t}}}             % Modal Logic
+\newcommand{\TL}{\mathcal{L}^{\textsc{t}}}             % Tensed Language
+\newcommand{\TLI}{\mathcal{L}^{\textsc{t}}_\square}    % Tensed Language with Indeterminacy
 \newcommand{\past}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.5pt}{\tiny \hspace{.4pt}\textsc{p}}}}}
 \newcommand{\Past}{\mathpalette\superimpose{{\Box}{\raisebox{1.2pt}{\tiny \textsc{p}}}}}
 \newcommand{\future}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.5pt}{\tiny \textsc{f}}}}}
@@ -195,7 +198,8 @@
 
 
 
-% % Bimodal systems
+% Bimodal systems
+\newcommand{\BL}{\mathcal{L}^{\textsc{b}}}             % Bimodal Language
 % \newcommand{\since}{\lhd}
 % \newcommand{\until}{\rhd}
 % \newcommand{\Next}{\mathpalette\superimpose{{\bigcirc}{\raisebox{1.2pt}{\tiny \textsc{f}}}}}
