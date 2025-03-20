@@ -5,10 +5,10 @@
 These notes aim to present a number of logical systems in a uniform notation rather a full exposition of each system.
 Although the [current version](https://github.com/benbrastmckie/LogicNotes/blob/main/LogicNotesCurrent.pdf) is under construction, the notes already include the following systems:
 
-- Propositional Extensional Logic
-- Propositional Modal Logics
-- Propositional Tense Logics
-- Propositional Bimodal Logics
+- Propositional Logic
+- Modal Logics
+- Tense Logics
+- Bimodal Logics
 
 I will be both rewriting these notes to conform to the conventions in the [ForAllX textbook](https://github.com/benbrastmckie/ForAllX) as well as expanding consideration to the following systems for [24.711 "The Modern History of Modal Logic"](https://github.com/benbrastmckie/ModalHistory) at MIT, Spring 2025:
 
