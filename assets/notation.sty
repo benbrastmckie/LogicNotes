@@ -146,8 +146,6 @@
 \newcommand{\always}{\ensuremath \raisebox{-1.3pt}{$\triangle$}}                           % Possibility ◇
 \DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
-\newcommand{\Inevitably}{\mathpalette\superimpose{{\Box}{\cdot}}}
-\newcommand{\inevitably}{\mathpalette\superimpose{{\Diamond}{\raisebox{.5pt}{$\cdot$}}}}
 
 % Modal Logic derivation symbols
 \newcommand{\ML}{\mathcal{L}^{\square}}             % Modal Logic
@@ -185,6 +183,12 @@
 \newcommand{\Past}{\mathpalette\superimpose{{\Box}{\raisebox{1.2pt}{\tiny \textsc{p}}}}}
 \newcommand{\future}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.5pt}{\tiny \textsc{f}}}}}
 \newcommand{\Future}{\mathpalette\superimpose{{\Box}{\raisebox{1.2pt}{\tiny \textsc{f}}}}}
+\newcommand{\Next}{\mathpalette\superimpose{{\bigcirc}{\raisebox{1.2pt}{\tiny \textsc{f}}}}}
+\newcommand{\Previous}{\mathpalette\superimpose{{\bigcirc}{\raisebox{1.2pt}{\tiny \textsc{p}}}}}
+\newcommand{\since}{\lhd}
+\newcommand{\until}{\rhd}
+\newcommand{\Inevitably}{\mathpalette\superimpose{{\Box}{\cdot}}}
+\newcommand{\inevitably}{\mathpalette\superimpose{{\Diamond}{\raisebox{.5pt}{$\cdot$}}}}
 
 % \newcommand{\TLproves}{\vdash_{\square}}            % Modal Logic
 % \newcommand{\TLequiv}[1][]{\equiv_{#1}}            % Modal Logic
@@ -200,19 +204,24 @@
 
 % Bimodal systems
 \newcommand{\BL}{\mathcal{L}^{\textsc{b}}}             % Bimodal Language
-% \newcommand{\since}{\lhd}
-% \newcommand{\until}{\rhd}
-% \newcommand{\Next}{\mathpalette\superimpose{{\bigcirc}{\raisebox{1.2pt}{\tiny \textsc{f}}}}}
-% \newcommand{\Previous}{\mathpalette\superimpose{{\bigcirc}{\raisebox{1.2pt}{\tiny \textsc{p}}}}}
-% \newcommand{\Intersect}{\mathpalette\superimpose{{\Box}{\times}}}
-% \newcommand{\Boxdot}{\mathpalette\superimpose{{\Box}{\cdot}}}
-% \newcommand{\intersect}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.1pt}{\scalebox{0.7}{$\times$}}}}}
-% \newcommand{\Openfuture}{\mathpalette\superimpose{{\Box}{\smalltriangleright}}}
-% \newcommand{\Openpast}{\mathpalette\superimpose{{\Box}{\smalltriangleleft}}}
-% \newcommand{\Will}{\mathpalette\superimpose{{\Box}{\raisebox{.7pt}{\tiny !}}}}
-% \newcommand{\will}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.1pt}{\tiny !}}}}
-% \newcommand{\Could}{\mathpalette\superimpose{{\Box}{\raisebox{.7pt}{\tiny ?}}}}
-% \newcommand{\could}{\mathpalette\superimpose{{\Diamond}{\raisebox{1pt}{\tiny ?}}}}
+\newcommand{\BLP}{\mathcal{L}^{\textsc{b}}_+}             % Extended bimodal Language
+\newcommand{\BLC}{\mathcal{L}^{\textsc{b}}_\times}             % Bimodal Language with Montague modal
+\newcommand{\diamondtimes}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.65pt}{\tiny $\times$}}}}
+\newcommand{\Relative}{\mathpalette\superimpose{{\Box}{\circ}}}
+\newcommand{\relative}{\mathpalette\superimpose{{\Diamond}{\raisebox{.5pt}{$\circ$}}}}
+
+% Mixed Operators
+\newcommand{\Openfuture}{\mathpalette\superimpose{{\Box}{\smalltriangleright}}}
+\newcommand{\Openpast}{\mathpalette\superimpose{{\Box}{\smalltriangleleft}}}
+\newcommand{\Will}{\mathpalette\superimpose{{\Box}{\raisebox{.7pt}{\tiny !}}}}
+\newcommand{\will}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.1pt}{\tiny !}}}}
+\newcommand{\Could}{\mathpalette\superimpose{{\Box}{\raisebox{.7pt}{\tiny ?}}}}
+\newcommand{\could}{\mathpalette\superimpose{{\Diamond}{\raisebox{1pt}{\tiny ?}}}}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\braket}[1]{\left\langle#1\right\rangle}
+\newcommand{\ketbra}[2]{\left|#1\right\rangle\left\langle#2\right|}
+
 % \newcommand{\diamondtimes}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.65pt}{\tiny $\times$}}}}
 % \newcommand{\fndiamondtimes}{\mathpalette\superimpose{{\Diamond}{\raisebox{1.1pt}{\tiny $\times$}}}}
 

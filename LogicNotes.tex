@@ -873,9 +873,9 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
       \item[\sc Left Linear (lln):] Either $y < z$, $y = z$, or $z < y$ whenever both $y < x$ and $z < x$. 
       \item[\sc Right Linear (rln):] Either $y < z$, $y = z$, or $z < y$ whenever both $x < y$ and $x < z$.
       \item[\sc Total (tot):] Either $x < y$, $x = y$, or $y < x$ for all $x,y \in T$. 
-      \item[\sc Density (den):] Whenever $x < z$, there is some $y \in T$ where $x < y$ and $y < z$. 
-      \item[\sc Left Discrete (ldi):] Whenever $x < y$, there is some $z < y$ where $u < z$ for all $u < y$. 
-      \item[\sc Right Discrete (rdi):] Whenever $x < y$, there is some $z > x$ where $u > z$ for all $u > x$. 
+      \item[\sc Density (den):] If $x < z$, there is some $y \in T$ where $x < y$ and $y < z$. 
+      \item[\sc Left Discrete (ldi):] If $x < y$, there is some $z < y$ where $u \leq z$ for all $x \leq u < y$. 
+      \item[\sc Right Discrete (rdi):] If $x < y$, there is some $z > x$ where $u \geq z$ for all $x < u \leq y$. 
     \end{itemize}
 \end{enumerate}
 
@@ -1055,13 +1055,13 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
   \item[\bf History:] $\T_i$ is a \textit{history} of the frame $\T$ \textit{iff:} (1) $\T_i$ is a subframe of $\T$ that satisfies \textsc{tot}; and (2) for every subframe $\T_j$ of $\T$ that satisfies \textsc{tot}, if $\T_i$ is a subframe of $\T_j$, then $\T_i = \T_j$ (i.e., $\T_i$ is a \textit{maximal total subframe} of $\T$).
   \item[\bf Possible Histories:] Let $H_\T$ be the set of all histories of $\T$.
   % \item[\bf Inclusion:] We may take $x \in \T_i \coloneq (x \in T_i) \wedge (\T_i = \tuple{T_i, <_i})$ for convenience. 
-  \item[\bf Stability Set:] Let $H_\T^x \coloneq \set{\T_i \in H_\T \mid x \in T_i}$ be the histories of $\T$ in which $x$ occurs.
+  \item[\bf Inevitability Set:] Let $H_\T^x \coloneq \set{\T_i \in H_\T \mid x \in T_i}$ be the histories of $\T$ in which $x$ occurs.
   \item[\bf Language $\boldsymbol{\TL_\square}$:] Let $\TL_\square$ extend $\TL$ to include `$\Inevitably$' where $\corner{\Inevitably\metaA}$ reads $\ulcorner$Inevitably $\metaA\urcorner$.
   \item[\bf Inevitability:] We define $\vDash$ recursively for a model $\M = \tuple{T, <, \I}$ of $\TL$, history $\T_i = \tuple{T_i, <_i}$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\TL}$:
     \begin{itemize}[leftmargin=.15in]\small
       \item[] $\M, \T_i, x \nvDash \bot$.
       \item[] $\M, \T_i, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
-      \item[] $\M, \T_i, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
+      \item[] $\M, \T_i, x \vDash \neg \metaA$ \textit{iff} $\M, \T_i, x\nvDash \metaA$.
       \item[] $\M, \T_i, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \T_i, x\nvDash \metaA$ or $\M, \T_i, x \vDash  \metaB$.
       \item[] $\M, \T_i, x \vDash \Past \metaA$ \textit{iff} $\M, \T_i, y\vDash \metaA$ for every $y \in T_i$ such that $y <_i x$.
       \item[] $\M, \T_i, x \vDash \Future \metaA$ \textit{iff} $\M, \T_i, y\vDash \metaA$ for every $y \in T_i$ such that $x <_i y$.
@@ -1107,6 +1107,71 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 \section*{\sc Propositional Bimodal Logic: Cartesian Semantics}
   
 \begin{enumerate}[leftmargin=1.2in]
+	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BLC$ are defined:
+    \[ \metaA \Coloneq p_i \mid 
+      \bot \mid 
+      \neg\metaA \mid 
+      \metaA \rightarrow \metaA \mid 
+      \Past\metaA \mid 
+      \Future\metaA \mid
+      \boxtimes\metaA \mid
+      \Box\metaA
+    \]
+    Define $\wfs{\BLC}$ to be the set of all well-formed sentences of $\BLC$.
+  \item[\bf Abbreviation:] We maintain the abbreviations from $\PL$, $\ML$, and $\TL$ along with the convention
+    $\Q\Gamma \coloneq \set{\Q\gamma : \gamma \in \Gamma}$ for any $\Q \in \set{\Past, \Future, \boxtimes, \Box}$.
+    % where $\metaA_{\tuple{\textsc{p} | \textsc{f}}}$ is the result of exchanging all occurrences of $\Past$ and $\Future$ in $\metaA$, the \textit{Logic of Tense and Modality} \textbf{TM} is the smallest extension of the set of classical propositional tautologies \textbf{PL} to be closed under all instances of the schemata following:
+  \item[\bf Frame:] A \textit{Cartesian frame} is an ordered quadruple $\C = \tuple{W, R, T, <}$ where $\tuple{W, R}$ is a modal frame and $\tuple{T, <}$ is a temporal frame. 
+  \item[\bf Interpretation:] A \textit{Cartesian interpretation} of $\BLC$ over $\C$ is a function $\I : \SL \to \wp(W \times T)$, i.e., where $\I(p_i) \subseteq W \times T$ for every sentence letter $p_i \in \SL$. 
+  \item[\bf Model:] A Cartesian model of $\BLC$ is an $\M = \tuple{W, R, T, <, \I}$ where $\tuple{W, R, T, <}$ is a Cartesian frame and $\I$ is a Cartesian interpretation of $\BLC$.
+  \item[\bf Semantics:] We define $\vDash$ recursively for model $\M = \tuple{W, R, T, <, \I}$ of $\BLC$, worlds $w, u \in W$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\BLC}$:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, w, x \nvDash \bot$.
+      \item[] $\M, w, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
+      \item[] $\M, w, x \vDash \neg \metaA$ \textit{iff} $\M, w,x\nvDash \metaA$.
+      \item[] $\M, w, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, w, x\nvDash \metaA$ or $\M, w, x \vDash  \metaB$.
+      \item[] $\M, w, x \vDash \Past \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
+      \item[] $\M, w, x \vDash \Future \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
+      \item[] $\M, w, x \vDash \boxtimes \metaA$ \textit{iff} $\M, u, x\vDash \metaA$ for every $u \in W$ and every $x \in T$. % where $R(w, u)$.
+      \item[] $\M, w, x \vDash \Box \metaA$ \textit{iff} $\M, u, x\vDash \metaA$ for every $u \in W$. % where $R(w, u)$.
+    \end{itemize}
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, R, T, <, \I}$ of $\BLC$, world $w \in W$, and time $x \in T$, if $\M, w, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w, x \vDash \metaA$.
+\end{enumerate}
+
+
+
+\section*{\it Problem Set: Cartesian Semantics}
+
+\begin{enumerate}[leftmargin=1.2in]
+  \item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
+    \begin{enumerate}[label=\arabic*.,resume]\small
+      \begin{multicols}{2}
+        \item \textit{If} $\Gamma \MLmodels[] \metaA$, \textit{then} $\Box\Gamma \MLmodels[] \Box\metaA$.
+        \item $\MLmodels[] \Box\metaA \rightarrow \metaA$.
+        \item $\MLmodels[] \Box\metaA \rightarrow \Box\Box\metaA$.
+        \item $\MLmodels[] \metaA \rightarrow \Box\Diamond\metaA$.
+        % \item $\MLmodels[] \Box\metaA \rightarrow \Box\Future\metaA$.
+        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$.
+
+        \item $\MLmodels[] \boxtimes\metaA \leftrightarrow \Box\always\metaA$.
+        \item $\MLmodels[] \boxtimes\metaA \rightarrow \metaA$.
+        \item $\MLmodels[] \boxtimes\metaA \rightarrow \boxtimes\boxtimes\metaA$.
+        \item $\MLmodels[] \metaA \rightarrow \boxtimes\diamondtimes\metaA$.
+        % \item $\MLmodels[] \Box\metaA \rightarrow \Future\Box\metaA$.
+        \item $\MLmodels[] \boxtimes\metaA \rightarrow \always\metaA$.
+      \end{multicols}
+    \end{enumerate}
+  % \item[\bf Logical Consequence:] For each of the claims above, strengthen $\MLmodels[]$ by imposing the weakest set of constraints $C$ which make that claim valid. 
+\end{enumerate}
+
+
+
+
+
+
+\section*{\sc Propositional Bimodal Logic: Task Semantics}
+  
+\begin{enumerate}[leftmargin=1.2in]
 	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BL$ are defined:
     \[ \metaA \Coloneq p_i \mid 
       \bot \mid 
@@ -1117,43 +1182,131 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
       \Box\metaA
     \]
     Define $\wfs{\BL}$ to be the set of all well-formed sentences of $\BL$.
-  \item[\bf Abbreviation:] We maintain the abbreviations from $\PL$, $\ML$, and $\TL$.
-  \item[\bf Frame:] A \textit{Cartesian frame} is an ordered quadruple $\C = \tuple{W, R, T, <}$ where $\tuple{W, R}$ is a modal frame and $\tuple{T, <}$ is a temporal frame. 
-  \item[\bf Interpretation:] A \textit{Cartesian interpretation} of $\BL$ over $\C$ is a function $\I : \SL \to \wp(W \times T)$, i.e., where $\I(p_i) \subseteq W \times T$ for every sentence letter $p_i \in \SL$. 
-  \item[\bf Model:] A Cartesian model of $\BL$ is an $\M = \tuple{W, R, T, <, \I}$ where $\tuple{W, R, T, <}$ is a Cartesian frame and $\I$ is a Cartesian interpretation of $\BL$.
-  \item[\bf Semantics:] We define $\vDash$ recursively for a model $\M = \tuple{W, R, T, <, \I}$ of $\BL$, worlds $w, u \in W$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\TL}$:
+  \item[\bf Abbreviation:] We maintain the abbreviations from $\BL$ along with the convention that $\metaA_{\tuple{\textsc{p} | \textsc{f}}}$ is the result of exchanging all occurrences of $\Past$ and $\Future$ in $\metaA$.
+  \item[\bf Frame:] A \textit{discrete bimodal frame} is an ordered quadruple $\B = \tuple{W, \to, \Z, <}$ where $\tuple{W, \to}$ is a modal frame consisting on instances \textit{world states}. 
+  \item[\bf Interpretation:] A \textit{bimodal interpretation} of $\BL$ over $\C$ is a function $\I : \SL \to \wp(W)$, i.e., where $\I(p_i) \subseteq W$ for every sentence letter $p_i \in \SL$. 
+  \item[\bf Model:] A \textit{bimodal model} of $\BL$ is an $\M = \tuple{W, \to, \Z, <, \I}$ where $\tuple{W, \to, \Z, <}$ is a bimodal frame and $\I$ is a bimodal interpretation of $\BL$.
+  \item[\bf Possible World:] A \textit{possible world} on a discrete bimodal frame is a function from times to world states $\tau : \Z \to W$ where $\tau(x) \to \tau(x + 1)$ for every $x \in T$.
+  \item[\bf Semantics:] Letting $H_\Z$ be the set of all possible worlds $\tau : \Z \to W$, we define $\vDash$ recursively for a model $\M = \tuple{W, \to, \Z, <, \I}$ of $\BL$, worlds $\tau, \sigma \in H_\Z$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\BL}$:
     \begin{itemize}[leftmargin=.15in]\small
-      \item[] $\M, w, x \nvDash \bot$.
-      \item[] $\M, w, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
-      \item[] $\M, w, x \vDash \neg \metaA$ \textit{iff} $\M, x\nvDash \metaA$.
-      \item[] $\M, w, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, w, x\nvDash \metaA$ or $\M, w, x \vDash  \metaB$.
-      \item[] $\M, w, x \vDash \Past \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
-      \item[] $\M, w, x \vDash \Future \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
-      \item[] $\M, w, x \vDash \Box \metaA$ \textit{iff} $\M, u, x\vDash \metaA$ for every $u \in W$. % where $R(w, u)$.
+      \item[] $\M, \tau, x \nvDash \bot$.
+      \item[] $\M, \tau, x \vDash p_i$ \textit{iff} $\tau(x) \in \I(p_i)$.
+      \item[] $\M, \tau, x \vDash \neg \metaA$ \textit{iff} $\M, \tau, x\nvDash \metaA$.
+      \item[] $\M, \tau, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \tau, x\nvDash \metaA$ or $\M, \tau, x \vDash  \metaB$.
+      \item[] $\M, \tau, x \vDash \Past \metaA$ \textit{iff} $\M, \tau, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
+      \item[] $\M, \tau, x \vDash \Future \metaA$ \textit{iff} $\M, \tau, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
+      \item[] $\M, \tau, x \vDash \Box \metaA$ \textit{iff} $\M, \sigma, x\vDash \metaA$ for every $\sigma \in H_\Z$.
     \end{itemize}
-  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, R, T, <, \I}$ of $\BL$, world $w \in W$, and time $x \in T$, if $\M, w, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w, x \vDash \metaA$.
-  % \item[\bf Truth-Value Gaps:] Thomason defines \textit{truth} relative to a model and time as:
-  %   \begin{itemize}[leftmargin=.15in]\small
-  %     \item[] $\M, x \vDash \metaA$ \textit{iff} $\M, \T_i, x \vDash \metaA$ for all $\T_i \in H_\T^x$.
-  %     \item[] $\M, x \Dashv \metaA$ \textit{iff} $\M, \T_i, x \vDash \metaA$ for all $\T_i \in H_\T^x$.
-  %   \end{itemize}
-  %   % Otherwise neither, e.g, $\Future\metaA \vee \Future\neg\metaA$.
-  % \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{T, <, \I}$ of $\TL_\square$ and time $x \in T$, if $\M, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, x \vDash \metaA$.
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, \to, \Z, <, \I}$ of $\BL$, world $\tau \in H_\Z$, and time $x \in T$, if $\M, \tau, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, \tau, x \vDash \metaA$.
 \end{enumerate}
 
 
 
-\section*{\it Problem Set: Cartesian Semantics}
+\section*{\it Problem Set: Task Semantics}
 
 \begin{enumerate}[leftmargin=1.2in]
-  \item[\bf Logical Consequence:] Without imposing any restriction on the models of $\TL_\square$, evaluate the following where $p_i \in \SL$, providing a proof or countermodel:
+  \item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
     \begin{enumerate}[label=\arabic*.,resume]\small
       \begin{multicols}{2}
-        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$.
+        % \item \textit{If} $\Gamma\MLmodels[] \metaA$, \textit{then} $\Box\Gamma\MLmodels[] \Box \metaA$.
+        % \item $\metaA, \metaA \rightarrow \metaB \MLmodels[] \metaB$.
+        % \item $\Box\metaA \rightarrow \metaA$.
+        % \item $\Box\metaA \rightarrow \Box\Box\metaA$.
+        % \item $\metaA \rightarrow \Box\Diamond\metaA$.
+        \item $\Box\metaA \rightarrow \Box\Future\metaA$.
+        \item $\Box\metaA \rightarrow \always\metaA$.
+
+        % \item \textit{If} $\Gamma\MLmodels[] \metaA$, \textit{then} $\Future\Gamma\MLmodels[] \Future \metaA$.
+        % \item \textit{If} $\MLmodels[] \metaA$, \textit{then} $\MLmodels[] \metaA_{\tuple{\textsc{p} | \textsc{f}}}$.
+        % \item $\Future\Past\metaA \rightarrow \always\metaA$.
+        % \item $\Future\metaA \rightarrow \Future\Future\metaA$.
+        % \item $\metaA \rightarrow \Future \past \metaA$.
+        \item $\Box\metaA \rightarrow \Future\Box\metaA$.
+        \item $\sometimes\metaA \rightarrow \Diamond\metaA$.
+      \end{multicols}
+    \end{enumerate}
+  % \item[\bf Logical Consequence:] For each of the claims above, strengthen $\MLmodels[]$ by imposing the weakest set of constraints $C$ which make that claim valid. 
+\end{enumerate}
+
+
+
+
+\section*{\sc Propositional Bimodal Logic: Extensions}
+  
+\begin{enumerate}[leftmargin=1.2in]
+	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BLP$ are defined:
+    \[ \metaA \Coloneq p_i \mid 
+      \bot \mid 
+      \neg\metaA \mid 
+      \metaA \rightarrow \metaA \mid 
+      \Past\metaA \mid 
+      \Future\metaA \mid
+      \Box\metaA \mid
+      \Inevitably\metaA \mid
+      \Openpast\metaA \mid
+      \Openfuture\metaA.
+      % \Relative\metaA
+    \]
+    Define $\wfs{\BL}$ to be the set of all well-formed sentences of $\BL$.
+  \item[\bf Abbreviation:] We maintain the abbreviations from $\BL$ along with the conventions:
+    \begin{multicols}{2}
+      \begin{enumerate}
+        \item[\it Will Always:] $\Will\varphi \coloneq \Inevitably\Future\varphi$.
+        \item[\it Will Eventually:] $\will\varphi \coloneq \Inevitably\future\varphi$.
+
+        \item[\it Could Always:] $\Could\varphi \coloneq \inevitably\Future\varphi$.
+        \item[\it Could Eventually:] $\could\varphi \coloneq \inevitably\future\varphi$.
+      \end{enumerate}
+    \end{multicols}
+  \item[\bf Intersection:] $\braket{\tau}_x \coloneq \set{\sigma \in H_{\F} \mid \sigma(x) = \tau(x)}$.
+  \item[\bf Open Futures:] $\ket{\tau}_x \coloneq \set{\sigma \in H_{\F} \mid \sigma(y) = \tau(y) \text{ for all } y \leq x}$.
+  \item[\bf Open Pasts:] $\bra{\tau}_x \coloneq \set{\sigma \in H_{\F} \mid \sigma(y) = \tau(y) \text{ for all } y \geq x}$.
+  \item[\bf Model:] A \textit{model} of $\BLP$ is an $\M = \tuple{W, \to, \Z, <, \I}$ where $\tuple{W, \to, \Z, <}$ is a bimodal frame and $\I$ is a bimodal interpretation of $\BL$.
+  \item[\bf Semantics:] We define $\vDash$ recursively for a model $\M$ of $\BLP$, worlds $\tau, \sigma \in H_\Z$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\BLP}$:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\M, \tau, x \nvDash \bot$.
+      \item[] $\M, \tau, x \vDash p_i$ \textit{iff} $\tau(x) \in \I(p_i)$.
+      \item[] $\M, \tau, x \vDash \neg \metaA$ \textit{iff} $\M, \tau, x\nvDash \metaA$.
+      \item[] $\M, \tau, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \tau, x\nvDash \metaA$ or $\M, \tau, x \vDash  \metaB$.
+      \item[] $\M, \tau, x \vDash \Past \metaA$ \textit{iff} $\M, \tau, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
+      \item[] $\M, \tau, x \vDash \Future \metaA$ \textit{iff} $\M, \tau, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
+      \item[] $\M, \tau, x \vDash \Box \metaA$ \textit{iff} $\M, \sigma, x\vDash \metaA$ for every $\sigma \in H_\Z$.
+      \item[] $\M,\tau,x \vDash \Inevitably \varphi$ \textit{iff} $\M,\sigma,x \vDash \varphi$ for all $\sigma \in \braket{\tau}_x$.
+      \item[] $\M,\tau,x \vDash \Openfuture \varphi$ \textit{iff} $\M,\sigma,x \vDash \varphi$ for all $\sigma \in \ket{\tau}_x$.
+      \item[] $\M,\tau,x \vDash \Openpast \varphi$ \textit{iff} $\M,\sigma,x \vDash \varphi$ for all $\sigma \in \bra{\tau}_x$.
+    \end{itemize}
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, \to, \Z, <, \I}$ of $\BLP$, world $\tau \in H_\Z$, and time $x \in T$, if $\M, \tau, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, \tau, x \vDash \metaA$.
+\end{enumerate}
+
+
+
+\section*{\it Problem Set: Extensions}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
+	\item[\bf Regimentation:] Regiment the following in $\BL$ and $\BLP$ disambiguating as needed.
+    \item If it could rain, it will eventually stop.
+    \item Either it will always eventually rain or it could eventually always rain.
+    \item If it has always been raining, then it will eventually stop.
+    \item Either it could always rain, or it has been raining and will rain again.
+    \item If it could eventually always rain, then it eventually it could always rain.
+    \item Either it has been raining or it will eventually rain.
+    \item If it could eventually stop raining, then it has been raining.
+    \item If it will be raining, then it could have always been raining.
+    \item If it has always been raining, then it could eventually stop.
+    \item If it could eventually always rain, then it will always rain.
+  \item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
+    \begin{enumerate}[label=\arabic*.,resume]\small
+      \begin{multicols}{2}
+        \item $\Inevitably\metaA \MLmodels[] \Openpast\metaA$.
+        \item $\Openpast\metaA \wedge \Openfuture\metaA \MLmodels[] \metaA$.
+        \item $\Will\metaA \MLmodels[] \Past\Will\metaA$
+
+        \item $\Inevitably\metaA \MLmodels[] \Openfuture\metaA$.
+        \item $\metaA \MLmodels[] \Openpast\metaA \wedge \Openfuture\metaA$.
+        \item $\could\metaA \MLmodels[] \Past\could\metaA$
       \end{multicols}
     \end{enumerate}
 \end{enumerate}
-
 
 
 \pagebreak
