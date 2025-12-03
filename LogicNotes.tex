@@ -966,7 +966,6 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 \begin{enumerate}[leftmargin=1.2in,itemsep=2pt]
 	\item[\bf Axiom Schemata:] Consider the following temporal axiom schemata:\vspace{-.05in}
 	      \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
-		      \item[\bf TK] $\Future(\metaA\rightarrow \metaB)\rightarrow(\Future \metaA\rightarrow\Future \metaB)$ (future distribution).
 		      \item[\bf TL] $\always\metaA \rightarrow \Future\Past\metaA$ (linearity).
 		      \item[\bf T4] $\Future\metaA \rightarrow \Future\Future\metaA$ (temporal transitivity).
 		      \item[\bf TA] $\metaA \rightarrow \Future\past\metaA$ (temporal accessibility).
@@ -974,15 +973,15 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	      \end{enumerate}
 	      where $\always\metaA := \Past\metaA \wedge \metaA \wedge \Future\metaA$, $\past\metaA := \neg\Past\neg\metaA$, and $\metaA[\Past/\Future]$ denotes the result of simultaneously swapping all occurrences of $\Past$ with $\Future$ and vice versa.
 
-	\item[\bf Future Necessitation Rule:] Consider the following metarule:
+	\item[\bf TK Rule:] Consider the following metarule:
 	      \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
-		      \item[\bf FN] If $\MetaG \vdash \metaA$, then $\Future\MetaG \vdash \Future\metaA$ (future necessitation).
+		      \item[\bf TK] If $\MetaG \vdash \metaA$, then $\Future\MetaG \vdash \Future\metaA$ (future necessitation).
 	      \end{enumerate}
 	      where $\Future\MetaG = \set{\Future\metaC \mid \metaC \in \MetaG}$.
 
-	\item[\bf TL System:] The \textit{TL proof system} for linear tense logic includes all $\TL$ instances of the Hilbert axioms together with axioms \textbf{TK}, \textbf{TL}, \textbf{T4}, and \textbf{TA}, along with the \textbf{TD} duality rule and \textbf{FN} future necessitation rule.
+	\item[\bf TL System:] The \textit{TL proof system} for linear tense logic includes all $\TL$ instances of the Hilbert axioms together with axioms \textbf{TL}, \textbf{T4}, and \textbf{TA}, along with the \textbf{TD} duality rule and \textbf{TK} future necessitation rule.
 
-	\item[\bf Tense Proofs:] A $\TLSystem$-\textit{proof} of $\metaB$ from $\MetaG$ is a finite sequence $\metaA_1, \ldots, \metaA_n$ where $\metaA_n = \metaB$ and each $\metaA_i$ is either: (1) a \textit{premise} in $\MetaG$; (2) a propositional \textit{axiom}; (3) a \textbf{TL} \textit{axiom} instance; or (4) follows from previous formulas by modus ponens, the \textbf{FN} rule, or the \textbf{TD} duality rule.
+	\item[\bf Tense Proofs:] A $\TLSystem$-\textit{proof} of $\metaB$ from $\MetaG$ is a finite sequence $\metaA_1, \ldots, \metaA_n$ where $\metaA_n = \metaB$ and each $\metaA_i$ is either: (1) a \textit{premise} in $\MetaG$; (2) a propositional \textit{axiom}; (3) a \textbf{TL} \textit{axiom} instance; or (4) follows from previous formulas by modus ponens, the \textbf{TK} rule, or the \textbf{TD} duality rule.
 
 	\item[\bf Derivable:] A wfs $\metaB$ of $\TL$ is \textit{derivable} from $\MetaG$ by the proof system $\TLSystem$, written $\MetaG \TLproves \metaB$, just in case there is a $\TLSystem$-proof of $\metaB$ from $\MetaG$.
 \end{enumerate}
@@ -1243,7 +1242,7 @@ These principles cannot be captured by modal logic alone (which lacks temporal o
   \item[\bf System Components:] TM includes:
     \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
       \item All S5 axioms and rules (MT, M4, MB, MK, MP)
-      \item All TL axioms and rules (TK, TL, T4, TA, TD, FN)
+      \item All TL axioms and rules (TL, T4, TA, TD, TK)
       \item \textbf{MF:} $\Box\metaA \rightarrow \Box\Future\metaA$ (modal-future interaction)
       \item \textbf{TF:} $\Box\metaA \rightarrow \Future\Box\metaA$ (temporal-future interaction)
     \end{enumerate}
@@ -1297,45 +1296,11 @@ We have now defined both the proof-theoretic (axiomatic) and semantic (task fram
 
   That is, every TM-derivable formula is semantically valid over all task frames. This means the proof system is \textbf{reliable}: if we can prove something syntactically, it is guaranteed to be true semantically.
 
-  \item[\bf Soundness Proof Sketch:] The proof proceeds by induction on the length of TM-proofs. We show: (1) all axiom schemata are valid over task frames, and (2) all inference rules preserve validity. We demonstrate representative cases:
-
-  \begin{enumerate}[leftmargin=.7in,itemsep=.15in]
-    \item[\it Case MP:] If $\metaA$ and $\metaA \rightarrow \metaB$ are both valid, then $\metaB$ is valid.
-
-    \textit{Proof:} Suppose $\taskmodel, \worldhist, x \models \metaA$ and $\taskmodel, \worldhist, x \models \metaA \rightarrow \metaB$ for arbitrary model, history, and time. By truth condition for $\rightarrow$, either $\taskmodel, \worldhist, x \not\models \metaA$ or $\taskmodel, \worldhist, x \models \metaB$. Since we have $\taskmodel, \worldhist, x \models \metaA$, it must be that $\taskmodel, \worldhist, x \models \metaB$. Thus $\metaB$ is valid. \qed
-
-    \item[\it Case MK:] The axiom $\Box(\metaA \rightarrow \metaB) \rightarrow (\Box\metaA \rightarrow \Box\metaB)$ is valid.
-
-    \textit{Proof:} Suppose $\taskmodel, \worldhist, x \models \Box(\metaA \rightarrow \metaB)$. This means for all histories $\sigma$ with $x \in \textit{dom}(\sigma)$, we have $\taskmodel, \sigma, x \models \metaA \rightarrow \metaB$. Now suppose $\taskmodel, \worldhist, x \models \Box\metaA$, meaning for all such histories $\sigma$, we have $\taskmodel, \sigma, x \models \metaA$. Take any history $\sigma$ with $x \in \textit{dom}(\sigma)$. We have both $\taskmodel, \sigma, x \models \metaA$ and $\taskmodel, \sigma, x \models \metaA \rightarrow \metaB$, so by truth condition for $\rightarrow$, we get $\taskmodel, \sigma, x \models \metaB$. Since $\sigma$ was arbitrary, $\taskmodel, \worldhist, x \models \Box\metaB$. \qed
-
-    \item[\it Case MF:] The bimodal axiom $\Box\Future\metaA \rightarrow \Future\Box\metaA$ is valid.
-
-    \textit{Proof:} Suppose $\taskmodel, \worldhist, x \models \Box\Future\metaA$. This means for all histories $\sigma$ with $x \in \textit{dom}(\sigma)$, we have $\taskmodel, \sigma, x \models \Future\metaA$, i.e., for all $y > x$ in $\textit{dom}(\sigma)$, we have $\taskmodel, \sigma, y \models \metaA$. To show $\taskmodel, \worldhist, x \models \Future\Box\metaA$, take any $y > x$ in $\textit{dom}(\worldhist)$. We need to show $\taskmodel, \worldhist, y \models \Box\metaA$. Take any history $\rho$ with $y \in \textit{dom}(\rho)$. By assumption applied to $\rho$, we have $\taskmodel, \rho, y \models \metaA$. Since $\rho$ was arbitrary, $\taskmodel, \worldhist, y \models \Box\metaA$. Since $y$ was arbitrary, $\taskmodel, \worldhist, x \models \Future\Box\metaA$. \qed
-  \end{enumerate}
-
-  The remaining axioms (MT, M4, MB, TD, TL, T4, TA, TF) and rules are shown valid by similar arguments. The key insight is that the bimodal axioms MF and TF ensure that modal and temporal operators interact correctly across world histories and times.
-
-  \item[\bf Completeness Theorem:] \textit{If $\Gamma \models_{\textsc{tm}} \metaA$, then $\Gamma \TMproves \metaA$.}
-
-  That is, every semantically valid formula is TM-derivable. This means the proof system is \textbf{adequate}: if something is true in all task models, we can find a proof of it.
-
-  \item[\bf Completeness Proof Strategy:] The proof uses the \textbf{canonical model construction} method standard in modal logic. The idea is to build a task model from maximal consistent sets of formulas, where:
-  \begin{itemize}
-    \item World states are maximal consistent sets (sets of formulas closed under consequence and not containing contradictions)
-    \item The task relation $w \taskrel_x v$ is defined by formula consistency: if $\Future^x \metaA \in w$, then $\metaA \in v$
-    \item Histories are constructed as maximal linear extensions of consistent temporal sequences
-    \item The valuation assigns truth to sentence letters at worlds where they appear
-  \end{itemize}
-
-  The key lemma is the \textbf{Truth Lemma}: for any formula $\metaA$ and maximal consistent set $w$ representing a world state in the canonical model, $\metaA \in w$ iff the canonical model validates $\metaA$ at $w$. This is proved by induction on formula complexity, with the modal and temporal cases following from the construction of the task relation and histories.
-
-  Given the Truth Lemma, completeness follows: if $\Gamma \models_{\textsc{tm}} \metaA$ but $\Gamma \not\TMproves \metaA$, then $\Gamma \cup \set{\neg\metaA}$ is consistent (by negation completeness). This set can be extended to a maximal consistent set, which forms a world in the canonical model where $\Gamma$ holds but $\metaA$ fails -- contradicting semantic validity.
-
-  \item[\bf Metalogical Consequences:] The soundness and completeness theorems have several important consequences:
+  \item[\bf Metalogical Consequences:] The soundness theorem has several important consequences:
   \begin{itemize}
     \item \textbf{Consistency:} TM is consistent (no formula is both provable and refutable) since the task semantics provides models
     \item \textbf{Decidability:} TM is decidable (there exists an algorithm to determine provability) inherited from decidability of S5 modal logic and tense logic
-    \item \textbf{Compactness:} If every finite subset of $\Gamma$ is satisfiable, then $\Gamma$ is satisfiable (standard consequence of completeness)
+    \item \textbf{Compactness:} If every finite subset of $\Gamma$ is satisfiable, then $\Gamma$ is satisfiable
     \item \textbf{Expressiveness:} TM can express perpetuity principles (like P1-P6) that are not derivable in either pure modal logic or pure tense logic alone
   \end{itemize}
 
@@ -1344,6 +1309,14 @@ We have now defined both the proof-theoretic (axiomatic) and semantic (task fram
 \section*{\it Problem Set: Metatheory}
 
 \begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+  \item[\bf Soundness Proofs:] Prove that the following axioms and rules preserve validity, contributing to the soundness theorem:
+    \begin{enumerate}[label=\arabic*.]\small
+      \item \textbf{Modus Ponens:} Show that if $\metaA$ and $\metaA \rightarrow \metaB$ are both valid, then $\metaB$ is valid. (\textit{Hint:} Assume both formulas hold at an arbitrary model, history, and time; use the truth condition for $\rightarrow$ to establish $\metaB$.)
+      \item \textbf{MK Axiom:} Show that $\Box(\metaA \rightarrow \metaB) \rightarrow (\Box\metaA \rightarrow \Box\metaB)$ is valid over all task frames. (\textit{Hint:} Assume the antecedent holds; use the semantics of $\Box$ to quantify over all histories containing a given time.)
+      \item \textbf{MF Bimodal Axiom:} Show that $\Box\Future\metaA \rightarrow \Future\Box\metaA$ is valid over all task frames. (\textit{Hint:} Show that modal necessity of a future formula implies that at all future times, the formula holds at all histories passing through those times.)
+      \item \textbf{Optional Challenge:} Choose two additional axioms from the TM system (MT, M4, MB, TD, TL, T4, TA, TF) and prove their validity over task frames.
+    \end{enumerate}
+
   \item[\bf Axiom Validity:] Show that the following TM axioms are valid over all task frames by providing explicit semantic proofs:
     \begin{enumerate}[label=\arabic*.]\small
       \item MT: $\Box\metaA \rightarrow \metaA$ (\textit{Hint:} Use reflexivity of task relation via nullity)
@@ -1358,7 +1331,7 @@ We have now defined both the proof-theoretic (axiomatic) and semantic (task fram
       \item $\set{\sometimes p, \always \neg p}$
     \end{enumerate}
 
-  \item[\bf Countermodels:] For each invalid formula, use the completeness theorem to argue that a countermodel must exist, then construct an explicit task model refuting it:
+  \item[\bf Countermodels:] For each invalid formula, construct an explicit task model refuting it:
     \begin{enumerate}[label=\arabic*.]\small
       \item $\always \metaA \rightarrow \Box \metaA$ (temporal necessity doesn't imply modal necessity)
       \item $\Diamond \metaA \rightarrow \sometimes \metaA$ (modal possibility doesn't imply temporal possibility)
@@ -1458,13 +1431,13 @@ The TM logic we have developed makes minimal assumptions about the temporal orde
 
 
 
-\newpage
-
-\section*{\sc Additional Materials}
-
-The following sections present alternative semantic approaches to bimodal logic that complement the main task semantics presentation.
-
-\input{additional/additional}
+% \newpage
+%
+% \section*{\sc Additional Materials}
+%
+% The following sections present alternative semantic approaches to bimodal logic that complement the main task semantics presentation.
+%
+% \input{additional/additional}
 
 
 \begin{small} %%Makes bib small text size

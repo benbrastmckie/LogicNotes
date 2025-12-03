@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # Error handling and recovery utilities
 # Provides functions for error classification, recovery, retry logic, and escalation
+#
+# Test Context Detection:
+#   - ERR trap automatically detects test execution contexts to prevent false positives
+#   - Test context patterns: WORKFLOW_ID=test_*, /tmp/test_*.sh scripts, SUPPRESS_ERR_LOGGING=1
+#   - Usage: export SUPPRESS_ERR_LOGGING=1 before running test scripts to skip error logging
+#   - Effect: Intentional test failures won't be logged as real errors in errors.jsonl
 
 # Source guard: Prevent multiple sourcing
 if [ -n "${ERROR_HANDLING_SOURCED:-}" ]; then
@@ -1841,6 +1847,7 @@ handle_state_error() {
 
 # Export functions for use in other scripts
 if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+  export -f is_test_context
   export -f classify_error
   export -f suggest_recovery
   export -f detect_error_type
@@ -2007,6 +2014,13 @@ _log_bash_exit() {
 
   # Only log if error occurred AND not already logged by ERR trap
   if [ $exit_code -ne 0 ] && [ -z "${_BASH_ERROR_LOGGED:-}" ]; then
+    # Skip error logging for test framework contexts
+    # Prevents false positive errors from intentional test failures
+    if is_test_context; then
+      [ "${DEBUG:-0}" = "1" ] && echo "DEBUG: Skipping error log (test context detected)" >&2
+      return
+    fi
+
     # Filter benign errors (system initialization failures that aren't actionable)
     if _is_benign_bash_error "$failed_command" "$exit_code"; then
       return  # Skip logging for benign errors
