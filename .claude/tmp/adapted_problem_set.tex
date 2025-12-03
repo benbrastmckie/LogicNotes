@@ -1,0 +1,54 @@
+\section*{\it Problem Set: Task Semantics}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+  \item[\bf Well-Formedness:] Determine which of the following are well-formed sentences of $\BL$:
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\Box p_1 \rightarrow \Future p_2$
+        \item $\Past \Box p_1$
+        \item $\always \sometimes p_1$
+        \item $\Box \Future \Diamond p_1$
+        \item $p_1 \Box p_2$
+        \item $\Past \rightarrow p_1$
+        \item $\always (\Box p_1 \leftrightarrow \Future p_2)$
+        \item $\Diamond \past \Future p_1$
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Abbreviations:] Expand the following abbreviated formulas into primitive $\BL$ notation (using only $\bot$, $\rightarrow$, $\Box$, $\Past$, $\Future$):
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\always p_1$
+        \item $\Diamond \sometimes p_1$
+        \item $\past \metaA \vee \future \metaB$
+        \item $\Box \metaA \wedge \always \metaB$
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Scope Ambiguity:] Provide fully parenthesized versions of the following to clarify intended scope:
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\Box \metaA \rightarrow \Future \metaB \vee \metaC$
+        \item $\always \metaA \wedge \Box \metaB \rightarrow \past \metaC$
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$
+        \item $\MLmodels[] \sometimes\metaA \rightarrow \Diamond\metaA$
+        \item $\MLmodels[] \Box\metaA \rightarrow \Box\always\metaA$
+        \item $\MLmodels[] \Diamond\sometimes\metaA \rightarrow \Diamond\metaA$
+        \item $\MLmodels[] \Box\metaA \rightarrow \Box\Future\metaA$
+        \item $\MLmodels[] \Box\metaA \rightarrow \Future\Box\metaA$
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Duality:] Show that the following pairs are duals by providing semantic argument or counterexample:
+    \begin{enumerate}[label=\arabic*.]\small
+      \item $\Box \metaA$ and $\Diamond \metaA$
+      \item $\Past \metaA$ and $\past \metaA$
+      \item $\always \metaA$ and $\sometimes \metaA$
+    \end{enumerate}
+\end{enumerate}

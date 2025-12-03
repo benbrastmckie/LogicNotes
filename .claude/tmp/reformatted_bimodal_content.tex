@@ -1,0 +1,58 @@
+% Content adapted from sec:TenseModality (lines 1211-1477)
+% Proof-theoretic material excluded per pedagogical focus on definitions
+% Last updated: 2025-12-02
+
+\begin{enumerate}[leftmargin=1.2in]
+  \item[\bf Language:] The \textit{bimodal language} $\BL$ extends propositional logic with modal and temporal operators:
+    \[
+      \BL = \tuple{\SL, \bot, \rightarrow, \Box, \Past, \Future}
+    \]
+    where $\SL = \set{p_i \mid i \in \N}$ is the set of sentence letters.
+
+  \item[\bf Well-Formed Sentences:] The set of well-formed sentences $\wfs{\BL}$ is defined inductively:
+    \[
+      \metaA ::= p_i \mid \bot \mid \metaA \rightarrow \metaA \mid \Box \metaA \mid \Past \metaA \mid \Future \metaA
+    \]
+    where $p_i \in \SL$.
+
+  \item[\bf Abbreviations:] We define the following derived operators:
+    \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
+      \item $\Diamond \metaA := \neg\Box\neg\metaA$ (possibility)
+      \item $\past \metaA := \neg\Past\neg\metaA$ (past possibility)
+      \item $\future \metaA := \neg\Future\neg\metaA$ (future possibility)
+      \item $\always \metaA := \Past \metaA \wedge \metaA \wedge \Future \metaA$ (always)
+      \item $\sometimes \metaA := \past \metaA \vee \metaA \vee \future \metaA$ (sometimes)
+      \item $\neg\metaA$, $\metaA \vee \metaB$, $\metaA \wedge \metaB$, $\metaA \leftrightarrow \metaB$ as usual.
+    \end{enumerate}
+
+  \item[\bf Scope:] As in modal logic, $\Box$, $\Past$, and $\Future$ bind more tightly than connectives. Thus:
+    \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
+      \item $\Box \metaA \rightarrow \metaB$ means $(\Box \metaA) \rightarrow \metaB$
+      \item $\Future \metaA \vee \metaB$ means $(\Future \metaA) \vee \metaB$
+      \item $\always \metaA \wedge \metaB$ means $(\always \metaA) \wedge \metaB$
+    \end{enumerate}
+
+  \item[\bf Task Frame:] A \textbf{task frame} is a triple $\taskframe = \tuple{\worldstateset, \Tor, \taskrel}$ where:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item $\worldstateset$ is a non-empty set of \textbf{world states}
+      \item $\Tor = \tuple{T, +, \leq}$ is a totally ordered abelian group of times
+      \item $\taskrel \subseteq \worldstateset \times T \times \worldstateset$ is a parameterized task relation
+    \end{itemize}
+    satisfying \textbf{nullity} ($w \taskrel_0 w$ for all $w \in \worldstateset$) and \textbf{compositionality} (if $w \taskrel_x u$ and $u \taskrel_y v$, then $w \taskrel_{x+y} v$).
+
+  \item[\bf World History:] A \textbf{world history} over frame $\taskframe$ is a function $\worldhist: X \rightarrow \worldstateset$ where $X \subseteq T$ is convex (if $x_1, x_2 \in X$ and $x_1 \leq z \leq x_2$, then $z \in X$) satisfying \textbf{task coherence}: for all $x, y \in T$ where $x, x+y \in X$, we have $\worldhist(x) \taskrel_y \worldhist(x+y)$. We write $\worldhistset$ for the set of all world histories over a given frame.
+
+  \item[\bf Task Model:] A \textbf{task model} is a tuple $\taskmodel = \tuple{\worldstateset, \Tor, \taskrel, \corner{\cdot}}$ where $\tuple{\worldstateset, \Tor, \taskrel}$ is a task frame and $\corner{p_i} \subseteq \worldstateset$ is the interpretation of sentence letter $p_i$.
+
+  \item[\bf Semantics:] Given task model $\taskmodel$, world history $\worldhist$, and time $x$, we define truth at $\taskmodel, \worldhist, x$ (written $\taskmodel, \worldhist, x \models \metaA$) inductively:
+    \begin{itemize}[leftmargin=.15in]\small
+      \item[] $\taskmodel, \worldhist, x \models p_i$ iff $x \in \textit{dom}(\worldhist)$ and $\worldhist(x) \in \corner{p_i}$
+      \item[] $\taskmodel, \worldhist, x \not\models \bot$
+      \item[] $\taskmodel, \worldhist, x \models \metaA \rightarrow \metaB$ iff $\taskmodel, \worldhist, x \not\models \metaA$ or $\taskmodel, \worldhist, x \models \metaB$
+      \item[] $\taskmodel, \worldhist, x \models \Box \metaA$ iff $\taskmodel, \sigma, x \models \metaA$ for all $\sigma \in \worldhistset$
+      \item[] $\taskmodel, \worldhist, x \models \Past \metaA$ iff $\taskmodel, \worldhist, y \models \metaA$ for all $y \in \textit{dom}(\worldhist)$ with $y < x$
+      \item[] $\taskmodel, \worldhist, x \models \Future \metaA$ iff $\taskmodel, \worldhist, y \models \metaA$ for all $y \in \textit{dom}(\worldhist)$ with $y > x$
+    \end{itemize}
+
+  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for all task models $\taskmodel$, all world histories $\worldhist$, and all times $x \in \textit{dom}(\worldhist)$, if $\taskmodel, \worldhist, x \models \gamma$ for all $\gamma \in \MetaG$, then $\taskmodel, \worldhist, x \models \metaA$.
+\end{enumerate}

@@ -1,0 +1,1 @@
+I want to move the sec:Cartesian and sec:Indeterminacy sections to /home/benjamin/Documents/Philosophy/Teaching/LogicNotes/additional/additional.tex and I want to improve sec:Bimodal to follow the construction given in app:TaskSemantics from /home/benjamin/Documents/Philosophy/Papers/PossibleWorlds/JPL/possible_worlds.tex exactly

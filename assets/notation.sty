@@ -79,6 +79,7 @@
 \renewcommand{\max}[1]{\texttt{max}(#1)}      % Maximum
 \newcommand{\length}[1]{\texttt{length}(#1)}  % Length
 \newcommand{\img}[1]{\mathtt{img}(#1)}        % Relational Image
+\newcommand{\dom}[1]{\texttt{dom}(#1)}        % Domain of function
 
 %    ****************************************
 %    *         MATHEMATICAL SETS            *
@@ -175,6 +176,30 @@
 \newcommand{\Dproves}{\vdash_\De}             % System D
 \newcommand{\Bproves}{\vdash_\B}              % System B
 \newcommand{\Qproves}{\vdash_\Q}              % Arbitrary
+
+% TM Logic System Commands (added 2025-12-02)
+% TM = Logic of Tense and Modality (bimodal logic combining S5 + tense logic)
+% Source: possible_worlds.tex section 3.3
+\newcommand{\TML}{\mathcal{L}^{\textsc{tm}}}         % TM Language
+\newcommand{\TMproves}{\vdash_{\textsc{tm}}}         % TM provability
+\newcommand{\TMmodels}{\vDash_{\textsc{tm}}}         % TM semantic consequence
+\newcommand{\TMequiv}{\equiv_{\textsc{tm}}}          % TM equivalence
+\newcommand{\TMAxioms}{\mathcal{A}^{\textsc{tm}}}    % TM axioms
+\newcommand{\TMRules}{\mathcal{R}^{\textsc{tm}}}     % TM rules
+\newcommand{\TMSystem}{\mathcal{F}_{\textsc{tm}}}    % TM formal system
+\newcommand{\TMLogic}{\Lambda_{\textsc{tm}}}         % TM logic
+\newcommand{\TMD}{\mathcal{L}^{\textsc{tm}}_{\textsc{d}}}  % TM with density axiom
+
+% Task Semantics Commands (added 2025-12-02)
+% Task semantics evaluates formulas at world histories (functions from times to world states)
+% rather than primitive possible worlds
+\newcommand{\taskrel}{\Rightarrow}                   % Task relation (parameterized accessibility)
+\newcommand{\Tor}{\mathcal{T}}                       % Temporal order structure
+\newcommand{\taskframe}{\mathcal{F}_{\textsc{t}}}   % Task frame
+\newcommand{\taskmodel}{\mathcal{M}_{\textsc{t}}}   % Task model
+\newcommand{\worldhist}{\tau}                        % World history symbol
+\newcommand{\worldhistset}{\mathcal{H}}              % Set of world histories
+\newcommand{\worldstateset}{\mathcal{W}}             % Set of world states
 
 % Tense operators
 \newcommand{\TL}{\mathcal{L}^{\textsc{t}}}             % Tensed Language
