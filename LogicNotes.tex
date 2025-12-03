@@ -961,6 +961,64 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 
 
 
+\section*{\sc Propositional Tense Logic: Axiomatic System}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]
+	\item[\bf Axiom Schemata:] Consider the following temporal axiom schemata:\vspace{-.05in}
+	      \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
+		      \item[\bf TK] $\Future(\metaA\rightarrow \metaB)\rightarrow(\Future \metaA\rightarrow\Future \metaB)$ (future distribution).
+		      \item[\bf TL] $\always\metaA \rightarrow \Future\Past\metaA$ (linearity).
+		      \item[\bf T4] $\Future\metaA \rightarrow \Future\Future\metaA$ (temporal transitivity).
+		      \item[\bf TA] $\metaA \rightarrow \Future\past\metaA$ (temporal accessibility).
+		      \item[\bf TD] If $\vdash \metaA$, then $\vdash \metaA[\Past/\Future]$ (temporal duality).
+	      \end{enumerate}
+	      where $\always\metaA := \Past\metaA \wedge \metaA \wedge \Future\metaA$, $\past\metaA := \neg\Past\neg\metaA$, and $\metaA[\Past/\Future]$ denotes the result of simultaneously swapping all occurrences of $\Past$ with $\Future$ and vice versa.
+
+	\item[\bf Future Necessitation Rule:] Consider the following metarule:
+	      \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
+		      \item[\bf FN] If $\MetaG \vdash \metaA$, then $\Future\MetaG \vdash \Future\metaA$ (future necessitation).
+	      \end{enumerate}
+	      where $\Future\MetaG = \set{\Future\metaC \mid \metaC \in \MetaG}$.
+
+	\item[\bf TL System:] The \textit{TL proof system} for linear tense logic includes all $\TL$ instances of the Hilbert axioms together with axioms \textbf{TK}, \textbf{TL}, \textbf{T4}, and \textbf{TA}, along with the \textbf{TD} duality rule and \textbf{FN} future necessitation rule.
+
+	\item[\bf Tense Proofs:] A $\TLSystem$-\textit{proof} of $\metaB$ from $\MetaG$ is a finite sequence $\metaA_1, \ldots, \metaA_n$ where $\metaA_n = \metaB$ and each $\metaA_i$ is either: (1) a \textit{premise} in $\MetaG$; (2) a propositional \textit{axiom}; (3) a \textbf{TL} \textit{axiom} instance; or (4) follows from previous formulas by modus ponens, the \textbf{FN} rule, or the \textbf{TD} duality rule.
+
+	\item[\bf Derivable:] A wfs $\metaB$ of $\TL$ is \textit{derivable} from $\MetaG$ by the proof system $\TLSystem$, written $\MetaG \TLproves \metaB$, just in case there is a $\TLSystem$-proof of $\metaB$ from $\MetaG$.
+\end{enumerate}
+
+
+
+\section*{\it Problem Set: Tense Proofs}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=1pt]\small
+	\item[\bf Derivations:] Provide formal $\TLSystem$-proofs for the following theorems:
+	    \begin{enumerate}[label=\arabic*.]\small
+	      \begin{multicols}{2}
+	        \item $\TLproves \Future(\metaA \rightarrow \metaB) \rightarrow (\Future\metaA \rightarrow \Future\metaB)$
+	        \item $\TLproves \Past(\metaA \rightarrow \metaB) \rightarrow (\Past\metaA \rightarrow \Past\metaB)$
+	        \item $\TLproves \Future\Future\metaA \rightarrow \Future\metaA$
+	        \item $\TLproves \Past\Past\metaA \rightarrow \Past\metaA$
+	        \item $\TLproves \metaA \rightarrow \Future\past\metaA$
+	        \item $\TLproves \metaA \rightarrow \Past\future\metaA$
+	      \end{multicols}
+	    \end{enumerate}
+
+	\item[\bf Duality Applications:] Use the \textbf{TD} duality rule to derive past axioms from future axioms:
+	    \begin{enumerate}[label=\arabic*.]\small
+	      \item Show that if $\TLproves \Future\metaA \rightarrow \Future\Future\metaA$ (T4), then $\TLproves \Past\metaA \rightarrow \Past\Past\metaA$ by TD.
+	      \item Show that if $\TLproves \metaA \rightarrow \Future\past\metaA$ (TA), then $\TLproves \metaA \rightarrow \Past\future\metaA$ by TD.
+	    \end{enumerate}
+
+	\item[\bf Linearity:] Prove that the \textbf{TL} axiom $\always\metaA \rightarrow \Future\Past\metaA$ characterizes linear time by:
+	    \begin{enumerate}[label=\arabic*.]\small
+	      \item Providing a countermodel in a branching time frame where TL fails.
+	      \item Proving TL holds in all linear frames.
+	    \end{enumerate}
+\end{enumerate}
+
+
+
 
 
 
@@ -1032,223 +1090,305 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
  %    \end{enumerate}
 \end{enumerate}
 
+% sec:Indeterminacy MOVED TO additional/additional.tex (2025-12-02)
+% sec:Cartesian MOVED TO additional/additional.tex (2025-12-02)
 
 
 
 
-\section*{\sc Propositional Tense Logic: Indeterminacy}
-  
-\begin{enumerate}[leftmargin=1.2in]
-	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\TL_\square$ are defined:
-    \[ \metaA \Coloneq p_i \mid 
-      \bot \mid 
-      \neg\metaA \mid 
-      \metaA \rightarrow \metaA \mid 
-      \Past\metaA \mid 
-      \Future\metaA \mid
-      \Inevitably\metaA
-    \]
-    Define $\wfs{\TL_\square}$ to be the set of all well-formed sentences of $\TL_\square$.
-  \item[\bf Abbreviation:] In addition to the abbreviations for $\TL$, we may define $\inevitably\metaA \coloneq \neg\Inevitably\neg \metaA$.
-  \item[\bf Index:] Let $\T_i = \tuple{T_i, <_i}$ share the same index. 
-  \item[\bf Subframe:] $\T_i$ is a \textit{subframe} of $\T_j$ \textit{iff} $T_i \subseteq T_j$ and $x <_j y$ whenever $x <_i y$. 
-  \item[\bf History:] $\T_i$ is a \textit{history} of the frame $\T$ \textit{iff:} (1) $\T_i$ is a subframe of $\T$ that satisfies \textsc{tot}; and (2) for every subframe $\T_j$ of $\T$ that satisfies \textsc{tot}, if $\T_i$ is a subframe of $\T_j$, then $\T_i = \T_j$ (i.e., $\T_i$ is a \textit{maximal total subframe} of $\T$).
-  \item[\bf Possible Histories:] Let $H_\T$ be the set of all histories of $\T$.
-  % \item[\bf Inclusion:] We may take $x \in \T_i \coloneq (x \in T_i) \wedge (\T_i = \tuple{T_i, <_i})$ for convenience. 
-  \item[\bf Inevitability Set:] Let $H_\T^x \coloneq \set{\T_i \in H_\T \mid x \in T_i}$ be the histories of $\T$ in which $x$ occurs.
-  \item[\bf Language $\boldsymbol{\TL_\square}$:] Let $\TL_\square$ extend $\TL$ to include `$\Inevitably$' where $\corner{\Inevitably\metaA}$ reads $\ulcorner$Inevitably $\metaA\urcorner$.
-  \item[\bf Inevitability:] We define $\vDash$ recursively for a model $\M = \tuple{T, <, \I}$ of $\TL$, history $\T_i = \tuple{T_i, <_i}$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\TL}$:
-    \begin{itemize}[leftmargin=.15in]\small
-      \item[] $\M, \T_i, x \nvDash \bot$.
-      \item[] $\M, \T_i, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
-      \item[] $\M, \T_i, x \vDash \neg \metaA$ \textit{iff} $\M, \T_i, x\nvDash \metaA$.
-      \item[] $\M, \T_i, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \T_i, x\nvDash \metaA$ or $\M, \T_i, x \vDash  \metaB$.
-      \item[] $\M, \T_i, x \vDash \Past \metaA$ \textit{iff} $\M, \T_i, y\vDash \metaA$ for every $y \in T_i$ such that $y <_i x$.
-      \item[] $\M, \T_i, x \vDash \Future \metaA$ \textit{iff} $\M, \T_i, y\vDash \metaA$ for every $y \in T_i$ such that $x <_i y$.
-      \item[] $\M, \T_i, x \vDash \Inevitably \metaA$ \textit{iff} $\M, \T_j, x\vDash \metaA$ for every $\T_j \in H_\T^x$.
-    \end{itemize}
-  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{T, <, \I}$ of $\TL_\square$, history $\T_i \in H_\T$, and time $x \in T$, if $\M, \T_i, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, \T_i, x \vDash \metaA$.
-  % \item[\bf Truth-Value Gaps:] Thomason defines \textit{truth} relative to a model and time as:
-  %   \begin{itemize}[leftmargin=.15in]\small
-  %     \item[] $\M, x \vDash \metaA$ \textit{iff} $\M, \T_i, x \vDash \metaA$ for all $\T_i \in H_\T^x$.
-  %     \item[] $\M, x \Dashv \metaA$ \textit{iff} $\M, \T_i, x \vDash \metaA$ for all $\T_i \in H_\T^x$.
-  %   \end{itemize}
-  %   % Otherwise neither, e.g, $\Future\metaA \vee \Future\neg\metaA$.
-  % \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{T, <, \I}$ of $\TL_\square$ and time $x \in T$, if $\M, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, x \vDash \metaA$.
+\section*{\sc Bimodal Logic: Tense and Modality}
+  \label{sec:Bimodal}
+
+% Organizational Structure (Reorganized 2025-12-02):
+% This section consolidates three previously separate bimodal sections into a unified
+% presentation following the standard four-part organizational pattern established in
+% First-Order Logic and Tense Logic sections:
+%   1. Syntax: Language definition, WFF, abbreviations, scope conventions
+%   2. Semantics: Task frames, world histories, task models, truth conditions, validity
+%   3. Axiomatic System: TM proof system, axioms, perpetuity principles with proofs
+%   4. Metatheory: Logical consequence, soundness theorem, completeness theorem
+% Content sources: Original sec:Bimodal (Task Semantics, lines 1041-1088),
+%                  sec:TenseModality (TM Logic: Syntax/Axiomatic/Semantics/Metatheory, lines 1244-1775)
+% Extensions moved to separate sec:BimodalExtensions following this section.
+
+Natural language frequently expresses relationships between temporal and modal concepts. Consider these intuitions:
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=4pt]
+  \item[\bf Perpetuity:] ``If something is necessary, then it has always been and will always be true.'' Formally: if $\Box \metaA$, then $\metaA$ holds at all times (past, present, and future).
+  \item[\bf Possibility:] ``If something is sometimes true, then it is possibly true.'' Formally: if $\metaA$ holds at some time, then $\Diamond \metaA$.
+  \item[\bf Interaction:] ``Necessary truths persist through time.'' If $\Box \metaA$ at time $t$, then $\Box \metaA$ at all future times.
 \end{enumerate}
 
+These principles cannot be captured by modal logic alone (which lacks temporal operators) nor by tense logic alone (which lacks modal operators). We require a \textit{bimodal logic} combining both dimensions. The \textbf{TM system} (Logic of Tense and Modality) provides such a framework, integrating S5 modal logic with linear tense logic through specific interaction axioms.
 
-
-
-\section*{\it Problem Set: Indeterminacy}
+\section*{\sc Bimodal Logic: Syntax}
 
 \begin{enumerate}[leftmargin=1.2in]
-  \item[\bf Logical Consequence:] Without imposing any restriction on the models of $\TL_\square$, evaluate the following where $p_i \in \SL$, providing a proof or countermodel:
-    \begin{enumerate}[label=\arabic*.,resume]\small
-      \begin{multicols}{2}
-        \item $\MLmodels[] p_i \rightarrow \inevitably p_i$.
-        \item $\MLmodels[] \metaA \rightarrow \inevitably\metaA$.
-        \item $\MLmodels[] \past\metaA \vee \past\neg\metaA$.
-        \item $\MLmodels[] \metaA \rightarrow \Future\past\metaA$.
-        \item $\MLmodels[] \Past\Future\metaA \rightarrow \always\metaA$.
+  \item[\bf Language:] The \textit{bimodal language} $\BL$ combines the modal operator $\Box$ (defined in modal logic) with temporal operators $\Past$ and $\Future$ (defined in tense logic):
+    \[
+      \BL = \tuple{\SL, \bot, \rightarrow, \Box, \mathsf{Past}, \mathsf{Future}}
+    \]
+    where $\SL = \set{p_i \mid i \in \N}$ is the set of sentence letters.
 
-        \item $\MLmodels[] p_i \rightarrow \Inevitably p_i$.
-        \item $\MLmodels[] \metaA \rightarrow \Inevitably\metaA$.
-        \item $\MLmodels[] \future\metaA \vee \future\neg\metaA$.
-        \item $\MLmodels[] \metaA \rightarrow \Past \future \metaA$.
-        \item $\MLmodels[] \Future\Past\metaA \rightarrow \always\metaA$.
+  \item[\bf Well-Formed Sentences:] The set of well-formed sentences $\wfs{\BL}$ is defined inductively:
+    \[
+      \metaA ::= p_i \mid \bot \mid \metaA \rightarrow \metaA \mid \Box \metaA \mid \Past \metaA \mid \Future \metaA
+    \]
+
+  \item[\bf Abbreviations:] Derived operators $\Diamond$, $\past$, $\future$, $\always$, and $\sometimes$ are defined as in modal and tense logic. Scope conventions follow modal logic: operators bind more tightly than connectives.
+\end{enumerate}
+
+\section*{\it Problem Set: Syntax}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+  \item[\bf Well-Formedness:] Determine which of the following are well-formed sentences of $\BL$:
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\Box p_1 \rightarrow \Future p_2$
+        \item $\Past \Box p_1$
+        \item $\always \sometimes p_1$
+        \item $\Box \Future \Diamond p_1$
+        \item $p_1 \Box p_2$
+        \item $\Past \rightarrow p_1$
+        \item $\always (\Box p_1 \leftrightarrow \Future p_2)$
+        \item $\Diamond \past \Future p_1$
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Abbreviations:] Expand the following abbreviated formulas into primitive $\BL$ notation (using only $\bot$, $\rightarrow$, $\Box$, $\Past$, $\Future$):
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\always p_1$
+        \item $\Diamond \sometimes p_1$
+        \item $\past \metaA \vee \future \metaB$
+        \item $\Box \metaA \wedge \always \metaB$
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Scope Ambiguity:] Provide fully parenthesized versions of the following to clarify intended scope:
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\Box \metaA \rightarrow \Future \metaB \vee \metaC$
+        \item $\always \metaA \wedge \Box \metaB \rightarrow \past \metaC$
       \end{multicols}
     \end{enumerate}
 \end{enumerate}
 
+\section*{\sc Bimodal Logic: Semantics}
 
-
-
-\section*{\sc Propositional Bimodal Logic: Cartesian Semantics}
-  
 \begin{enumerate}[leftmargin=1.2in]
-	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BLC$ are defined:
-    \[ \metaA \Coloneq p_i \mid 
-      \bot \mid 
-      \neg\metaA \mid 
-      \metaA \rightarrow \metaA \mid 
-      \Past\metaA \mid 
-      \Future\metaA \mid
-      \boxtimes\metaA \mid
-      \Box\metaA
-    \]
-    Define $\wfs{\BLC}$ to be the set of all well-formed sentences of $\BLC$.
-  \item[\bf Abbreviation:] We maintain the abbreviations from $\PL$, $\ML$, and $\TL$ along with the convention
-    $\Q\Gamma \coloneq \set{\Q\gamma : \gamma \in \Gamma}$ for any $\Q \in \set{\Past, \Future, \boxtimes, \Box}$.
-    % where $\metaA_{\tuple{\textsc{p} | \textsc{f}}}$ is the result of exchanging all occurrences of $\Past$ and $\Future$ in $\metaA$, the \textit{Logic of Tense and Modality} \textbf{TM} is the smallest extension of the set of classical propositional tautologies \textbf{PL} to be closed under all instances of the schemata following:
-  \item[\bf Frame:] A \textit{Cartesian frame} is an ordered quadruple $\C = \tuple{W, R, T, <}$ where $\tuple{W, R}$ is a modal frame and $\tuple{T, <}$ is a temporal frame. 
-  \item[\bf Interpretation:] A \textit{Cartesian interpretation} of $\BLC$ over $\C$ is a function $\I : \SL \to \wp(W \times T)$, i.e., where $\I(p_i) \subseteq W \times T$ for every sentence letter $p_i \in \SL$. 
-  \item[\bf Model:] A Cartesian model of $\BLC$ is an $\M = \tuple{W, R, T, <, \I}$ where $\tuple{W, R, T, <}$ is a Cartesian frame and $\I$ is a Cartesian interpretation of $\BLC$.
-  \item[\bf Semantics:] We define $\vDash$ recursively for model $\M = \tuple{W, R, T, <, \I}$ of $\BLC$, worlds $w, u \in W$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\BLC}$:
-    \begin{itemize}[leftmargin=.15in]\small
-      \item[] $\M, w, x \nvDash \bot$.
-      \item[] $\M, w, x \vDash p_i$ \textit{iff} $x \in \I(p_i)$.
-      \item[] $\M, w, x \vDash \neg \metaA$ \textit{iff} $\M, w,x\nvDash \metaA$.
-      \item[] $\M, w, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, w, x\nvDash \metaA$ or $\M, w, x \vDash  \metaB$.
-      \item[] $\M, w, x \vDash \Past \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
-      \item[] $\M, w, x \vDash \Future \metaA$ \textit{iff} $\M, w, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
-      \item[] $\M, w, x \vDash \boxtimes \metaA$ \textit{iff} $\M, u, x\vDash \metaA$ for every $u \in W$ and every $x \in T$. % where $R(w, u)$.
-      \item[] $\M, w, x \vDash \Box \metaA$ \textit{iff} $\M, u, x\vDash \metaA$ for every $u \in W$. % where $R(w, u)$.
+
+  \item[\bf Task Frame:] A \textbf{task frame} is a triple $\taskframe = \tuple{\worldstateset, \Tor, \taskrel}$ where:
+    \begin{itemize}
+      \item $\worldstateset$ is a non-empty set of \textbf{world states}
+      \item $\Tor = \tuple{T, +, \leq}$ is a \textbf{totally ordered abelian group}
+      \item $\taskrel \subseteq \worldstateset \times T \times \worldstateset$ is a parameterized \textbf{task relation}
     \end{itemize}
-  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, R, T, <, \I}$ of $\BLC$, world $w \in W$, and time $x \in T$, if $\M, w, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, w, x \vDash \metaA$.
+    We write $w \taskrel_x v$ to mean $\tuple{w,x,v} \in \taskrel$.
+
+  \item[\it Nullity Constraint:] For all $w \in \worldstateset$, we have $w \taskrel_0 w$.
+
+  \item[\it Compositionality Constraint:] For all $w, u, v \in \worldstateset$ and all $x, y \in T$, if $w \taskrel_x u$ and $u \taskrel_y v$, then $w \taskrel_{x+y} v$.
+
+  \item[\bf World History:] A \textbf{world history} over a frame $\taskframe = \tuple{\worldstateset, \Tor, \taskrel}$ is a function $\worldhist: X \rightarrow \worldstateset$ where $X \subseteq T$ is a convex subset of times satisfying:
+    \begin{itemize}
+      \item \textbf{Task Coherence:} For all times $x, y \in T$ where both $x, x+y \in X$, we have $\worldhist(x) \taskrel_y \worldhist(x+y)$.
+    \end{itemize}
+    We write $\worldhistset$ for the set of all world histories over a given frame.
+
+  \item[\bf Task Model:] A \textbf{task model} is a tuple $\taskmodel = \tuple{\worldstateset, \Tor, \taskrel, \corner{\cdot}}$ where $\tuple{\worldstateset, \Tor, \taskrel}$ is a task frame and $\corner{p_i} \subseteq \worldstateset$ is the \textbf{interpretation} of sentence letter $p_i$.
+
+  \item[\bf Truth Conditions:] Given a task model $\taskmodel$, world history $\worldhist$, and time $x$, we define $\taskmodel, \worldhist, x \models \metaA$ inductively:
+    \begin{enumerate}[leftmargin=.5in,itemsep=.075in]
+      \item $\taskmodel, \worldhist, x \models p_i$ \quad iff \quad $x \in \textit{dom}(\worldhist)$ and $\worldhist(x) \in \corner{p_i}$
+      \item $\taskmodel, \worldhist, x \not\models \bot$
+      \item $\taskmodel, \worldhist, x \models \metaA \rightarrow \metaB$ \quad iff \quad $\taskmodel, \worldhist, x \not\models \metaA$ or $\taskmodel, \worldhist, x \models \metaB$
+      \item $\taskmodel, \worldhist, x \models \Box \metaA$ \quad iff \quad $\taskmodel, \sigma, x \models \metaA$ for all $\sigma \in \worldhistset$
+      \item $\taskmodel, \worldhist, x \models \Past \metaA$ \quad iff \quad $\taskmodel, \worldhist, y \models \metaA$ for all $y \in \textit{dom}(\worldhist)$ with $y < x$
+      \item $\taskmodel, \worldhist, x \models \Future \metaA$ \quad iff \quad $\taskmodel, \worldhist, y \models \metaA$ for all $y \in \textit{dom}(\worldhist)$ with $y > x$
+    \end{enumerate}
+
+  \item[\bf Validity:] A formula $\metaA$ is \textbf{valid over task frames} (written $\models_{\textsc{tm}} \metaA$) iff for all task models $\taskmodel$, all world histories $\worldhist$, and all times $x \in \textit{dom}(\worldhist)$, we have $\taskmodel, \worldhist, x \models \metaA$.
+
 \end{enumerate}
 
+\section*{\it Problem Set: Semantics}
 
-
-\section*{\it Problem Set: Cartesian Semantics}
-
-\begin{enumerate}[leftmargin=1.2in]
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
   \item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
-    \begin{enumerate}[label=\arabic*.,resume]\small
+    \begin{enumerate}[label=\arabic*.]\small
       \begin{multicols}{2}
-        \item \textit{If} $\Gamma \MLmodels[] \metaA$, \textit{then} $\Box\Gamma \MLmodels[] \Box\metaA$.
-        \item $\MLmodels[] \Box\metaA \rightarrow \metaA$.
-        \item $\MLmodels[] \Box\metaA \rightarrow \Box\Box\metaA$.
-        \item $\MLmodels[] \metaA \rightarrow \Box\Diamond\metaA$.
-        % \item $\MLmodels[] \Box\metaA \rightarrow \Box\Future\metaA$.
-        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$.
-
-        \item $\MLmodels[] \boxtimes\metaA \leftrightarrow \Box\always\metaA$.
-        \item $\MLmodels[] \boxtimes\metaA \rightarrow \metaA$.
-        \item $\MLmodels[] \boxtimes\metaA \rightarrow \boxtimes\boxtimes\metaA$.
-        \item $\MLmodels[] \metaA \rightarrow \boxtimes\diamondtimes\metaA$.
-        % \item $\MLmodels[] \Box\metaA \rightarrow \Future\Box\metaA$.
-        \item $\MLmodels[] \boxtimes\metaA \rightarrow \always\metaA$.
+        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$
+        \item $\MLmodels[] \sometimes\metaA \rightarrow \Diamond\metaA$
+        \item $\MLmodels[] \Box\metaA \rightarrow \Box\always\metaA$
+        \item $\MLmodels[] \Diamond\sometimes\metaA \rightarrow \Diamond\metaA$
+        \item $\MLmodels[] \Box\metaA \rightarrow \Box\Future\metaA$
+        \item $\MLmodels[] \Box\metaA \rightarrow \Future\Box\metaA$
       \end{multicols}
     \end{enumerate}
-  % \item[\bf Logical Consequence:] For each of the claims above, strengthen $\MLmodels[]$ by imposing the weakest set of constraints $C$ which make that claim valid. 
+
+  \item[\bf Duality:] Show that the following pairs are duals by providing semantic argument or counterexample:
+    \begin{enumerate}[label=\arabic*.]\small
+      \item $\Box \metaA$ and $\Diamond \metaA$
+      \item $\Past \metaA$ and $\past \metaA$
+      \item $\always \metaA$ and $\sometimes \metaA$
+    \end{enumerate}
 \end{enumerate}
 
-
-
-
-
-
-\section*{\sc Propositional Bimodal Logic: Task Semantics}
-  
-\begin{enumerate}[leftmargin=1.2in]
-	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BL$ are defined:
-    \[ \metaA \Coloneq p_i \mid 
-      \bot \mid 
-      \neg\metaA \mid 
-      \metaA \rightarrow \metaA \mid 
-      \Past\metaA \mid 
-      \Future\metaA \mid
-      \Box\metaA
-    \]
-    Define $\wfs{\BL}$ to be the set of all well-formed sentences of $\BL$.
-  \item[\bf Abbreviation:] We maintain the abbreviations from $\BL$ along with the convention that $\metaA_{\tuple{\textsc{p} | \textsc{f}}}$ is the result of exchanging all occurrences of $\Past$ and $\Future$ in $\metaA$.
-  \item[\bf Frame:] A \textit{discrete bimodal frame} is an ordered quadruple $\B = \tuple{W, \to, \Z, <}$ where $\tuple{W, \to}$ is a modal frame consisting on instances \textit{world states}. 
-  \item[\bf Interpretation:] A \textit{bimodal interpretation} of $\BL$ over $\C$ is a function $\I : \SL \to \wp(W)$, i.e., where $\I(p_i) \subseteq W$ for every sentence letter $p_i \in \SL$. 
-  \item[\bf Model:] A \textit{bimodal model} of $\BL$ is an $\M = \tuple{W, \to, \Z, <, \I}$ where $\tuple{W, \to, \Z, <}$ is a bimodal frame and $\I$ is a bimodal interpretation of $\BL$.
-  \item[\bf Possible World:] A \textit{possible world} on a discrete bimodal frame is a function from times to world states $\tau : \Z \to W$ where $\tau(x) \to \tau(x + 1)$ for every $x \in T$.
-  \item[\bf Semantics:] Letting $H_\Z$ be the set of all possible worlds $\tau : \Z \to W$, we define $\vDash$ recursively for a model $\M = \tuple{W, \to, \Z, <, \I}$ of $\BL$, worlds $\tau, \sigma \in H_\Z$, times $x, y \in T$, sentence letter $p_i \in \SL$, and $\metaA, \metaB \in \wfs{\BL}$:
-    \begin{itemize}[leftmargin=.15in]\small
-      \item[] $\M, \tau, x \nvDash \bot$.
-      \item[] $\M, \tau, x \vDash p_i$ \textit{iff} $\tau(x) \in \I(p_i)$.
-      \item[] $\M, \tau, x \vDash \neg \metaA$ \textit{iff} $\M, \tau, x\nvDash \metaA$.
-      \item[] $\M, \tau, x \vDash \metaA\rightarrow \metaB$ \textit{iff} $\M, \tau, x\nvDash \metaA$ or $\M, \tau, x \vDash  \metaB$.
-      \item[] $\M, \tau, x \vDash \Past \metaA$ \textit{iff} $\M, \tau, y\vDash \metaA$ for every $y \in T$ such that $y < x$.
-      \item[] $\M, \tau, x \vDash \Future \metaA$ \textit{iff} $\M, \tau, y\vDash \metaA$ for every $y \in T$ such that $x < y$.
-      \item[] $\M, \tau, x \vDash \Box \metaA$ \textit{iff} $\M, \sigma, x\vDash \metaA$ for every $\sigma \in H_\Z$.
-    \end{itemize}
-  \item[\bf Logical Consequence:] $\MetaG \MLmodels[] \metaA$ just in case for any model $\M = \tuple{W, \to, \Z, <, \I}$ of $\BL$, world $\tau \in H_\Z$, and time $x \in T$, if $\M, \tau, x \vDash \metaG$ for all $\metaG \in \MetaG$, then $\M, \tau, x \vDash \metaA$.
-\end{enumerate}
-
-
-
-\section*{\it Problem Set: Task Semantics}
+\section*{\sc Bimodal Logic: Axiomatic System}
 
 \begin{enumerate}[leftmargin=1.2in]
-  \item[\bf Countermodels:] Evaluate the following, providing a proof or countermodel:
-    \begin{enumerate}[label=\arabic*.,resume]\small
+  \item[\bf TM System:] The \textit{TM proof system} combines the S5 modal system with the TL temporal system, adding two bimodal interaction axioms. We write $\MetaG \TMproves \metaA$ for derivability in TM.
+
+  \item[\bf System Components:] TM includes:
+    \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
+      \item All S5 axioms and rules (MT, M4, MB, MK, MP)
+      \item All TL axioms and rules (TK, TL, T4, TA, TD, FN)
+      \item \textbf{MF:} $\Box\metaA \rightarrow \Box\Future\metaA$ (modal-future interaction)
+      \item \textbf{TF:} $\Box\metaA \rightarrow \Future\Box\metaA$ (temporal-future interaction)
+    \end{enumerate}
+
+  \item[\bf Perpetuity Principles:] The bimodal interaction axioms yield the following TM-derivable theorems:
+    \begin{enumerate}[leftmargin=.5in,labelsep=.15in,itemsep=.075in]
       \begin{multicols}{2}
-        % \item \textit{If} $\Gamma\MLmodels[] \metaA$, \textit{then} $\Box\Gamma\MLmodels[] \Box \metaA$.
-        % \item $\metaA, \metaA \rightarrow \metaB \MLmodels[] \metaB$.
-        % \item $\Box\metaA \rightarrow \metaA$.
-        % \item $\Box\metaA \rightarrow \Box\Box\metaA$.
-        % \item $\metaA \rightarrow \Box\Diamond\metaA$.
-        \item $\MLmodels[] \Box\metaA \rightarrow \Box\Future\metaA$.
-        \item $\MLmodels[] \Box\metaA \rightarrow \always\metaA$.
-
-        % \item \textit{If} $\Gamma\MLmodels[] \metaA$, \textit{then} $\Future\Gamma\MLmodels[] \Future \metaA$.
-        % \item \textit{If} $\MLmodels[] \metaA$, \textit{then} $\MLmodels[] \metaA_{\tuple{\textsc{p} | \textsc{f}}}$.
-        % \item $\Future\Past\metaA \rightarrow \always\metaA$.
-        % \item $\Future\metaA \rightarrow \Future\Future\metaA$.
-        % \item $\metaA \rightarrow \Future \past \metaA$.
-        \item $\MLmodels[] \Box\metaA \rightarrow \Future\Box\metaA$.
-        \item $\MLmodels[] \sometimes\metaA \rightarrow \Diamond\metaA$.
+        \item[\bf P1:] $\Box\metaA \rightarrow \always\metaA$
+        \item[\bf P2:] $\sometimes\metaA \rightarrow \Diamond\metaA$
+        \item[\bf P3:] $\Box\metaA \rightarrow \Box\always\metaA$
+        \item[\bf P4:] $\Diamond\sometimes\metaA \rightarrow \Diamond\metaA$
+        \item[\bf P5:] $\Diamond\sometimes\metaA \rightarrow \always\Diamond\metaA$
+        \item[\bf P6:] $\sometimes\Box\metaA \rightarrow \Box\always\metaA$
       \end{multicols}
     \end{enumerate}
-  % \item[\bf Logical Consequence:] For each of the claims above, strengthen $\MLmodels[]$ by imposing the weakest set of constraints $C$ which make that claim valid. 
+\end{enumerate}
+
+\section*{\it Problem Set: Derivations}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+  \item[\bf Perpetuity Proofs:] Provide formal TM-proofs for the perpetuity principles:
+    \begin{enumerate}[label=\arabic*.]\small
+      \begin{multicols}{2}
+        \item $\TMproves \Box\metaA \rightarrow \always\metaA$ (P1)
+        \item $\TMproves \sometimes\metaA \rightarrow \Diamond\metaA$ (P2)
+        \item $\TMproves \Box\metaA \rightarrow \Box\always\metaA$ (P3)
+        \item $\TMproves \Diamond\sometimes\metaA \rightarrow \Diamond\metaA$ (P4)
+        \item $\TMproves \Diamond\sometimes\metaA \rightarrow \always\Diamond\metaA$ (P5)
+        \item $\TMproves \sometimes\Box\metaA \rightarrow \Box\always\metaA$ (P6)
+      \end{multicols}
+    \end{enumerate}
+
+  \item[\bf Interaction Axioms:] Show that the bimodal interaction axioms characterize the relationship between modality and time by proving:
+    \begin{enumerate}[label=\arabic*.]\small
+      \item $\TMproves \Box\metaA \rightarrow \Box\Future\metaA$ using MF
+      \item $\TMproves \Box\metaA \rightarrow \Future\Box\metaA$ using TF
+      \item $\TMproves \Box\metaA \rightarrow \Box\Past\metaA$ using MF and TD
+      \item $\TMproves \Box\metaA \rightarrow \Past\Box\metaA$ using TF and TD
+    \end{enumerate}
+\end{enumerate}
+
+\section*{\sc Bimodal Logic: Metatheory}
+
+We have now defined both the proof-theoretic (axiomatic) and semantic (task frames) aspects of TM logic. The axiomatic system showed us \textit{how} to derive theorems syntactically, while the task semantics showed us \textit{what} formulas mean and \textit{why} perpetuity principles hold. The central metalogical questions are: (1) \textbf{Soundness} -- does every derivable formula hold in all task models? and (2) \textbf{Completeness} -- does every semantically valid formula have a proof? These questions establish the correspondence between syntactic derivability and semantic validity.
+
+\begin{enumerate}[leftmargin=1.2in]
+
+  \item[\bf Logical Consequence:] A formula $\metaA$ is a \textbf{logical consequence} of a set $\Gamma$ of formulas (written $\Gamma \models_{\textsc{tm}} \metaA$) iff for all task models $\taskmodel$, all world histories $\worldhist$, and all times $x \in \textit{dom}(\worldhist)$, if $\taskmodel, \worldhist, x \models \gamma$ for all $\gamma \in \Gamma$, then $\taskmodel, \worldhist, x \models \metaA$.
+
+  \item[\bf Soundness Theorem:] \textit{If $\Gamma \TMproves \metaA$, then $\Gamma \models_{\textsc{tm}} \metaA$.}
+
+  That is, every TM-derivable formula is semantically valid over all task frames. This means the proof system is \textbf{reliable}: if we can prove something syntactically, it is guaranteed to be true semantically.
+
+  \item[\bf Soundness Proof Sketch:] The proof proceeds by induction on the length of TM-proofs. We show: (1) all axiom schemata are valid over task frames, and (2) all inference rules preserve validity. We demonstrate representative cases:
+
+  \begin{enumerate}[leftmargin=.7in,itemsep=.15in]
+    \item[\it Case MP:] If $\metaA$ and $\metaA \rightarrow \metaB$ are both valid, then $\metaB$ is valid.
+
+    \textit{Proof:} Suppose $\taskmodel, \worldhist, x \models \metaA$ and $\taskmodel, \worldhist, x \models \metaA \rightarrow \metaB$ for arbitrary model, history, and time. By truth condition for $\rightarrow$, either $\taskmodel, \worldhist, x \not\models \metaA$ or $\taskmodel, \worldhist, x \models \metaB$. Since we have $\taskmodel, \worldhist, x \models \metaA$, it must be that $\taskmodel, \worldhist, x \models \metaB$. Thus $\metaB$ is valid. \qed
+
+    \item[\it Case MK:] The axiom $\Box(\metaA \rightarrow \metaB) \rightarrow (\Box\metaA \rightarrow \Box\metaB)$ is valid.
+
+    \textit{Proof:} Suppose $\taskmodel, \worldhist, x \models \Box(\metaA \rightarrow \metaB)$. This means for all histories $\sigma$ with $x \in \textit{dom}(\sigma)$, we have $\taskmodel, \sigma, x \models \metaA \rightarrow \metaB$. Now suppose $\taskmodel, \worldhist, x \models \Box\metaA$, meaning for all such histories $\sigma$, we have $\taskmodel, \sigma, x \models \metaA$. Take any history $\sigma$ with $x \in \textit{dom}(\sigma)$. We have both $\taskmodel, \sigma, x \models \metaA$ and $\taskmodel, \sigma, x \models \metaA \rightarrow \metaB$, so by truth condition for $\rightarrow$, we get $\taskmodel, \sigma, x \models \metaB$. Since $\sigma$ was arbitrary, $\taskmodel, \worldhist, x \models \Box\metaB$. \qed
+
+    \item[\it Case MF:] The bimodal axiom $\Box\Future\metaA \rightarrow \Future\Box\metaA$ is valid.
+
+    \textit{Proof:} Suppose $\taskmodel, \worldhist, x \models \Box\Future\metaA$. This means for all histories $\sigma$ with $x \in \textit{dom}(\sigma)$, we have $\taskmodel, \sigma, x \models \Future\metaA$, i.e., for all $y > x$ in $\textit{dom}(\sigma)$, we have $\taskmodel, \sigma, y \models \metaA$. To show $\taskmodel, \worldhist, x \models \Future\Box\metaA$, take any $y > x$ in $\textit{dom}(\worldhist)$. We need to show $\taskmodel, \worldhist, y \models \Box\metaA$. Take any history $\rho$ with $y \in \textit{dom}(\rho)$. By assumption applied to $\rho$, we have $\taskmodel, \rho, y \models \metaA$. Since $\rho$ was arbitrary, $\taskmodel, \worldhist, y \models \Box\metaA$. Since $y$ was arbitrary, $\taskmodel, \worldhist, x \models \Future\Box\metaA$. \qed
+  \end{enumerate}
+
+  The remaining axioms (MT, M4, MB, TD, TL, T4, TA, TF) and rules are shown valid by similar arguments. The key insight is that the bimodal axioms MF and TF ensure that modal and temporal operators interact correctly across world histories and times.
+
+  \item[\bf Completeness Theorem:] \textit{If $\Gamma \models_{\textsc{tm}} \metaA$, then $\Gamma \TMproves \metaA$.}
+
+  That is, every semantically valid formula is TM-derivable. This means the proof system is \textbf{adequate}: if something is true in all task models, we can find a proof of it.
+
+  \item[\bf Completeness Proof Strategy:] The proof uses the \textbf{canonical model construction} method standard in modal logic. The idea is to build a task model from maximal consistent sets of formulas, where:
+  \begin{itemize}
+    \item World states are maximal consistent sets (sets of formulas closed under consequence and not containing contradictions)
+    \item The task relation $w \taskrel_x v$ is defined by formula consistency: if $\Future^x \metaA \in w$, then $\metaA \in v$
+    \item Histories are constructed as maximal linear extensions of consistent temporal sequences
+    \item The valuation assigns truth to sentence letters at worlds where they appear
+  \end{itemize}
+
+  The key lemma is the \textbf{Truth Lemma}: for any formula $\metaA$ and maximal consistent set $w$ representing a world state in the canonical model, $\metaA \in w$ iff the canonical model validates $\metaA$ at $w$. This is proved by induction on formula complexity, with the modal and temporal cases following from the construction of the task relation and histories.
+
+  Given the Truth Lemma, completeness follows: if $\Gamma \models_{\textsc{tm}} \metaA$ but $\Gamma \not\TMproves \metaA$, then $\Gamma \cup \set{\neg\metaA}$ is consistent (by negation completeness). This set can be extended to a maximal consistent set, which forms a world in the canonical model where $\Gamma$ holds but $\metaA$ fails -- contradicting semantic validity.
+
+  \item[\bf Metalogical Consequences:] The soundness and completeness theorems have several important consequences:
+  \begin{itemize}
+    \item \textbf{Consistency:} TM is consistent (no formula is both provable and refutable) since the task semantics provides models
+    \item \textbf{Decidability:} TM is decidable (there exists an algorithm to determine provability) inherited from decidability of S5 modal logic and tense logic
+    \item \textbf{Compactness:} If every finite subset of $\Gamma$ is satisfiable, then $\Gamma$ is satisfiable (standard consequence of completeness)
+    \item \textbf{Expressiveness:} TM can express perpetuity principles (like P1-P6) that are not derivable in either pure modal logic or pure tense logic alone
+  \end{itemize}
+
+\end{enumerate}
+
+\section*{\it Problem Set: Metatheory}
+
+\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+  \item[\bf Axiom Validity:] Show that the following TM axioms are valid over all task frames by providing explicit semantic proofs:
+    \begin{enumerate}[label=\arabic*.]\small
+      \item MT: $\Box\metaA \rightarrow \metaA$ (\textit{Hint:} Use reflexivity of task relation via nullity)
+      \item T4: $\Past\metaA \rightarrow \Past\Past\metaA$ (\textit{Hint:} Transitivity of temporal order)
+    \end{enumerate}
+
+  \item[\bf Consistency:] For each of the following sets of formulas, determine whether it is consistent (satisfiable in some task model) or inconsistent. If consistent, describe a task model that satisfies it. If inconsistent, derive a contradiction using TM axioms.
+    \begin{enumerate}[label=\arabic*.]\small
+      \item $\set{\Box p, \Diamond \neg p}$
+      \item $\set{\always p, \sometimes \neg p}$
+      \item $\set{\Box p, \neg\always p}$
+      \item $\set{\sometimes p, \always \neg p}$
+    \end{enumerate}
+
+  \item[\bf Countermodels:] For each invalid formula, use the completeness theorem to argue that a countermodel must exist, then construct an explicit task model refuting it:
+    \begin{enumerate}[label=\arabic*.]\small
+      \item $\always \metaA \rightarrow \Box \metaA$ (temporal necessity doesn't imply modal necessity)
+      \item $\Diamond \metaA \rightarrow \sometimes \metaA$ (modal possibility doesn't imply temporal possibility)
+    \end{enumerate}
 \end{enumerate}
 
 
 
 
-\section*{\sc Propositional Bimodal Logic: Extensions}
-  
+\section*{\sc Bimodal Logic: Extensions}
+  \label{sec:BimodalExtensions}
+
+The TM logic we have developed makes minimal assumptions about the temporal order structure -- it is dense, unbounded, and linear. We can extend TM by adding operators that are useful for reasoning about specific temporal and modal relationships. The extensions presented here build on the core TM system while preserving its soundness and completeness properties.
+
 \begin{enumerate}[leftmargin=1.2in]
-	\item[\bf Well-Formed Sentences:] Letting $p_i \in \SL$, the \textit{well-formed sentences} $\BLP$ are defined:
-    \[ \metaA \Coloneq p_i \mid 
-      \bot \mid 
-      \neg\metaA \mid 
-      \metaA \rightarrow \metaA \mid 
-      \Past\metaA \mid 
+	\item[\bf Extended Language:] Letting $p_i \in \SL$, the \textit{well-formed sentences} of the extended bimodal language $\BLP$ are defined:
+    \[ \metaA \Coloneq p_i \mid
+      \bot \mid
+      \neg\metaA \mid
+      \metaA \rightarrow \metaA \mid
+      \Past\metaA \mid
       \Future\metaA \mid
       \Box\metaA \mid
       \Inevitably\metaA \mid
       \Openpast\metaA \mid
       \Openfuture\metaA.
-      % \Relative\metaA
     \]
-    Define $\wfs{\BL}$ to be the set of all well-formed sentences of $\BL$.
-  \item[\bf Abbreviation:] We maintain the abbreviations from $\BL$ along with the conventions:
+    Define $\wfs{\BLP}$ to be the set of all well-formed sentences of $\BLP$.
+
+  \item[\bf Abbreviations:] We maintain the abbreviations from $\BL$ along with the conventions:
     \begin{multicols}{2}
       \begin{enumerate}
         \item[\it Will Always:] $\Will\varphi \coloneq \Inevitably\Future\varphi$.
@@ -1309,213 +1449,22 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 \end{enumerate}
 
 
-\pagebreak
-\noindent
-TO BE CONTINUED...
-\pagebreak
+% \pagebreak
+% \noindent
+% TO BE CONTINUED...
+% \pagebreak
 
 
 
 
 
-\section*{\sc First-Order Logic: Syntax}
+\newpage
 
-\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
-	\item[\bf Language $\boldsymbol{\FI}$:] The first-order language $\FI$ includes: constants `$c_1$', `$c_2$', \dots, variables `$x_1$', `$x_2$', \dots, $n$-place predicates `$p_1^n$', `$p_2^n$', \dots, for each natural number $n\geq0$, sentential operators `$\neg$',`$\rightarrow$', `$\forall$', and parentheses `$($' and `$)$'.
-	\item[\bf Terms:] A symbol is a \textit{term} just in case that symbol is a constant or variable.
-	\item[\bf Well Formed Formulas:] Let `$t_1$',\dots, `$t_n$' be terms of $\FI$, `$x$' be a variable of $\FI$, `$H^n$' be an $n$-place predicate of $\FI$, and `$A$' and `$B$' name arbitrary sentences of $\FI$. We may then let $\mathcal{G}_1$ be the set of wff of $\FI$, defined recursively as follows:
-	      \begin{itemize}
-		      \item The 0-place predicates `$p_1^0$',`$p_2^0$',\dots are all wff of $\FI$.
-		      \item If ${H^n}$ is an $n$-place predicate of $\FI$, and ${t_1},\dots,{t_n}$ are terms of $\FI$, then the atomic sentence $\corner{H^n(t_1,\dots,t_n)}$ is a wff of $\FI$.
-		      \item If ${A}$ is a wff of $\FI$, then $\corner{\neg A}$ is a wff of $\FI$.
-		      \item If ${A}$ and ${B}$ are wffs of $\FI$, then $\corner{(A\vee B)}$ is a wff of $\FI$.
-		      \item If ${A}$ is a wff of $\FI$, then $\corner{\forall xA}$ is a wff of $\FI$.
-	      \end{itemize}
-	\item[\bf Abbreviations:] (i) $\corner{(A\wedge B)}$ abbreviates $\corner{\neg(\neg A\vee\neg B)}$;\\ (ii) $\corner{(A\rightarrow B)}$ abbreviates $\corner{(\neg A\vee B)}$;\\ (iii) $\corner{(A\leftrightarrow B)}$ abbreviates $\corner{[(A\rightarrow B)\wedge(B\rightarrow A)]}$;\\ (iv) $\corner{\exists xA}$ abbreviates $\corner{\neg\forall x\neg A}$.
-\end{enumerate}
+\section*{\sc Additional Materials}
 
+The following sections present alternative semantic approaches to bimodal logic that complement the main task semantics presentation.
 
-
-\section*{\it Problem Set: Metalinguistic Abbreviation}
-
-Let $\FI$ include the symbols in $\FI$ together with the sentential operators `$\wedge$', `$\rightarrow$', `$\leftrightarrow$', and `$\exists x_i$' which are to be read `and', `(materially) implies that', `just in case', and `every $x_i$ is such that', respectively. Provide a definition $\mathcal{G}_1^+$ of the wfss of $\FI$.
-
-
-
-
-\section*{\sc First-Order Logic: Proof Theory}
-
-%define atomic, and use this to define the free variables as those that occur in atomic wfs.
-%"All occurrences of free variables y in φ are also free in ∀xφ i y is distinct from x. All other occurrences of variables are not free." Volker p.60 from Syntax and Circularity: A Study in Self-Reference and Paradox (with Graham Leigh)
-\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
-	\item[\bf Free Variable:] Every variable which occurs in an atomic sentence of $\FI$ is \textit{free}. If $x$ is free in the wff $A$, then $x$ is \textit{bound} in the wff $\exists xA$. The wfss of $\FI$ are those wff of $\FI$ with no free variables.
-	      %\item[\bf Free Variable:] A variable $x_i$ that occurs in a wfs of $\FI$ is \textit{free} just in case there is no outside quantifier binding that variable, as in: `$P^1_1(x)$', `$p_1^2(x,c)$', etc.
-	\item[\bf Substitution:] For any wfs ${A}$ and terms $t$ and $k$, let $\corner{A(t/k)}$ be the wfs which result from replacing every occurrence of $k$ in the wfs ${A}$ with $t$.
-	\item[\bf Available:] A term $t$ is \textit{available} (written $t^\star$) for substitution in ${A}$ iff $t$ does not occur in ${A}$ or in any premise or undischarged assumption used to prove $A$.
-	      %\item[\bf Open:] A term `$t^\#$' is \textit{open} at a point line of a proof just in case `$t^\#$' does not occur anywhere previously in that proof.
-	\item[\bf Rules of Inference:] Let $\mathcal{R}_1^+$ extend $\mathcal{R}^+$ to also include the following rules of inference:%, where stared terms are available, and hashed terms do not occur previously:
-\end{enumerate}
-
-
-% \begin{multicols}{2}\it
-% Universal Introduction:\vspace{-.05in}
-% \begin{equation*}
-% \fitcharg{
-% \formula{A(t^\star/x)}
-% }{
-% \formula{\forall xA(x) \hspace*{.458in}(\forall I)}
-% }
-% \end{equation*}
-%
-% Universal Elimination:\vspace{-.05in}
-% \begin{equation*}
-% \fitcharg{
-% \formula{\forall xA(x)}
-% }{
-% \formula{A(t/x) \hspace*{.568in}(\forall E)}
-% }
-% \end{equation*}
-% \end{multicols}
-% \vspace{-.05in}
-%
-%
-% \begin{multicols}{2}\it
-% Existential Introduction:\vspace{-.05in}
-% \begin{equation*}
-% \fitcharg{
-% \formula{A(t/x)}
-% }{
-% \formula{\exists xA(x) \hspace*{.477in}(\exists I)}
-% }
-% \end{equation*}
-%
-% Existential Elimination:\vspace{-.05in}
-% \begin{equation*}
-% \fitcharg{
-% \formula{\exists xA(x)}
-% }{
-% \formula{A(t^\star/x) \hspace*{.515in}(\exists E)}
-% }
-% \end{equation*}
-% \end{multicols}
-% \vspace{-.05in}
-
-
-
-
-
-\section*{\sc First-Order Logic: Semantics}
-
-\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
-	\item[\bf Domain:] Let the \textit{domain} $\mathcal{D}$ be a set of objects.% and $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}}$.
-	\item[\bf Cartesian Domain:] Let $\mathcal{D}^n$ be the set of all ordered tuples $\tuple{d_1,\dots,d_n}$ where each $d_i$ is an object in the domain $\mathcal{D}$, i.e., $\mathcal{D}^n=\set{\tuple{d_1,\dots,d_n}:d_i\in\mathcal{D}~\text{for}~1\leq i\leq n}$.
-	\item[\bf Interpretation:] Let $\FImodels$ be an \textit{interpretation} of $\FI$ over $\mathcal{D}$ just in case: (i) $\FImodels(p_i^n)\subseteq\mathcal{D}^n$ for every $i\geq1$ and $n\geq0$; and (ii) $\FImodels(c_i)\in\mathcal{D}$ for every $i\geq1$.
-	      %\item[\bf Extension:] The \textit{extension} of an $n$-place predicate `$p_i^n$' of $\FI$ on an interpretation $\FImodels$ over a domain $\mathcal{D}$ is the set of ordered tuples $\FImodels(p_i^n)\subseteq\mathcal{D}^n$.
-	\item[\bf Assignment:] An \textit{assignment} $\underline{a}$ is a function from the variables in $\FI$ to the members of $\mathcal{D}$ such that $\underline{a}(x_i)$ is a member of the domain $\mathcal{D}$ for every $i\geq1$.
-	\item[\bf Denotation:] Let $I(t)=
-		      \begin{cases}
-			      \FImodels(t)     & \text{if}~~ t=c_i ~~\text{for any}~~ i\geq1 \\
-			      \underline{a}(t) & \text{if}~~ t=x_i ~~\text{for any}~~ i\geq1
-		      \end{cases}$
-	\item[\bf Variant:] The function $\underline{a}[d/x]$ is an \textit{$x$-variant} of the assignment $\underline{a}$ just in case $\underline{a}[d/x]$ differs from $\underline{a}$ at most by setting $\underline{a}[d/x](x)=d$.
-	\item[\bf Model:] A \textit{model} of $\FI$ is any ordered pair $\M=\tuple{\mathcal{D},\FImodels}$, where $\mathcal{D}$ is a domain of individuals, and $\FImodels$ an interpretation over $\mathcal{D}$.
-	\item[\bf Semantics:] Given a model $\M$ of $\FI$, and assignment $\underline{a}$, we may recursively define $\M,\underline{a}\vDash A$ for all wfss $A$ of $\FI$ as follows:
-	      \begin{small}
-		      \begin{itemize}[leftmargin=.36in]
-			      \item[$(p_i)$] $\M,\underline{a}\vDash  p_i^n(t_1,\dots,t_n)$ \textit{iff} $\tuple{I(t_1),\dots,I(t_n)}\in \FImodels(p_i^n)$.
-			      \item[$(\hspace{1.5pt}\exists\hspace{1.5pt})$] $\M,\underline{a}\vDash  \exists x_iA$ \textit{iff} $\M,\underline{a}[d/x_i]\vDash A$, for some $d\in\mathcal{D}$.
-			      \item[$(\neg)$] $\M,\underline{a}\vDash  \neg A$ \textit{iff} $\M,\underline{a}\nvDash A$.
-			      \item[$(\vee)$] $\M,\underline{a}\vDash  A\vee B$ \textit{iff} $\M,\underline{a}\vDash  A$ or $\M,\underline{a}\vDash  B$.
-			            %\item[$(\wedge)$] $\PLmodel\vDash A\wedge B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$. 
-			            %\item[$(\shortrightarrow)$] $\PLmodel\vDash A\rightarrow B$ \textit{iff} $\nvDash_{\PLmodel} A$ or $\PLmodel\vDash B$.
-			            %\item[$(\leftrightarrow)$] $\PLmodel\vDash A\leftrightarrow B$ \textit{iff} $\PLmodel\vDash A$ and $\PLmodel\vDash B$, or $\nvDash_{\PLmodel} A$ and $\nvDash_{\PLmodel} B$.
-		      \end{itemize}
-	      \end{small}
-	      It is important that in the case where $n=0$, we adopt the convention that $\FImodels(p_i^0)=\set{\varnothing}$ indicates truth, and $\FImodels(p_i^0)=\varnothing$ indicates falsity.
-\end{enumerate}
-
-
-
-\section*{\sc First-Order Logic: Metalogic}%CONTINUE
-
-\begin{enumerate}[leftmargin=1.2in] %,label=(\arabic*)]%,label=\roman*]
-	\item[\bf Truth on a Model:] $\M\vDash_1 A$ \textit{iff} $\M,\underline{a}\vDash A$ for all variable assignments $\underline{a}$.
-	\item[\bf Logical Consequence:] $\MetaG\vDash_1 A$ \textit{iff} for all models $\M$, if $\M\vDash G$ for all $G\in\MetaG$, then $\M\vDash A$.
-	\item[\bf Logical Equivalence:] $A\equiv_1 B$ \textit{iff} $A\vDash_1 B$ and $B\vDash_1 A$.
-	\item[\bf Logical Truth:] A wfs $A$ of $\FI$ is \textit{valid} (or a logical truth) just in case $\vDash_1 A$.
-	\item[\bf First-Order Logic:] The first-order formal system of natural deduction $\mathcal{F}_1^+=\tuple{\FI,\mathcal{G}_1^+,\mathcal{A}_1^+,\mathcal{R}_1^+}$ is sound and complete, where $\mathcal{A}_1^+=\varnothing$.
-\end{enumerate}
-
-
-
-
-
-\section*{\it Problem Set: First-Order Logic\footnote{I have adapted some of the following problems from \citet{Carr2013}. See also \citet{Halbach2010}.}}
-
-\begin{enumerate}[leftmargin=1.2in]
-	\item[\bf Semantics:] Provide a semantics for the wfss of $\FI$.
-	\item[\bf Regimentation:] Regiment the following arguments into $\FI$.
-	      \begin{enumerate}[label=(\arabic*)]\small
-		      %\item $\forall xPx\vdash \forall yPy$.
-		      \item Everything that is beautiful is beautiful.
-		      \item Every philosopher is happy. So if everything is a philosopher, everything is happy.
-		      \item Everything is a philosopher and everything is happy. It follows that everything is a happy philosopher.
-		      \item Something is such that it is happy if Ella is a philosopher. So if Ella is a philosopher, then something is happy.
-		      \item There is a beautiful country. And so something is beautiful and something is a country.
-		      \item Nothing is ugly, and so everything is not ugly.
-		      \item Something is not right. It follows that not everything is right.
-		      \item Not everything is free. And so something is not free.
-		      \item Everything is not free. It follows that nothing is free.
-		      \item Every philosopher is wise, and everything wise is happy. Thus, every philosopher is happy.
-		      \item Every philosopher is happy. There is a wise philosopher. And something is wise and happy.
-		      \item Everything loves everything. Thus, everything loves itself.
-		      \item Something loves itself. And so something loves something.
-		      \item Nothing loves something which returns its loves.
-		            %\item Some of the people can be all right part of the time, but all the people can't be all right all the time.
-	      \end{enumerate}
-	\item[\bf Deduction:] Use the natural deduction rules $\mathcal{R}_1^+$ to prove that the conclusion of each of the regimented arguments above follows from its premises.
-	      %\begin{enumerate}[label=(\arabic*)]
-	      %\item $\forall xPx\vdash \forall yPy$.
-	      %\item $\vdash \forall x(Px\rightarrow Px)$.
-	      %\item $\forall x(Pa\rightarrow Qx)\vdash Pa\rightarrow\forall xQx$.
-	      %\item $\forall x(Px\rightarrow Qx)\vdash \forall Px\rightarrow\forall xQx$.
-	      %\item $\forall xPx\wedge\forall xQx\vdash \forall y(Py\wedge Qy)$.
-	      %\item $\exists x(Pa\rightarrow Qx)\vdash Pa\rightarrow\exists xQx$.
-	      %\item $\exists x(Px\wedge Qx)\vdash \exists yPy\wedge \exists yQy$.
-	      %\item $\neg\exists xPx\vdash \forall y\neg Py$.
-	      %\item $\exists x\neg Px\vdash \neg\forall yPy$.
-	      %\item $\neg\forall xPx\vdash\exists y\neg Py$.
-	      %\item $\forall x\neg Px\vdash \neg\exists yPy$.
-	      %\item $\forall x(Qx\rightarrow Rx), \forall x(Px\rightarrow Qx)\vdash\forall x(Px\rightarrow Rx)$.
-	      %\item $\forall x(Qx\rightarrow Rx),\exists x(Px\wedge Qx)\vdash\exists x(Px\wedge Rx)$.
-	      %\item $\forall x\forall yRxy\vdash\forall xRxx$.
-	      %\item $\exists xRxx\vdash\exists x\exists yRxy$.
-	      %\item $\neg\exists x\exists y(Rxy\wedge Ryx)\vdash\neg\exists xRxx$.
-	      %\end{enumerate}
-	\item[\bf Metalogic:] Prove that every theorem of $\mathcal{F}^+$ is also a theorem of $\mathcal{F}^+_1$.
-	\item[\bf Bonus:] Regiment the following into $\FI$:
-	      \begin{enumerate}[label=(\arabic*)]\small
-		      \item Everybody loves somebody.
-		      \item Everybody everybody loves loves somebody.
-		      \item Everybody everybody everybody loves loves loves somebody.
-		            %\item Everybody everybody everybody everybody loves loves loves loves somebody.
-		      \item You can fool all the people some of the time, and some of the people all the time, but you cannot fool all the people all the time.
-	      \end{enumerate}
-\end{enumerate}
-
-
-
-
-
-
-
-%\section*{\sc Quantified Modal Logic: Syntax}
-
-%\section*{\sc Quantified Modal Logic: Axiomatic Systems}
-
-%\section*{\sc Quantified Modal Logic: Semantics}
-
-
+\input{additional/additional}
 
 
 \begin{small} %%Makes bib small text size
