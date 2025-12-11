@@ -371,6 +371,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 
 
 \section*{\it Problem Set: Axiomatic Proofs}
+  \label{sec:PL-Hilbert-Proofs}
 
 \begin{enumerate}[itemsep=2pt]\small
 	\item \textit{Hypothetical syllogism} (\textbf{HS}): $\metaA \rightarrow \metaB, \metaB \rightarrow \metaC \PLproves \metaA \rightarrow \metaC$.
@@ -473,7 +474,7 @@ Let $\PLP$ include the symbols in $\PL$ together with the sentential operators `
 	\item[\bf Axiom Schemata:] Consider the following axiom schemata:\vspace{-.05in}
 	      \begin{multicols}{2}
 		      \begin{enumerate}
-			      \item[\bf K] $\Box(\metaA\rightarrow B)\rightarrow(\Box \metaA\rightarrow\Box B)$.
+			      \item[\bf K] $\Box(\metaA\rightarrow \metaB)\rightarrow(\Box \metaA\rightarrow\Box \metaB)$.
 			      \item[\bf D] $\Box \metaA\rightarrow\Diamond \metaA$.
 			      \item[\bf T] $\Box \metaA\rightarrow \metaA$.
 			      \item[\bf B] $\metaA\rightarrow\Box\Diamond \metaA$.
@@ -1125,7 +1126,7 @@ These principles cannot be captured by modal logic alone (which lacks temporal o
 \begin{enumerate}[leftmargin=1.2in]
   \item[\bf Language:] The \textit{bimodal language} $\BL$ combines the modal operator $\Box$ (defined in modal logic) with temporal operators $\Past$ and $\Future$ (defined in tense logic):
     \[
-      \BL = \tuple{\SL, \bot, \rightarrow, \Box, \mathsf{Past}, \mathsf{Future}}
+      \BL = \tuple{\SL, \bot, \rightarrow, \Box, \Past, \Future}
     \]
     where $\SL = \set{p_i \mid i \in \N}$ is the set of sentence letters.
 
@@ -1284,59 +1285,59 @@ These principles cannot be captured by modal logic alone (which lacks temporal o
     \end{enumerate}
 \end{enumerate}
 
-\section*{\sc Bimodal Logic: Metatheory}
-
-We have now defined both the proof-theoretic (axiomatic) and semantic (task frames) aspects of TM logic. The axiomatic system showed us \textit{how} to derive theorems syntactically, while the task semantics showed us \textit{what} formulas mean and \textit{why} perpetuity principles hold. The central metalogical questions are: (1) \textbf{Soundness} -- does every derivable formula hold in all task models? and (2) \textbf{Completeness} -- does every semantically valid formula have a proof? These questions establish the correspondence between syntactic derivability and semantic validity.
-
-\begin{enumerate}[leftmargin=1.2in]
-
-  \item[\bf Logical Consequence:] A formula $\metaA$ is a \textbf{logical consequence} of a set $\Gamma$ of formulas (written $\Gamma \models_{\textsc{tm}} \metaA$) iff for all task models $\taskmodel$, all world histories $\worldhist$, and all times $x \in \textit{dom}(\worldhist)$, if $\taskmodel, \worldhist, x \models \gamma$ for all $\gamma \in \Gamma$, then $\taskmodel, \worldhist, x \models \metaA$.
-
-  \item[\bf Soundness Theorem:] \textit{If $\Gamma \TMproves \metaA$, then $\Gamma \models_{\textsc{tm}} \metaA$.}
-
-  That is, every TM-derivable formula is semantically valid over all task frames. This means the proof system is \textbf{reliable}: if we can prove something syntactically, it is guaranteed to be true semantically.
-
-  \item[\bf Metalogical Consequences:] The soundness theorem has several important consequences:
-  \begin{itemize}
-    \item \textbf{Consistency:} TM is consistent (no formula is both provable and refutable) since the task semantics provides models
-    \item \textbf{Decidability:} TM is decidable (there exists an algorithm to determine provability) inherited from decidability of S5 modal logic and tense logic
-    \item \textbf{Compactness:} If every finite subset of $\Gamma$ is satisfiable, then $\Gamma$ is satisfiable
-    \item \textbf{Expressiveness:} TM can express perpetuity principles (like P1-P6) that are not derivable in either pure modal logic or pure tense logic alone
-  \end{itemize}
-
-\end{enumerate}
-
-\section*{\it Problem Set: Metatheory}
-
-\begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
-  \item[\bf Soundness Proofs:] Prove that the following axioms and rules preserve validity, contributing to the soundness theorem:
-    \begin{enumerate}[label=\arabic*.]\small
-      \item \textbf{Modus Ponens:} Show that if $\metaA$ and $\metaA \rightarrow \metaB$ are both valid, then $\metaB$ is valid. (\textit{Hint:} Assume both formulas hold at an arbitrary model, history, and time; use the truth condition for $\rightarrow$ to establish $\metaB$.)
-      \item \textbf{MK Axiom:} Show that $\Box(\metaA \rightarrow \metaB) \rightarrow (\Box\metaA \rightarrow \Box\metaB)$ is valid over all task frames. (\textit{Hint:} Assume the antecedent holds; use the semantics of $\Box$ to quantify over all histories containing a given time.)
-      \item \textbf{MF Bimodal Axiom:} Show that $\Box\Future\metaA \rightarrow \Future\Box\metaA$ is valid over all task frames. (\textit{Hint:} Show that modal necessity of a future formula implies that at all future times, the formula holds at all histories passing through those times.)
-      \item \textbf{Optional Challenge:} Choose two additional axioms from the TM system (MT, M4, MB, TD, TL, T4, TA, TF) and prove their validity over task frames.
-    \end{enumerate}
-
-  \item[\bf Axiom Validity:] Show that the following TM axioms are valid over all task frames by providing explicit semantic proofs:
-    \begin{enumerate}[label=\arabic*.]\small
-      \item MT: $\Box\metaA \rightarrow \metaA$ (\textit{Hint:} Use reflexivity of task relation via nullity)
-      \item T4: $\Past\metaA \rightarrow \Past\Past\metaA$ (\textit{Hint:} Transitivity of temporal order)
-    \end{enumerate}
-
-  \item[\bf Consistency:] For each of the following sets of formulas, determine whether it is consistent (satisfiable in some task model) or inconsistent. If consistent, describe a task model that satisfies it. If inconsistent, derive a contradiction using TM axioms.
-    \begin{enumerate}[label=\arabic*.]\small
-      \item $\set{\Box p, \Diamond \neg p}$
-      \item $\set{\always p, \sometimes \neg p}$
-      \item $\set{\Box p, \neg\always p}$
-      \item $\set{\sometimes p, \always \neg p}$
-    \end{enumerate}
-
-  \item[\bf Countermodels:] For each invalid formula, construct an explicit task model refuting it:
-    \begin{enumerate}[label=\arabic*.]\small
-      \item $\always \metaA \rightarrow \Box \metaA$ (temporal necessity doesn't imply modal necessity)
-      \item $\Diamond \metaA \rightarrow \sometimes \metaA$ (modal possibility doesn't imply temporal possibility)
-    \end{enumerate}
-\end{enumerate}
+% \section*{\sc Bimodal Logic: Metatheory}
+%
+% We have now defined both the proof-theoretic (axiomatic) and semantic (task frames) aspects of TM logic. The axiomatic system showed us \textit{how} to derive theorems syntactically, while the task semantics showed us \textit{what} formulas mean and \textit{why} perpetuity principles hold. The central metalogical questions are: (1) \textbf{Soundness} -- does every derivable formula hold in all task models? and (2) \textbf{Completeness} -- does every semantically valid formula have a proof? These questions establish the correspondence between syntactic derivability and semantic validity.
+%
+% \begin{enumerate}[leftmargin=1.2in]
+%
+%   \item[\bf Logical Consequence:] A formula $\metaA$ is a \textbf{logical consequence} of a set $\Gamma$ of formulas (written $\Gamma \models_{\textsc{tm}} \metaA$) iff for all task models $\taskmodel$, all world histories $\worldhist$, and all times $x \in \textit{dom}(\worldhist)$, if $\taskmodel, \worldhist, x \models \gamma$ for all $\gamma \in \Gamma$, then $\taskmodel, \worldhist, x \models \metaA$.
+%
+%   \item[\bf Soundness Theorem:] \textit{If $\Gamma \TMproves \metaA$, then $\Gamma \models_{\textsc{tm}} \metaA$.}
+%
+%   That is, every TM-derivable formula is semantically valid over all task frames. This means the proof system is \textbf{reliable}: if we can prove something syntactically, it is guaranteed to be true semantically.
+%
+%   \item[\bf Metalogical Consequences:] The soundness theorem has several important consequences:
+%   \begin{itemize}
+%     \item \textbf{Consistency:} TM is consistent (no formula is both provable and refutable) since the task semantics provides models
+%     \item \textbf{Decidability:} TM is decidable (there exists an algorithm to determine provability) inherited from decidability of S5 modal logic and tense logic
+%     \item \textbf{Compactness:} If every finite subset of $\Gamma$ is satisfiable, then $\Gamma$ is satisfiable
+%     \item \textbf{Expressiveness:} TM can express perpetuity principles (like P1-P6) that are not derivable in either pure modal logic or pure tense logic alone
+%   \end{itemize}
+%
+% \end{enumerate}
+%
+% \section*{\it Problem Set: Metatheory}
+%
+% \begin{enumerate}[leftmargin=1.2in,itemsep=2pt]\small
+%   \item[\bf Soundness Proofs:] Prove that the following axioms and rules preserve validity, contributing to the soundness theorem:
+%     \begin{enumerate}[label=\arabic*.]\small
+%       \item \textbf{Modus Ponens:} Show that if $\metaA$ and $\metaA \rightarrow \metaB$ are both valid, then $\metaB$ is valid. (\textit{Hint:} Assume both formulas hold at an arbitrary model, history, and time; use the truth condition for $\rightarrow$ to establish $\metaB$.)
+%       \item \textbf{MK Axiom:} Show that $\Box(\metaA \rightarrow \metaB) \rightarrow (\Box\metaA \rightarrow \Box\metaB)$ is valid over all task frames. (\textit{Hint:} Assume the antecedent holds; use the semantics of $\Box$ to quantify over all histories containing a given time.)
+%       \item \textbf{MF Bimodal Axiom:} Show that $\Box\Future\metaA \rightarrow \Future\Box\metaA$ is valid over all task frames. (\textit{Hint:} Show that modal necessity of a future formula implies that at all future times, the formula holds at all histories passing through those times.)
+%       \item \textbf{Optional Challenge:} Choose two additional axioms from the TM system (MT, M4, MB, TD, TL, T4, TA, TF) and prove their validity over task frames.
+%     \end{enumerate}
+%
+%   \item[\bf Axiom Validity:] Show that the following TM axioms are valid over all task frames by providing explicit semantic proofs:
+%     \begin{enumerate}[label=\arabic*.]\small
+%       \item MT: $\Box\metaA \rightarrow \metaA$ (\textit{Hint:} Use reflexivity of task relation via nullity)
+%       \item T4: $\Past\metaA \rightarrow \Past\Past\metaA$ (\textit{Hint:} Transitivity of temporal order)
+%     \end{enumerate}
+%
+%   \item[\bf Consistency:] For each of the following sets of formulas, determine whether it is consistent (satisfiable in some task model) or inconsistent. If consistent, describe a task model that satisfies it. If inconsistent, derive a contradiction using TM axioms.
+%     \begin{enumerate}[label=\arabic*.]\small
+%       \item $\set{\Box p, \Diamond \neg p}$
+%       \item $\set{\always p, \sometimes \neg p}$
+%       \item $\set{\Box p, \neg\always p}$
+%       \item $\set{\sometimes p, \always \neg p}$
+%     \end{enumerate}
+%
+%   \item[\bf Countermodels:] For each invalid formula, construct an explicit task model refuting it:
+%     \begin{enumerate}[label=\arabic*.]\small
+%       \item $\always \metaA \rightarrow \Box \metaA$ (temporal necessity doesn't imply modal necessity)
+%       \item $\Diamond \metaA \rightarrow \sometimes \metaA$ (modal possibility doesn't imply temporal possibility)
+%     \end{enumerate}
+% \end{enumerate}
 
 
 
